@@ -11,10 +11,100 @@
     function actionAccueil($twig,$db){
         $form = array();
         $typeproduit = new Typeproduit($db);
-    
+        $sousproduit = new Sousproduit($db);
         $liste = $typeproduit->select();
+        $liste2 = $sousproduit->select();
+
+        if(isset($_GET['id'])){
+        //on cherche 1produit dont on connait l'id:
+        $unSousproduit = $sousproduit->selectById($_GET['id']);
+        if ($unSousproduit!=null){
+            $form['sousproduit'] = $unSousproduit;
+        }
+
+
+else{
+    //si l'utilisateur n'existe pas
+    $form['message'] = 'Utilisateur incorrect';
+    }
+    }
+    else{
+
+        //Augmenter la quantité :
+        if(isset($_POST['btAugmenterQte'])){
+            $sousproduit = new Sousproduit($db);
+            $qte = $_POST['qte'];
+            $id = $_POST['id'];
+            
+            $exec=$sousproduit->updateQte($id, $qte);
+            if(!$exec){
+                $form['valide'] = false;
+            $form['message'] = 'Échec de l augmentation de la quantité du produit';
+            }
+            else{
+                $form['id'] = $id;
+                $qte="1";
+                $form['valide'] = true;
+                $form['message'] = 'Modification réussie';
+                }
+                }
+                else{
+       $form['message'] = 'produit non précisé';
+       }
+
+        //Baisser la quantité :
+        if(isset($_POST['btBaisserQte'])){
+            $sousproduit = new Sousproduit($db);
+            $qte = $_POST['qte'];
+            $id = $_POST['id'];
+            
+            $exec=$sousproduit->updateQte2($id, $qte);
+            if(!$exec){
+                $form['valide'] = false;
+            $form['message'] = 'Échec de la baisse de la quantité du produit';
+            }
+            else{
+                $form['id'] = $id;
+                $qte="1";
+                $form['valide'] = true;
+                $form['message'] = 'Modification réussie';
+                }
+                }
+                else{
+    $form['message'] = 'produit non précisé';
+    }
+
+
+
+    //Modifier un commentaire
+    if(isset($_POST['btModifCom'])){
+        $sousproduit = new Sousproduit($db);
+        $commentaire = $_POST['commentaire'];
+        $id = $_POST['id'];
+        
+        $exec=$sousproduit->updateCom($id, $commentaire);
+        if(!$exec){
+            $form['valide'] = false;
+        $form['message'] = 'Échec de la modification du commentaire';
+        }
+        else{
+            $form['id'] = $id;
+            $form['commentaire'] = $commentaire;
+            $form['valide'] = true;
+            $form['message'] = 'Modification réussie';
+            header('Location: index.php');
+            }
+            }
+            else{
+   $form['message'] = 'produit non précisé';
+   }
+
+
+    }
+
+
     
-        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste));
+        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2));
     }
 
 

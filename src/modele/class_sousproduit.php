@@ -7,14 +7,31 @@ class Sousproduit{
     private $insert;
     
     private $select;
+
+    private $updateQte;
+
+    private $updateQte2;
+
+    private $updateCom;
+
+    private $selectById;
     
     public function __construct($db){
         
         $this->db = $db ;
         $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, stock, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :stock, :commentaire, :idTypeproduit)");
 
-        $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s, typeproduit t where s.idTypeproduit = t.id order by libelle");
+        $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s order by libelle");
+        /* $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s, typeproduit t where s.idTypeproduit = t.id order by libelle"); */
+        $this->updateQte = $db->prepare("update sousproduit set qte=qte +:qte where id=:id");
+
+        $this->updateQte2 = $db->prepare("update sousproduit set qte=qte -:qte where id=:id");
+
+        $this->updateCom = $db->prepare("update sousproduit set commentaire=:commentaire where id=:id");
+
+        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, t.libelle as libelletypeproduit from typeproduit t, sousproduit s where id=:id and t.id=s.idTypeproduit");
         
+    
     }
     
     public function insert($libelle, $qte, $fabricant, $stock, $commentaire, $typeproduit){
@@ -38,6 +55,44 @@ class Sousproduit{
         return $this->select->fetchAll();      
          
      }
+
+    public function updateQte($id, $qte){
+        $r = true;
+        $this->updateQte->execute(array(':id'=>$id, ':qte'=>$qte));
+        if ($this->updateQte->errorCode()!=0){
+            print_r($this->updateQte->errorInfo());
+            $r=false;
+        }
+        return $r;
+    }
+
+    public function updateQte2($id, $qte){
+        $r = true;
+        $this->updateQte2->execute(array(':id'=>$id, ':qte'=>$qte));
+        if ($this->updateQte2->errorCode()!=0){
+            print_r($this->updateQte2->errorInfo());
+            $r=false;
+        }
+        return $r;
+    }
+
+    public function updateCom($id, $commentaire){
+        $r = true;
+        $this->updateCom->execute(array(':id'=>$id, ':commentaire'=>$commentaire));
+        if ($this->updateCom->errorCode()!=0){
+            print_r($this->updateCom->errorInfo());
+            $r=false;
+        }
+        return $r;
+    }
+
+    public function selectById($id){
+        $this->selectById->execute(array(':id'=>$id));
+        if ($this->selectById->errorCode()!=0){
+            print_r($this->selectById->errorInfo());
+        }
+        return $this->selectById->fetch();
+    }        
 
 
 }
