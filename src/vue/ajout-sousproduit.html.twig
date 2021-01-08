@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Ajouter un produit {% endblock %}
+
+
+{% block contenu %}
+    
+
+        <form class="form-signin" method="post">
+        <div align ="center" style="padding-left:10% ; padding-right:10% ; padding-top: 2%">
+                <div style="padding-bottom:7%">
+                <h1 class="h3 mb-3 font-weight-normal">Ajout d'un produit</h1>
+                </div>
+                <input type="libelle" class="form-control" id="libelle" name="libelle" placeholder="Libelle">
+                <input type="qte" class="form-control" id="qte" name="qte" placeholder="Quantité">
+                <input type="fabricant" class="form-control" id="fabricant" name="fabricant" placeholder="Fabricant">
+                <input type="stock" class="form-control" id="stock" name="stock" placeholder="Stock">
+                <input type="textarea" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">
+
+                <select class="form-control" name="idTypeproduit">
+                        <option value="" disabled selected>Type de produit</option>
+                         { {% for t in form.typeproduits %}
+                         {% if r.id==form.sousproduit.idTypeproduit %} 
+                                <option value="{{ t.id }}" >{{ t.libelle }}</option>
+                         {% else %}
+                                <option value="{{ t.id }}">{{t.libelle }}</option>
+                         {% endif %}
+                         {% endfor %}    
+                         
+                </select>
+
+                <button type="submit" name="btAjouter" class="btn btn-lg btn-primary btn-block">Ajouter</button>
+        </div>
+        </form>
+
+{% endblock %}
