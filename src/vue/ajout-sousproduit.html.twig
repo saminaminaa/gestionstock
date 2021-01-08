@@ -17,6 +17,7 @@
                 <input type="fabricant" class="form-control" id="fabricant" name="fabricant" placeholder="Fabricant">
                 {# <input type="stock" class="form-control" id="stock" name="stock" placeholder="Stock"> #}
                 <input type="seuil" class="form-control" id="seuil" name="seuil" placeholder="Seuil">
+            <input type="commentaire" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">
                 <select class="form-control" name="idTypeproduit">
                         <option value="" disabled selected>Type de produit</option>
                          { {% for t in form.typeproduits %}
@@ -28,9 +29,7 @@
                          {% endfor %}    
                          
                 </select>
-                <div style="padding-top:2%; padding-bottom:2%">
-                <input type="commentaire" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">
-                </div>
+                
                 
 
                 <button type="submit" name="btAjouter" class="btn btn-lg btn-primary btn-block">Ajouter</button>

@@ -1,8 +1,10 @@
 
 
 
-//Creation d'une alerte pour le seuil (on verra pour l'id apres)
-let btAlerte = document.getElementById("btAlerte")
-btAlerte.addEventListener("click", function () {
-    alert("ATTENTION ! Le seuil est atteint");
-});
+/* //Creation d'une alerte pour le seuil (on verra pour l'id apres)
+let btBaisserQte = document.getElementById("btBaisserQte")
+btBaisserQte.addEventListener("click", function () { */
+    if (s.qte === s.seuil) {
+        alert("ATTENTION ! Vous venez d'atteindre le seuil");
+    }
+/* }); */

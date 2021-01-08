@@ -11,7 +11,7 @@
       <!-- Table -->
         <div class="table-responsive">
           <table class="table table-hover table-striped">
-            <tr><th>Type de produit </th><th>Quantité</th><th>Stock</th><th>Image</th><th>Commentaire</th></th></tr>
+            <tr><th>Type de produit </th><th>Quantité</th><th>Stock</th><th>Commentaire</th></th></tr>
 
             {% for t in liste %}
                 <tr><td>{{t.libelle}}</td>
@@ -19,7 +19,7 @@
                 {# <td data-th="Quantity"> 
 								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
 
-							</td><td>{{t.qte}}</td><td>{{t.stock}}</td><td>{{t.image}}</td><td>{{t.commentaire}}
+							</td><td>{{t.qte}}</td><td>{{t.stock}}</td><td>{{t.commentaire}}
               
              
               
@@ -35,6 +35,8 @@
           </table>
         </div>
         </div>
+        <a href="index.php?page=ajout-type">Ajouter un nouveau type de produit</a>
+
         <div style="padding-top:2%">
 <h3> Liste des produits : </h3>
 </div>
@@ -113,11 +115,20 @@
 
               
               </td>
-              <td>             <form action="index.php" method="post">
+              <td>
+              <form action="index.php" method="post">
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte" name="qte"  value="1"/>
               <div class="btn-group btn-group-lg"><input type="submit" name="btBaisserQte" value="-"/></div>
               </form>
+                          {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
+                {% else %} 
+                    <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
+                {% endif %}
+              {% endif %}
+
               </td>
 
 
@@ -129,12 +140,14 @@
 
 
 
+
           </table>
         </div>
         
-
+           
 
       </div>
+      <a href="index.php?page=ajout-type">Ajouter un nouveau produit</a>
     </div>
     
     <script src="js/test.js"></script>
