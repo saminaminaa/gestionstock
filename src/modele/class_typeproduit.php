@@ -11,15 +11,15 @@ class Typeproduit{
     public function __construct($db){
         
         $this->db = $db ;
-        $this->insert = $db->prepare("insert into typeproduit(libelle, qte, stock, commentaire) values (:libelle, :qte, :stock, :commentaire)");
+        $this->insert = $db->prepare("insert into typeproduit(libelle, qte, commentaire) values (:libelle, :qte, :commentaire)");
 
-        $this->select = $db->prepare("select id, libelle, qte, stock, commentaire from typeproduit t order by libelle");
+        $this->select = $db->prepare("select id, libelle, qte, commentaire from typeproduit t order by libelle");
         
     }
     
-    public function insert($libelle, $qte, $stock, $commentaire){
+    public function insert($libelle, $qte, $commentaire){
          $r = true;
-        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':stock'=>$stock, ':commentaire'=>$commentaire));
+        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':commentaire'=>$commentaire));
         if ($this->insert->errorCode()!=0){
             print_r($this->insert->errorInfo());
             $r=false;

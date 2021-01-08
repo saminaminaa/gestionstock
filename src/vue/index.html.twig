@@ -50,7 +50,48 @@
                 {# <td data-th="Quantity"> 
 								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
 
-							</td><td>{{s.qte}}</td><td>{{s.fabricant}}</td><td>{{s.stock}}</td><td>
+							</td><td>
+              
+              
+              {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <FONT color="orange"> 
+                      <b>
+                        {{s.qte}}
+                      </b>
+                    </FONT>
+                {% else %} 
+                    <FONT color="red"> 
+                      <b>
+                        {{s.qte}}
+                      </b>
+                    </FONT> 
+                {% endif %}
+              {% else %} 
+                {{s.qte}}
+              {% endif %}
+              
+              </td><td>{{s.fabricant}}</td><td>
+
+              {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <FONT color="orange"> 
+                      <b>
+                        Encore en stock mais seuil atteint
+                      </b>
+                    </FONT>
+                {% else %} 
+                    <FONT color="red"> 
+                      <b>
+                        produit en rupture de stock
+                      </b>
+                    </FONT> 
+                {% endif %}
+              {% else %} 
+                produit en stock
+              {% endif %}
+              
+              </td><td>
                <form action="index.php" method="post">
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>

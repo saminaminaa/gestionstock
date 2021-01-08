@@ -19,9 +19,9 @@ class Sousproduit{
     public function __construct($db){
         
         $this->db = $db ;
-        $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, stock, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :stock, :commentaire, :idTypeproduit)");
+        $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, seuil, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :seuil, :commentaire, :idTypeproduit)");
 
-        $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s order by libelle");
+        $this->select = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, idTypeproduit from sousproduit s order by libelle");
         /* $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s, typeproduit t where s.idTypeproduit = t.id order by libelle"); */
         $this->updateQte = $db->prepare("update sousproduit set qte=qte +:qte where id=:id");
 
@@ -29,14 +29,14 @@ class Sousproduit{
 
         $this->updateCom = $db->prepare("update sousproduit set commentaire=:commentaire where id=:id");
 
-        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, t.libelle as libelletypeproduit from typeproduit t, sousproduit s where id=:id and t.id=s.idTypeproduit");
+        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, t.libelle as libelletypeproduit from typeproduit t, sousproduit s where id=:id and t.id=s.idTypeproduit");
         
     
     }
     
-    public function insert($libelle, $qte, $fabricant, $stock, $commentaire, $typeproduit){
+    public function insert($libelle, $qte, $fabricant, $seuil, $commentaire, $typeproduit){
          $r = true;
-        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':stock'=>$stock, ':commentaire'=>$commentaire, ':idTypeproduit'=>$typeproduit));
+        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':commentaire'=>$commentaire, ':idTypeproduit'=>$typeproduit));
         if ($this->insert->errorCode()!=0){
             print_r($this->insert->errorInfo());
             $r=false;

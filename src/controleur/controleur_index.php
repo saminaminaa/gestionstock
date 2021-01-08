@@ -46,6 +46,7 @@ else{
                 $qte="1";
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
+                header('Location: index.php');
                 }
                 }
                 else{
@@ -68,6 +69,7 @@ else{
                 $qte="1";
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
+                header('Location: index.php');
                 }
                 }
                 else{
@@ -117,12 +119,11 @@ else{
         if (isset($_POST['btAjouter'])){
             $libelle = $_POST['libelle'];
             $qte = $_POST['qte'];
-            $stock = $_POST['stock'];
             $commentaire = $_POST['commentaire'];
             $form['valide'] = true;
            
             $typeproduit = new Typeproduit($db);
-                $exec = $typeproduit->insert($libelle, $qte, $stock, $commentaire);
+                $exec = $typeproduit->insert($libelle, $qte, $commentaire);
                 if (!$exec){
                     $form['valide'] = false;
                     $form['message'] = 'Problème d\'insertion dans la table typeproduit ';
@@ -130,7 +131,6 @@ else{
             
             $form['libelle'] = $libelle;
             $form['qte'] = $qte;
-            $form['stock'] = $stock;
             $form['commentaire'] = $commentaire;
         }
         echo $twig->render('ajout-type.html.twig', array('form'=>$form));
@@ -158,13 +158,13 @@ else{
             $libelle = $_POST['libelle'];
             $qte = $_POST['qte'];
             $fabricant = $_POST['fabricant'];
-            $stock = $_POST['stock'];
             $commentaire = $_POST['commentaire'];
+            $seuil = $_POST['seuil'];
             $typeproduit = $_POST['idTypeproduit'];
             $form['valide'] = true;
            
             $sousproduit = new Sousproduit($db);
-                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $stock, $commentaire, $typeproduit);
+                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $commentaire, $typeproduit, $seuil);
                 if (!$exec){
                     $form['valide'] = false;
                     $form['message'] = 'Problème d\'insertion dans la table sousproduit ';
@@ -174,11 +174,11 @@ else{
             $form['libelle'] = $libelle;
             $form['qte'] = $qte;
             $form['fabricant'] = $fabricant;
-            $form['stock'] = $stock;
+            $form['seuil'] = $seuil;
             $form['commentaire'] = $commentaire;
             $form['idTypeproduit']=$typeproduit;
         }
-        echo $twig->render('ajout-sousproduit.html.twig', array('form'=>$form,'liste'=>$liste));
+        echo $twig->render('ajout-sousproduit.html.twig', array('form'=>$form,'liste'=>$liste,));
     
     }
 
