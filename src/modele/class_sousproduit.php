@@ -15,6 +15,8 @@ class Sousproduit{
     private $updateCom;
 
     private $selectById;
+
+    private $selectTri;
     
     public function __construct($db){
         
@@ -31,20 +33,19 @@ class Sousproduit{
 
         $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, t.libelle as libelletypeproduit from typeproduit t, sousproduit s where id=:id and t.id=s.idTypeproduit");
         
-    
+        $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
+
     }
     
-    public function insert($libelle, $qte, $fabricant, $seuil, $commentaire, $typeproduit){
+    public function insert($libelle, $qte, $fabricant, $seuil, $commentaire, $idTypeproduit){
          $r = true;
-        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':commentaire'=>$commentaire, ':idTypeproduit'=>$typeproduit));
+        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':commentaire'=>$commentaire, ':idTypeproduit'=>$idTypeproduit));
         if ($this->insert->errorCode()!=0){
             print_r($this->insert->errorInfo());
             $r=false;
         }
         return $r;
     }
-         
- 
          
           
     public function select(){
@@ -92,7 +93,17 @@ class Sousproduit{
             print_r($this->selectById->errorInfo());
         }
         return $this->selectById->fetch();
-    }        
+    }   
+    
+    public function selectTri(){
+        $this->selectTri->execute();
+        if ($this->selectTri->errorCode()!=0){
+           print_r($this->selectTri->errorInfo());
+        }
+        return $this->selectTri->fetchAll();      
+         
+     }
+
 
 
 }

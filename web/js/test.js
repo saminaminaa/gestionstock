@@ -1,10 +1,9 @@
 
+/* console.log("test")
 
+alert("test"); */
 
-/* //Creation d'une alerte pour le seuil (on verra pour l'id apres)
-let btBaisserQte = document.getElementById("btBaisserQte")
-btBaisserQte.addEventListener("click", function () { */
-    if (s.qte === s.seuil) {
-        alert("ATTENTION ! Vous venez d'atteindre le seuil");
-    }
-/* }); */
+let btChevron = document.getElementsByClassName("btChevron")
+btChevron[0].addEventListener("click", function () { 
+    document.getElementsByClassName("btChevron")[0].style.visibility = 'hidden';
+});

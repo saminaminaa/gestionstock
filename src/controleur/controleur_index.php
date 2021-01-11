@@ -1,19 +1,13 @@
 <?php
-/*     function actionAccueil($twig){
-
-
-
-        echo $twig->render('index.html.twig', array());
-    } */
-
 //------------------------------------------ACCUEIL-------------------------------------------------------------------------------------------
 
     function actionAccueil($twig,$db){
         $form = array();
         $typeproduit = new Typeproduit($db);
         $sousproduit = new Sousproduit($db);
-        $liste = $typeproduit->select();
+        $liste = $typeproduit->selectQte();
         $liste2 = $sousproduit->select();
+        $listeTri = $sousproduit->selectTri();
 
         if(isset($_GET['id'])){
         //on cherche 1produit dont on connait l'id:
@@ -22,8 +16,7 @@
             $form['sousproduit'] = $unSousproduit;
         }
 
-
-else{
+        else{
     //si l'utilisateur n'existe pas
     $form['message'] = 'Utilisateur incorrect';
     }
@@ -70,13 +63,11 @@ else{
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
                 header('Location: index.php');
-                }
-                }
-                else{
-    $form['message'] = 'produit non précisé';
-    }
-
-
+            }
+        }
+        else{
+        $form['message'] = 'produit non précisé';
+        }
 
     //Modifier un commentaire
     if(isset($_POST['btModifCom'])){
@@ -96,21 +87,14 @@ else{
             $form['message'] = 'Modification réussie';
             header('Location: index.php');
             }
-            }
-            else{
-   $form['message'] = 'produit non précisé';
-   }
-
+        }
+        else{
+            $form['message'] = 'produit non précisé';
+        }
 
     }
-
-
-    
-        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2));
+        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri));
     }
-
-
-
 
 //----------------------------------AJOUT TYPE DE PRODUIT (table = typeproduit / page = ajout-type.html.twig)-------------------------------------------------------------------------------------------
 
@@ -118,28 +102,22 @@ else{
         $form = array();
         if (isset($_POST['btAjouter'])){
             $libelle = $_POST['libelle'];
-            $qte = $_POST['qte'];
             $commentaire = $_POST['commentaire'];
             $form['valide'] = true;
            
             $typeproduit = new Typeproduit($db);
-                $exec = $typeproduit->insert($libelle, $qte, $commentaire);
+                $exec = $typeproduit->insert($libelle, $commentaire);
                 if (!$exec){
                     $form['valide'] = false;
                     $form['message'] = 'Problème d\'insertion dans la table typeproduit ';
                 }
             
             $form['libelle'] = $libelle;
-            $form['qte'] = $qte;
             $form['commentaire'] = $commentaire;
         }
         echo $twig->render('ajout-type.html.twig', array('form'=>$form));
     
     }
-
-
-
-
 
 //-------------------------------------AJOUT PRODUIT (table = sousproduit/ page = ajout-sousproduit.html.twig)-------------------------------------------------------------------------------------------
 
@@ -158,13 +136,13 @@ else{
             $libelle = $_POST['libelle'];
             $qte = $_POST['qte'];
             $fabricant = $_POST['fabricant'];
-            $commentaire = $_POST['commentaire'];
             $seuil = $_POST['seuil'];
-            $typeproduit = $_POST['idTypeproduit'];
+            $commentaire = $_POST['commentaire'];
+            $idTypeproduit = $_POST['idTypeproduit'];
             $form['valide'] = true;
            
             $sousproduit = new Sousproduit($db);
-                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $commentaire, $typeproduit, $seuil);
+                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $seuil, $commentaire, $idTypeproduit);
                 if (!$exec){
                     $form['valide'] = false;
                     $form['message'] = 'Problème d\'insertion dans la table sousproduit ';
@@ -176,9 +154,9 @@ else{
             $form['fabricant'] = $fabricant;
             $form['seuil'] = $seuil;
             $form['commentaire'] = $commentaire;
-            $form['idTypeproduit']=$typeproduit;
+            $form['idTypeproduit']=$idTypeproduit;
         }
-        echo $twig->render('ajout-sousproduit.html.twig', array('form'=>$form,'liste'=>$liste,));
+        echo $twig->render('ajout-sousproduit.html.twig', array('form'=>$form,'liste'=>$liste));
     
     }
 

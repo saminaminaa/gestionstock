@@ -11,21 +11,49 @@
       <!-- Table -->
         <div class="table-responsive">
           <table class="table table-hover table-striped">
-            <tr><th>Type de produit </th><th>Quantité</th><th>Stock</th><th>Commentaire</th></th></tr>
+            <tr><th></th><th>Type de produit </th><th>Quantité totale</th><th>Stock</th><th>Commentaire</th></th></tr>
 
             {% for t in liste %}
-                <tr><td>{{t.libelle}}</td>
+                <tr>
+                
+                <td>  <div class="btn-group btn-group-lg" ><button class="btChevron">
+                                            <span class="glyphicon glyphicon-chevron-down" ariahidden="true"></span></button></div></td>
+                
+                
+                <td>{{t.libelle}}</td>
                 
                 {# <td data-th="Quantity"> 
 								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
 
-							</td><td>{{t.qte}}</td><td>{{t.stock}}</td><td>{{t.commentaire}}
+							</td><td>
               
-             
+                {% if t.TotalQte <= "0" %}
+                 <FONT color="red"> 
+                      <b>
+                        {{t.TotalQte}}
+                      </b>
+                    </FONT> 
+                {% else %} 
+                {{t.TotalQte}} 
+              {% endif %}
               
+              </td><td>
+              
+
+                {% if t.TotalQte <= "0" %}
+                 <FONT color="red"> 
+                      <b>
+                        rupture de stock
+                      </b>
+                    </FONT> 
+                {% else %} 
+                en stock
+              {% endif %}
+              
+              
+              </td><td>{{t.commentaire}}
               
               </td>
-
               </tr>
                                             
             {% endfor %}  
@@ -44,7 +72,7 @@
           <div class="table-responsive">
           <table class="table table-hover table-striped">
           
-            <tr><th>Nom du produit </th><th>Quantité</th><th>fabricant</th><th>stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
+            <tr><th>Nom du produit </th><th>Quantité</th><th>Fabricant</th><th>Stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
 
             {% for s in liste2 %}
                 <tr><td>{{s.libelle}}</td>
@@ -147,8 +175,128 @@
            
 
       </div>
-      <a href="index.php?page=ajout-type">Ajouter un nouveau produit</a>
+      <a href="index.php?page=ajout-sousproduit">Ajouter un nouveau produit</a>
     </div>
+
+
+    
+              
+      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
+
+      <div>
+<div>
+      <h3> Liste des PC : </h3>
+</div>
+          <div class="panel panel-default" >
+          <div class="table-responsive">
+          <table class="table table-hover table-striped">
+          
+            <tr><th>Nom du produit </th><th>Quantité</th><th>fabricant</th><th>stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
+
+            {% for s in listeTri %}
+                <tr><td>{{s.libelleProduit}}</td>
+                
+                {# <td data-th="Quantity"> 
+								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
+
+							</td><td>
+              
+              
+              {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <FONT color="orange"> 
+                      <b>
+                        {{s.qte}}
+                      </b>
+                    </FONT>
+                {% else %} 
+                    <FONT color="red"> 
+                      <b>
+                        {{s.qte}}
+                      </b>
+                    </FONT> 
+                {% endif %}
+              {% else %} 
+                {{s.qte}}
+              {% endif %}
+              
+              </td><td>{{s.fabricant}}</td><td>
+
+              {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <FONT color="orange"> 
+                      <b>
+                        Encore en stock mais seuil atteint
+                      </b>
+                    </FONT>
+                {% else %} 
+                    <FONT color="red"> 
+                      <b>
+                        produit en rupture de stock
+                      </b>
+                    </FONT> 
+                {% endif %}
+              {% else %} 
+                produit en stock
+              {% endif %}
+              
+              </td><td>
+               <form action="index.php" method="post">
+                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
+              <div class="btn-group btn-group-lg"><input type="submit" name="btModifCom" value="Modifier"/></div>
+              </form>
+              
+              
+              </td>
+
+              <td>
+              
+              
+               <form action="index.php" method="post">
+                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <input type='hidden' id="qte" name="qte"  value="1"/>
+              <div class="btn-group btn-group-lg"><input type="submit" name="btAugmenterQte" value="+"/></div>
+              </form>
+
+
+              
+              </td>
+              <td>
+              <form action="index.php" method="post">
+                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <input type='hidden' id="qte" name="qte"  value="1"/>
+              <div class="btn-group btn-group-lg"><input type="submit" name="btBaisserQte" value="-"/></div>
+              </form>
+                          {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
+                {% else %} 
+                    <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
+                {% endif %}
+              {% endif %}
+
+              </td>
+
+              </tr>
+                                            
+            {% endfor %}  
+
+
+
+
+          </table>
+        </div>
+        
+           
+
+      </div>
+      </div>
+
+      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
+
+
+
     
     <script src="js/test.js"></script>
   {% endblock %} 
