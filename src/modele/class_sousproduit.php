@@ -17,6 +17,8 @@ class Sousproduit{
     private $selectById;
 
     private $selectTri;
+
+    private $selectAll;
     
     public function __construct($db){
         
@@ -34,6 +36,8 @@ class Sousproduit{
         $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, t.libelle as libelletypeproduit from typeproduit t, sousproduit s where id=:id and t.id=s.idTypeproduit");
         
         $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
+
+        $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, t.commentaire, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
 
     }
     
@@ -101,6 +105,15 @@ class Sousproduit{
            print_r($this->selectTri->errorInfo());
         }
         return $this->selectTri->fetchAll();      
+         
+     }
+
+     public function selectAll(){
+        $this->selectAll->execute();
+        if ($this->selectAll->errorCode()!=0){
+           print_r($this->selectAll->errorInfo());
+        }
+        return $this->selectAll->fetchAll();      
          
      }
 

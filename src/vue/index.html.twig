@@ -3,6 +3,145 @@
   {{ parent() }} Accueil {% endblock %}
   {% block contenu %} 
     <h1>Bienvenue sur le gestionnaire de stock </h1>
+                 
+      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
+{# <a href="#" onclick="document.getElementById('listeproduit').style.display='block';">
+                                            <span class="glyphicon glyphicon-chevron-down" ariahidden="true"></span></a>
+<a href="#" onclick="document.getElementById('listeproduit').style.display='none';"><span class="glyphicon glyphicon-chevron-up" ariahidden="true"></span></a>
+ #}
+      <div>
+      {% for s in listeAll %}
+<div class="nomproduit">
+      <h3> {{s.libelleType}} : </h3>
+      <a href="#" onclick="document.getElementById('listeproduit{{s.libelleType}}').style.display='block';">
+                                            <span class="glyphicon glyphicon-chevron-down" ariahidden="true"></span></a>
+<a href="#" onclick="document.getElementById('listeproduit{{s.libelleType}}').style.display='none';"><span class="glyphicon glyphicon-chevron-up" ariahidden="true"></span></a>
+
+</div>
+          <div class="panel panel-default" >
+          <div class="table-responsive"id="listeproduit{{s.libelleType}}" style="display:none">
+          <table class="table table-hover table-striped">
+          
+            <tr><th>Nom du produit </th><th>Quantité</th><th>fabricant</th><th>stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
+
+            {# {% for s in listeTri %} #}
+                <tr><td>{{s.libelleProduit}}</td>
+                
+                {# <td data-th="Quantity"> 
+								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
+
+							</td><td>
+              
+              
+              {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <FONT color="orange"> 
+                      <b>
+                        {{s.qte}}
+                      </b>
+                    </FONT>
+                {% else %} 
+                    <FONT color="red"> 
+                      <b>
+                        {{s.qte}}
+                      </b>
+                    </FONT> 
+                {% endif %}
+              {% else %} 
+                {{s.qte}}
+              {% endif %}
+              
+              </td><td>{{s.fabricant}}</td><td>
+
+              {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <FONT color="orange"> 
+                      <b>
+                        Encore en stock mais seuil atteint
+                      </b>
+                    </FONT>
+                {% else %} 
+                    <FONT color="red"> 
+                      <b>
+                        produit en rupture de stock
+                      </b>
+                    </FONT> 
+                {% endif %}
+              {% else %} 
+                produit en stock
+              {% endif %}
+              
+              </td><td>
+               <form action="index.php" method="post">
+                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
+              <div class="btn-group btn-group-lg"><input type="submit" name="btModifCom" value="Modifier"/></div>
+              </form>
+              
+              
+              </td>
+
+              <td>
+              
+              
+               <form action="index.php" method="post">
+                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <input type='hidden' id="qte" name="qte"  value="1"/>
+              <div class="btn-group btn-group-lg"><input type="submit" name="btAugmenterQte" value="+"/></div>
+              </form>
+
+
+              
+              </td>
+              <td>
+              <form action="index.php" method="post">
+                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <input type='hidden' id="qte" name="qte"  value="1"/>
+              <div class="btn-group btn-group-lg"><input type="submit" name="btBaisserQte" value="-"/></div>
+              </form>
+                          {% if s.qte <= s.seuil %}
+                {% if s.qte >= "1" %}
+                    <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
+                {% else %} 
+                    <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
+                {% endif %}
+              {% endif %}
+
+              </td>
+
+              </tr>
+                                            
+            {# {% endfor %}   #}
+
+
+
+
+          </table>
+        </div>
+        
+           
+
+      </div>
+
+      {% endfor %}  
+      </div>
+
+      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div style="padding-top:0%">
             <div style="padding-top:2%">
 <h3> Liste des types de produits : </h3>

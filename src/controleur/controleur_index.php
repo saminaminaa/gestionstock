@@ -8,6 +8,7 @@
         $liste = $typeproduit->selectQte();
         $liste2 = $sousproduit->select();
         $listeTri = $sousproduit->selectTri();
+        $listeAll = $sousproduit->selectAll();
 
         if(isset($_GET['id'])){
         //on cherche 1produit dont on connait l'id:
@@ -93,7 +94,7 @@
         }
 
     }
-        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri));
+        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri, 'listeAll'=>$listeAll));
     }
 
 //----------------------------------AJOUT TYPE DE PRODUIT (table = typeproduit / page = ajout-type.html.twig)-------------------------------------------------------------------------------------------
