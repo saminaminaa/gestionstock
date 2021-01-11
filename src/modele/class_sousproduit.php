@@ -25,7 +25,7 @@ class Sousproduit{
         $this->db = $db ;
         $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, seuil, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :seuil, :commentaire, :idTypeproduit)");
 
-        $this->select = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, idTypeproduit from sousproduit s order by libelle");
+        $this->select = $db->prepare("select s.id, s.libelle, s.qte, s.fabricant, s.seuil, s.commentaire, s.idTypeproduit, t.libelle AS libelleType from sousproduit s, typeproduit t order by s.libelle");
         /* $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s, typeproduit t where s.idTypeproduit = t.id order by libelle"); */
         $this->updateQte = $db->prepare("update sousproduit set qte=qte +:qte where id=:id");
 
@@ -37,7 +37,7 @@ class Sousproduit{
         
         $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
 
-        $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, t.commentaire, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
+        $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
 
     }
     

@@ -103,18 +103,16 @@
         $form = array();
         if (isset($_POST['btAjouter'])){
             $libelle = $_POST['libelle'];
-            $commentaire = $_POST['commentaire'];
             $form['valide'] = true;
            
             $typeproduit = new Typeproduit($db);
-                $exec = $typeproduit->insert($libelle, $commentaire);
+                $exec = $typeproduit->insert($libelle);
                 if (!$exec){
                     $form['valide'] = false;
                     $form['message'] = 'Problème d\'insertion dans la table typeproduit ';
                 }
             
             $form['libelle'] = $libelle;
-            $form['commentaire'] = $commentaire;
         }
         echo $twig->render('ajout-type.html.twig', array('form'=>$form));
     
