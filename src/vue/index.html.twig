@@ -18,19 +18,24 @@
 
         {% for t in liste %}
         <div class="table-responsive">
-          <table class="table table-hover table-striped">
-            <tr><th></th><th>Type de produit </th><th>Quantité totale</th><th>Stock</th></th></tr>
+          <table class="table table-hover">
+            <tr class="table-active" ><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
 
            {#  {% for t in liste %} #}
                 <tr>
                 
-                <td>        <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';">
+                <td> 
+                       <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';">
                                             <span class="glyphicon glyphicon-chevron-down" ariahidden="true"></span></a>
                             <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';"><span class="glyphicon glyphicon-chevron-up" ariahidden="true"></span></a>
                 </td>
                 
                 
-                <td>{{t.libelle}}</td>
+                <td>{{t.libelle}}
+                 
+                
+                </td>
+                
                 
                 {# <td data-th="Quantity"> 
 								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
@@ -75,13 +80,14 @@
 
                 <div class="panel panel-default" >
           <div class="table-responsive" id="listeproduit{{t.libelle}}"  style="display:none">
-          <table class="table table-hover table-striped"  >
-          
-            <tr><th>Nom du produit </th><th>Quantité</th><th>Fabricant</th><th>Stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
+          {# <table class="table table-hover table-striped"  > #}
+          <table class="table table-hover">
+            
+            <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row" >Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th></th></tr>
 
-            {% for s in liste2 %}
-            {% if t.libelle == s.libelleType %}
-                <tr><td>{{s.libelle}}</td>
+            {% for s in liste2 %}{# 
+            {% if libelleHidden == s.libelleType %} #}
+                <tr class="table-dark" > <td>{{s.libelle}}</td>
                 
                 {# <td data-th="Quantity"> 
 								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
@@ -132,17 +138,19 @@
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
               <div class="btn-group btn-group-lg"><input type="submit" name="btModifCom" value="Modifier"/></div>
+              
               </form>
-              
-              
+            
               </td>
 
               <td>
-               <form action="index.php" method="post">
+              <a name="monAncre{{t.libelle}}"></a>
+               <form action="index.php#monAncre" method="post" >
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte" name="qte"  value="1"/>
-              <div class="btn-group btn-group-lg"><input type="submit" name="btAugmenterQte" value="+"/></div>
+              <input type="submit" name="btAugmenterQte" value="+"/>
               </form>
+              
               </td>
               <td>
               <form action="index.php" method="post">
@@ -160,7 +168,7 @@
 
               </td>
               </tr>
-            {% endif %}                                
+            {# {% endif %} #}                                
             {% endfor %}  
 
           </table>
@@ -170,7 +178,10 @@
 
         {% endfor %}  
         </div>
+        
         <a href="index.php?page=ajout-type">Ajouter un nouveau type de produit</a>
+
+
 
 
         <!--/////////////////////////////////LISTE PRODUIT//////////////////////////////////////////////////////////////////////////////////-->
@@ -293,7 +304,9 @@
 
 
 
-    
+    {# <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> #}
+    {# <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> #}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/test.js"></script>
-  {% endblock %} 
+    {% endblock %} 
 

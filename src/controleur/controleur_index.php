@@ -18,8 +18,8 @@
         }
 
         else{
-    //si l'utilisateur n'existe pas
-    $form['message'] = 'Utilisateur incorrect';
+    //si le produit n'existe pas
+    $form['message'] = 'Produit incorrect';
     }
     }
     else{
@@ -40,7 +40,7 @@
                 $qte="1";
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
-                header('Location: index.php');
+                //header('Location: index.php');
                 }
                 }
                 else{
@@ -92,7 +92,6 @@
         else{
             $form['message'] = 'produit non précisé';
         }
-
     }
         echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri, 'listeAll'=>$listeAll));
     }

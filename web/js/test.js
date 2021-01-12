@@ -1,34 +1,61 @@
-
-/* console.log("test")
-
-alert("test"); */
-
-let btChevron = document.getElementsByClassName("btChevron")
-btChevron[0].addEventListener("click", function () { 
-    document.getElementsByClassName("btChevron")[0].style.visibility = 'hidden';
-});
-
-
-
-$(document).ready(function() {
-  $('div.projet1:eq(0)> div').hide();
-  $('div.projet1:eq(0)> h3').click(function() {
- $(this).next().slideToggle('fast');
+/* $(document).ready(function() { 
+  function ajax(){
+    var request= $.ajax({
+      url: "http://localhost/projet/web/index.php",
+      method: "GET",
+      dataType: "json",
+      beforeSend: function( xhr ) {
+        xhr.overrideMimeType( "application/json; charset=utf-8" );
+      }});
+      request.done(function( msg ) {
+        $.each(msg, function(index,e){
+          console.log(e.titre);
+        });
+      });
+      // Fonction qui se lance lorsque l’accès au web service provoque une erreur
+      request.fail(function( jqXHR, textStatus ) {
+        alert ('erreur');
+      });
+    }
+    // Appel de la fonction ajax
+    ajax();
   });
-});
+ */
 
-$(document).ready(function() {
-  $('div.projet2:eq(0)> div').hide();
-  $('div.projet2:eq(0)> h3').click(function() {
- $(this).next().slideToggle('fast');
-  });
-});
+if (window.XMLHttpRequest)    //  Objet standard
+{ 
+    xhr = new XMLHttpRequest();     //  Firefox, Safari, ...
+} 
+else  if (window.ActiveXObject)      //  Internet Explorer
+{
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+try
+{
+   xhr = new ActiveXObject("Microsoft.XMLHTTP"); // Essayer IE 
+}
+catch(e)   // Echec, utiliser l'objet standard 
+{
+  xhr = new XMLHttpRequest();
+}
+
+xhr.onreadystatechange = function()
+{
+ console.log("cc")
+};
+
+if (xhr.readyState == 4) 
+{ 
+  // Reçu, OK 
+  console.log("bien reçu") 
+}
+else
+{ 
+// Attendre...
+console.log("attendre")
+}
 
 
-$(document).ready(function() {
-  $('div.categorie:eq(0)> div').hide();
-  $('div.categorie:eq(0)> h2').click(function() {
- $(this).next().slideToggle('fast');
-  });
-});
-  
+xhr.open('GET', 'http://localhost/projet/web/index.php', true);  
+xhr.send(null);
