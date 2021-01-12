@@ -4,6 +4,7 @@
         $lesPages['ajout-type'] = "actionAjoutType";
         $lesPages['ajout-sousproduit'] = "actionAjoutSousproduit";
         $lesPages['maintenance']= "actionMaintenance";
+        $lesPages['api-modif-com']= "actionApiModifCom";
 
       /*   if ($db == NULL) {
             return "testtt pas de bd";

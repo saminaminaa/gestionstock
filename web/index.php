@@ -3,6 +3,7 @@
     require_once '../src/lib/vendor/autoload.php';
     require_once '../src/config/routing.php';
     require_once '../src/controleur/controleur_index.php';
+    require_once '../src/controleur/controleur_api.php';
     require_once '../src/app/connexion.php';
     require_once '../src/modele/_class.php';
     
