@@ -19,7 +19,7 @@
     id=document.getElementById(idC).value;
     
     var request= $.ajax({
-      url: "http://serveur1.arras-sio.com/symfony4-4064/gestionstock/web/index.php?page=api-modif-com", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+      url: "http://localhost/projet/web/index.php?page=api-modif-com", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
       method: "POST", 
       dataType: "text",
       data: {
@@ -41,6 +41,48 @@
         alert ('erreur');
       });
     }
+
+
+    //--------------------------augmenter qte-----------------------------------
+    var btAugmenterQtes = document.getElementsByName('btAugmenterQte'); 
+
+    for(let item of btAugmenterQtes){
+      item.addEventListener("click",ajaxAugmenterQte,false);
+    }
+
+    function ajaxAugmenterQte(){ //function ajax pour chaque form
+      alert(this.getAttribute('id-plus'));
+      id='idP'+this.getAttribute('id-plus');
+      idqte = 'qte'+this.getAttribute('id-plus');
+      qte=document.getElementById(idqte).value;
+      idP = 'idP'+this.getAttribute('id-plus');
+      id=document.getElementById(idP).value;
+      
+      var request= $.ajax({
+        url: "http://localhost/projet/web/index.php?page=api-augmenter-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+        method: "POST", 
+        dataType: "text",
+        data: {
+          btAugmenterQte : 'test', 
+          id: id,
+          qte: qte,
+          //id: 'idC'+this.getAttribute('id-com'),
+          //commentaire: 'commentaire'+this.getAttribute('id-com'),
+        },
+        beforeSend: function( xhr ) {
+          //xhr.overrideMimeType( "application/json; charset=utf-8" );
+        }});
+        request.done(function( msg ) {
+          alert(msg);
+          console.log(msg);
+        });
+        // Fonction qui se lance lorsque l’accès au web service provoque une erreur
+        request.fail(function( jqXHR, textStatus ) {
+          alert ('erreur');
+        });
+      }
+
+
   });
 
 

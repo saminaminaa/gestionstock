@@ -26,8 +26,8 @@
                 
                 <td> 
                        {# <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';"> #}
-                                            <span onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"></span>{# </a> #}
-                            <span onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"></span>
+                                            <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"></span>{# </a> #}
+                            <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"></span>
                 </td>
                 
                 
@@ -139,7 +139,7 @@
                 <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{s.id}}" name="commentaire"  
                 value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-              {# <div class="btn-group btn-group-lg"> #}<button type="button" id-com="{{ s.id }}" name="btModifCom" value="Modifier">Modifier</button>{# </div> #}
+              <button type="button" id-com="{{ s.id }}" name="btModifCom" value="Modifier">Modifier</button>{# </div> #}
 
                 {# <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
@@ -152,11 +152,18 @@
               </td>
 
               <td>
-              <a name="monAncre{{t.libelle}}"></a>
+{#               <a name="monAncre{{t.libelle}}"></a>
                <form action="index.php#monAncre" method="post" >
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte" name="qte"  value="1"/>
               <input class="btn btn-sm btn-primary" type="submit" name="btAugmenterQte" value="+"/>
+              </form> #}
+
+                <a name="monAncre{{t.libelle}}"></a>
+               <form action="index.php" method="post" >
+                <input type='hidden' id="idP{{ s.id }}" name="id"  value="{{ s.id }}"/>
+                <input type='hidden' id="qte{{ s.id }}" name="qte"  value="1"/>
+              <button class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
               </form>
               
               </td>
