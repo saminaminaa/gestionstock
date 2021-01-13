@@ -139,7 +139,7 @@
                 <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{s.id}}" name="commentaire"  
                 value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-              <button type="button" id-com="{{ s.id }}" name="btModifCom" value="Modifier">Modifier</button>{# </div> #}
+              <button type="button" id-com="{{ s.id }}" name="btModifCom" value="Modifier">Modifier</button>
 
                 {# <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
@@ -168,11 +168,18 @@
               
               </td>
               <td>
-              <form action="index.php" method="post">
+
+               <form action="index.php" method="post">
+                <input type='hidden' id="idB{{ s.id }}" name="id"  value="{{ s.id }}"/>
+                <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
+              <button class="btn btn-sm btn-primary" type="button" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
+              </form>
+
+              {# <form action="index.php" method="post">
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte" name="qte"  value="1"/>
-              {# <div class="btn-group btn-group-lg"> #}<input class="btn btn-sm btn-primary" type="submit" name="btBaisserQte" value="-"/>{# </div> #}
-              </form>
+              {# <div class="btn-group btn-group-lg"><input class="btn btn-sm btn-primary" type="submit" name="btBaisserQte" value="-"/>{# </div>
+              </form> #}
                           {% if s.qte <= s.seuil %}
                 {% if s.qte >= "1" %}
                     <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
@@ -200,7 +207,7 @@
 
 
         <!--/////////////////////////////////LISTE PRODUIT//////////////////////////////////////////////////////////////////////////////////-->
-
+{# 
         <div style="padding-top:2%">
 <h3> Liste des produits : </h3>
 </div>
@@ -304,12 +311,13 @@
         
            
 
-      </div>
+      </div>#}
+      <br>
       <a href="index.php?page=ajout-sousproduit">Ajouter un nouveau produit</a>
     </div>
 
 
-    
+     
               
       <!--////////////////////////////////////////////////////////////////////////////////////////!-->
 

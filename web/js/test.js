@@ -2,7 +2,8 @@
 
  
  $(document).ready(function() {
-   
+  
+  //--------------------------modifier un commentaire----------------------------------------------------------------------------
   var btModifComs = document.getElementsByName('btModifCom'); 
 
   for(let item of btModifComs){
@@ -43,7 +44,7 @@
     }
 
 
-    //--------------------------augmenter qte-----------------------------------
+    //--------------------------augmenter qte------------------------------------------------------------------------------------------
     var btAugmenterQtes = document.getElementsByName('btAugmenterQte'); 
 
     for(let item of btAugmenterQtes){
@@ -64,6 +65,46 @@
         dataType: "text",
         data: {
           btAugmenterQte : 'test', 
+          id: id,
+          qte: qte,
+          //id: 'idC'+this.getAttribute('id-com'),
+          //commentaire: 'commentaire'+this.getAttribute('id-com'),
+        },
+        beforeSend: function( xhr ) {
+          //xhr.overrideMimeType( "application/json; charset=utf-8" );
+        }});
+        request.done(function( msg ) {
+          alert(msg);
+          console.log(msg);
+        });
+        // Fonction qui se lance lorsque l’accès au web service provoque une erreur
+        request.fail(function( jqXHR, textStatus ) {
+          alert ('erreur');
+        });
+      }
+
+
+    //--------------------------baisser qte---------------------------------------------------------------------------------
+    var btBaisserQtes = document.getElementsByName('btBaisserQte'); 
+
+    for(let item of btBaisserQtes){
+      item.addEventListener("click",ajaxBaisserQte,false);
+    }
+
+    function ajaxBaisserQte(){ //function ajax pour chaque form
+      alert(this.getAttribute('id-mois'));
+      id='idB'+this.getAttribute('id-moins');
+      idqteB = 'qte'+this.getAttribute('id-moins');
+      qte=document.getElementById(idqteB).value;
+      idB = 'idB'+this.getAttribute('id-moins');
+      id=document.getElementById(idB).value;
+      
+      var request= $.ajax({
+        url: "http://localhost/projet/web/index.php?page=api-baisser-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+        method: "POST", 
+        dataType: "text",
+        data: {
+          btBaisserQte : 'test', 
           id: id,
           qte: qte,
           //id: 'idC'+this.getAttribute('id-com'),

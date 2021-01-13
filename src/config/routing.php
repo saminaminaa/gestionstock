@@ -6,6 +6,8 @@
         $lesPages['maintenance']= "actionMaintenance";
         $lesPages['api-modif-com']= "actionApiModifCom";
         $lesPages['api-augmenter-qte']= "actionApiAugmenterQte";
+        $lesPages['api-baisser-qte']= "actionApiBaisserQte";
+
 
       /*   if ($db == NULL) {
             return "testtt pas de bd";
