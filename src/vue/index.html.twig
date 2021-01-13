@@ -25,9 +25,9 @@
                 <tr>
                 
                 <td> 
-                       <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';">
-                                            <span class="glyphicon glyphicon-chevron-down" ariahidden="true"></span></a>
-                            <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';"><span class="glyphicon glyphicon-chevron-up" ariahidden="true"></span></a>
+                       {# <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';"> #}
+                                            <span onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"></span>{# </a> #}
+                            <span onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"></span>
                 </td>
                 
                 
@@ -81,9 +81,10 @@
                 <div class="panel panel-default" >
           <div class="table-responsive" id="listeproduit{{t.libelle}}"  style="display:none">
           {# <table class="table table-hover table-striped"  > #}
+          
           <table class="table table-hover">
             
-            <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row" >Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th></th></tr>
+            <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th></th></tr>
 
             {% for s in liste2 %}{# 
             {% if libelleHidden == s.libelleType %} #}
@@ -139,6 +140,12 @@
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{s.id}}" name="commentaire"  
                 value="{{s.commentaire}}">{{s.commentaire}}</textarea>
               {# <div class="btn-group btn-group-lg"> #}<button type="button" id-com="{{ s.id }}" name="btModifCom" value="Modifier">Modifier</button>{# </div> #}
+
+                {# <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
+                <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
+              <input class="btn btn-xs btn-primary" type="submit" name="btModifCom" value="Modifier"/> #}
+              {# <div class="btn-group btn-group-lg"><input type="submit" name="btModifCom" value="Modifier"/></div> #}
+
               
               </form>
             
@@ -149,7 +156,7 @@
                <form action="index.php#monAncre" method="post" >
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte" name="qte"  value="1"/>
-              <input type="submit" name="btAugmenterQte" value="+"/>
+              <input class="btn btn-sm btn-primary" type="submit" name="btAugmenterQte" value="+"/>
               </form>
               
               </td>
@@ -157,7 +164,7 @@
               <form action="index.php" method="post">
                 <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte" name="qte"  value="1"/>
-              <div class="btn-group btn-group-lg"><input type="submit" name="btBaisserQte" value="-"/></div>
+              {# <div class="btn-group btn-group-lg"> #}<input class="btn btn-sm btn-primary" type="submit" name="btBaisserQte" value="-"/>{# </div> #}
               </form>
                           {% if s.qte <= s.seuil %}
                 {% if s.qte >= "1" %}
@@ -209,7 +216,7 @@
                       </b>
                     </FONT>
                 {% else %} 
-                    <FONT color="red"> 
+                    <FONT color="red">
                       <b>
                         {{s.qte}}
                       </b>
@@ -258,8 +265,6 @@
               <div class="btn-group btn-group-lg"><input type="submit" name="btAugmenterQte" value="+"/></div>
               </form>
 
-
-              
               </td>
               <td>
               <form action="index.php" method="post">
