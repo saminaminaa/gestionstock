@@ -58,11 +58,11 @@
                 {% if t.TotalQte <= "0" %}
                  <FONT color="red"> 
                       <b>
-                        rupture de stock
+                        Rupture de stock
                       </b>
                     </FONT> 
                 {% else %} 
-                en stock
+                En stock
               {% endif %}
               
               
@@ -86,8 +86,14 @@
             
             <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th></th></tr>
 
-            {% for s in liste2 %}{# 
-            {% if libelleHidden == s.libelleType %} #}
+            {% for s in liste2 %}
+            {# <?= $i = 0;
+            for (a in b) {
+            echo <td id="quantity_$i" b.quantity></td>;
+            $i++;
+            } ?> #}
+
+            {# {% if libelleHidden == s.libelleType %} #}
                 <tr class="table-dark" > <td>{{s.libelle}}</td>
                 
                 {# <td data-th="Quantity"> 
@@ -100,18 +106,26 @@
                 {% if s.qte >= "1" %}
                     <FONT color="orange"> 
                       <b>
+                        <div id="output{{ s.id }}" name="output">
                         {{s.qte}}
+                        </div>
                       </b>
                     </FONT>
                 {% else %} 
                     <FONT color="red"> 
                       <b>
+                      
+                      <div id="output{{ s.id }}" name="output">
                         {{s.qte}}
+                        </div>
                       </b>
                     </FONT> 
                 {% endif %}
               {% else %} 
-                {{s.qte}}
+
+                <div id="output{{ s.id }}" name="output">
+                        {{s.qte}}
+                        </div>
               {% endif %}
               
               </td><td>{{s.fabricant}}</td><td>
@@ -163,16 +177,40 @@
                <form action="index.php" method="post" >
                 <input type='hidden' id="idP{{ s.id }}" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte{{ s.id }}" name="qte"  value="1"/>
-              <button class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
-              </form>
+                {# <div id="target" id-target="{{ s.id }}" name="btTarget" class="target"> #}
+                {# <span class="syntaxhtml"><span class="syntaxdefault"><br /></span><span class="syntaxkeyword"><</span><span class="syntaxdefault">iframe id</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"frame"</span><span class="syntaxdefault"> src</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"teste.php"</span><span class="syntaxdefault"> scrolling</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"no"</span><span class="syntaxdefault"> marginheight</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"0"</span><span class="syntaxdefault"> marginwidth</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"0"</span><span class="syntaxdefault"> frameborder</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"0"</span><span class="syntaxkeyword">></</span><span class="syntaxdefault">iframe</span><span class="syntaxkeyword">><br /><</span><span class="syntaxdefault">script type</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"text/javascript"</span><span class="syntaxkeyword">><br /></span><span class="syntaxdefault">var refresh </span><span class="syntaxkeyword">=</span><span class="syntaxdefault"> function </span><span class="syntaxkeyword">()</span><span class="syntaxdefault"> </span><span class="syntaxkeyword">{<br /></span><span class="syntaxdefault">    document</span><span class="syntaxkeyword">.</span><span class="syntaxdefault">getElementById</span><span class="syntaxkeyword">(</span><span class="syntaxstring">"frame"</span><span class="syntaxkeyword">).</span><span class="syntaxdefault">src </span><span class="syntaxkeyword">=</span><span class="syntaxdefault"> document</span><span class="syntaxkeyword">.</span><span class="syntaxdefault">getElementById</span><span class="syntaxkeyword">(</span><span class="syntaxstring">"frame"</span><span class="syntaxkeyword">).</span><span class="syntaxdefault">src</span><span class="syntaxkeyword">;<br />};<br /></span><span class="syntaxdefault">setInterval</span><span class="syntaxkeyword">(</span><span class="syntaxdefault">refresh</span><span class="syntaxkeyword">,</span><span class="syntaxdefault"> 3000</span><span class="syntaxkeyword">);<br /></span><span class="syntaxdefault"></script><br /></span></span>
+                 #}
+                {# <iframe id="frame" src="teste.php" scrolling="no" marginheight="0" marginwidth="0" frameborder="0"></iframe>
+              <script type="text/javascript">
+                var refresh = function () {
+                  document.getElementById("frame").src = document.getElementById("frame").src;
+                };
+                setInterval(refresh, 3000);
+              </script> #}
+                
+                {# <script type="text/javascript">
+                  function refresh() {
+                    //alert('test');
+                    setTimeout(function () {
+                      //alert('test');
+                      document.getElementById('#output{{ s.id }}').innerHTML = document.getElementById('#output{{ s.id }}').innerHTML;
+                    } ,3000);
+                  }
+                </script> #}
+                
+
+              <button onclick="refresh();" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
               
+              </form>
+               {# <a onclick="refresh(); return false;">refresh</a>
+                <div id="toto">azerty</div> #}
               </td>
               <td>
 
-               <form action="index.php" method="post">
+              <form action="index.php" method="post">
                 <input type='hidden' id="idB{{ s.id }}" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
-              <button class="btn btn-sm btn-primary" type="button" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
+                <button class="btn btn-sm btn-primary" type="button" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
               </form>
 
               {# <form action="index.php" method="post">
