@@ -45,11 +45,16 @@
                 {% if t.TotalQte <= "0" %}
                  <FONT color="red"> 
                       <b>
+                      <div id="output__{{ t.id }}" name="output">
                         {{t.TotalQte}}
+                        </div>
                       </b>
                     </FONT> 
                 {% else %} 
-                {{t.TotalQte}} 
+                    <div id="output__{{ t.id }}" name="output">
+                        {{t.TotalQte}}
+                        </div>
+                      </b>
               {% endif %}
               
               </td><td>
@@ -106,7 +111,7 @@
                 {% if s.qte >= "1" %}
                     <FONT color="orange"> 
                       <b>
-                        <div id="output{{ s.id }}" name="output">
+                        <div id="output{{ s.id }}_{{ t.id }}" name="output">
                         {{s.qte}}
                         </div>
                       </b>
@@ -115,7 +120,7 @@
                     <FONT color="red"> 
                       <b>
                       
-                      <div id="output{{ s.id }}" name="output">
+                      <div id="output{{ s.id }}_{{ t.id }}" name="output">
                         {{s.qte}}
                         </div>
                       </b>
@@ -123,7 +128,7 @@
                 {% endif %}
               {% else %} 
 
-                <div id="output{{ s.id }}" name="output">
+                <div id="output{{ s.id }}_{{ t.id }}" name="output">
                         {{s.qte}}
                         </div>
               {% endif %}
@@ -197,9 +202,28 @@
                     } ,3000);
                   }
                 </script> #}
+              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+              <script type="text/javascript">
+                //function refresh() {
+                var auto_refresh = setInterval(
+                function refresh()
+                {
+                  //alert("ouiiii");
+                $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
+                }, 1); // refresh every 10000 milliseconds
+                //}
+
+                var auto_refresh = setInterval(
+                function refresh2()
+                {
+                $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
+                }, 1); // refresh every 10000 milliseconds
+                //}
+                  
+              </script>
                 
 
-              <button onclick="refresh();" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
+              <button onclick="refresh(); refresh2();" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
               
               </form>
                {# <a onclick="refresh(); return false;">refresh</a>
@@ -354,8 +378,6 @@
       <a href="index.php?page=ajout-sousproduit">Ajouter un nouveau produit</a>
     </div>
 
-
-     
               
       <!--////////////////////////////////////////////////////////////////////////////////////////!-->
 

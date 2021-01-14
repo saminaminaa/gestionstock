@@ -50,6 +50,7 @@
        
     for(let item of btAugmenterQtes){
       item.addEventListener("click",ajaxAugmenterQte,false);
+      //item.addEventListener("click",ajaxActualiserQte,false);
     }
     function ajaxAugmenterQte(){ //function ajax pour chaque form
       //alert(this.getAttribute('id-plus'));
@@ -100,7 +101,7 @@
     //$(output).load("http://localhost/projet/web/index.php #output");
     //$refresh(output);
 
-    document.getElementById("qte"+numligne).content = $retourAjax;
+    //document.getElementById("qte"+numligne).content = $retourAjax;
       
       var request= $.ajax({
         url: "http://localhost/projet/web/index.php?page=api-augmenter-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
@@ -132,6 +133,38 @@
         //alert("test");
         //$('#output').html(function(i, val) { return val*1+1 });
       //});
+
+      //Actualiser la QTE------------------------------------------------------------------------------------------------------
+      /* function ajaxActualiserQte(){ //function ajax pour chaque form
+      
+      id='idP'+this.getAttribute('id-plus');
+      idqte = 'qte'+this.getAttribute('id-plus');
+      qte=document.getElementById(idqte).value;
+      idP = 'idP'+this.getAttribute('id-plus');
+      id=document.getElementById(idP).value;
+      
+      var request= $.ajax({
+        url: "http://localhost/projet/web/index.php?page=api-actualiser-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+        method: "POST", 
+        dataType: "text",
+        data: {
+          btAugmenterQte : 'test', 
+          id: id,
+          qte: qte,
+        },
+        beforeSend: function( xhr ) {
+          
+        }});
+        request.done(function( msg ) {
+          
+        });
+        // Fonction qui se lance lorsque l’accès au web service provoque une erreur
+        request.fail(function( jqXHR, textStatus ) {
+          alert ('erreur');
+        });
+      }
+ */
+      
 
 
 

@@ -24,7 +24,7 @@
     }
     else{
 
-        //Augmenter la quantité :
+       //Augmenter la quantité :
         if(isset($_POST['btAugmenterQte'])){
             $sousproduit = new Sousproduit($db);
             $qte = $_POST['qte'];
