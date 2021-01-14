@@ -7,6 +7,7 @@
         $lesPages['api-modif-com']= "actionApiModifCom";
         $lesPages['api-augmenter-qte']= "actionApiAugmenterQte";
         $lesPages['api-baisser-qte']= "actionApiBaisserQte";
+        $lesPages['modif-sousproduit']= "actionModifSousproduit";
 
 
       /*   if ($db == NULL) {

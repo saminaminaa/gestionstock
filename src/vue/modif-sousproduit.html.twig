@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Modifier un produit {% endblock %}
+
+{% block contenu %}
+
+
+        {% if form.sousproduit is defined %}
+            {% if form.sousproduit != null %}                                                                  
+                <form class="form-signin" action="index.php?page=modif-sousproduit" method="post"
+                      enctype="application/x-www-form-urlencoded">
+                    <h1 class="h3 mb-3 font-weight-normal">Modifier un produit</h1>
+                   
+                    <input type="hidden" name="id" value="{{ form.sousproduit.id }}"/> 
+                    <label for="libelle" class="label-grand">Nom du produit :</label>
+                    <input type="text" id="libelle" name="libelle" class="form-control" placeholder="Libelle"  value="{{form.sousproduit.libelle}}" required>
+                    <label for="qte" class="label-grand">Quantité du produit :</label>
+                    <input type="text" id="qte" name="qte" class="form-control" placeholder="Quantité"  value="{{form.sousproduit.qte}}" required>
+                    <label for="inputFabricant" class="label-grand">Fabricant du produit:</label>
+                    <input type="text" id="fabricant" name="fabricant" class="form-control" placeholder="Fabricant"  value="{{form.sousproduit.fabricant}}" required>
+                    <label for="seuil" class="label-control">Seuil :</label>
+                    <input type="text" id="seuil" name="seuil" class="form-control" placeholder="Seuil"  value="{{form.sousproduit.seuil}}" required>
+                    <label for="commentaire" class="label-grand">Commentaire :</label>
+                    <input type="text" id="commentaire" name="commentaire" class="form-control" placeholder="Commentaire"  value="{{form.sousproduit.commentaire}}" required>
+                   
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>
+
+                </form>
+
+            {% else %}
+                <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+                <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur la l'accueil</a></h1>
+                {% endif %}
+                    {% else %}
+                        {% if form.valide == true %}
+                            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+                            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
+                        {% else %}
+                            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+                            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
+                        {% endif %}
+                        {% endif %}  
+                          
+
+        {% endblock %}
+
+

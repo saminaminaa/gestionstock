@@ -89,7 +89,7 @@
           
           <table class="table table-hover">
             
-            <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th></th></tr>
+            <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
             {# {% for id in liste %} #}
             {% for s in liste2 %}
             {% if t.id == s.idTypeproduit %}
@@ -310,6 +310,21 @@
                 {% endif %}
               {% endif %}
 
+              </td>
+              <td> 
+              <div class="btn-group btn-group-lg">
+              <a href="index.php?page=modif-sousproduit&id={{ s.id }}">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+              </span>
+              </a>
+              </div>
+              </td>
+              <td>
+              <div class="btn-group btn-group-lg">
+              <a href="#"><span class="glyphicon glyphicon-trash" ariahidden="true">
+              </span>
+              </a>
+              </div>
               </td>
               </tr>
             {% endif %}                           

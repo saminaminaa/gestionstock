@@ -19,6 +19,8 @@ class Sousproduit{
     private $selectTri;
 
     private $selectAll;
+
+    private $updateAll;
     
     public function __construct($db){
         
@@ -33,11 +35,13 @@ class Sousproduit{
 
         $this->updateCom = $db->prepare("update sousproduit set commentaire=:commentaire where id=:id");
 
-        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, t.libelle as libelletypeproduit from typeproduit t, sousproduit s where id=:id and t.id=s.idTypeproduit");
+        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire from sousproduit s where id=:id");
         
         $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
 
         $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
+
+        $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, commentaire=:commentaire where id=:id");
 
     }
     
@@ -116,6 +120,17 @@ class Sousproduit{
         return $this->selectAll->fetchAll();      
          
      }
+
+     public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil){
+        $r = true;
+        $this->updateAll->execute(array(':id'=>$id, ':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':commentaire'=>$commentaire, ':seuil'=>$seuil));
+        if ($this->updateAll->errorCode()!=0){
+            print_r($this->updateAll->errorInfo());
+            $r=false;
+            }
+            return $r;
+            }
+
 
 
 
