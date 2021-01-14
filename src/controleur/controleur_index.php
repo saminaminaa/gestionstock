@@ -92,6 +92,24 @@
         else{
             $form['message'] = 'produit non précisé';
         }
+
+        $form = array(); 
+        $sousproduit = new Sousproduit($db);
+        //supprimer un produit
+        if(isset($_GET['id'])){      
+            $exec=$sousproduit->delete($_GET['id']);      
+            if (!$exec){         
+                $form['valide'] = false;           
+                $form['message'] = 'Problème de suppression dans la table sousproduit';       
+            }      
+            else{         
+                $form['valide'] = true;           
+                $form['message'] = 'Produit supprimé avec succès';      
+            }      
+        } 
+
+
+
     }
         echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri, 'listeAll'=>$listeAll));
     }

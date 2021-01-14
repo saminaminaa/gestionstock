@@ -4,7 +4,6 @@
 
 {% block contenu %}
 
-
         {% if form.sousproduit is defined %}
             {% if form.sousproduit != null %} 
                 <div {# style="text-align:center" #}>                                                                 
@@ -24,16 +23,14 @@
                     <label for="commentaire" class="label-grand">Commentaire :</label>
                     <input type="text" id="commentaire" name="commentaire" class="form-control" placeholder="Commentaire"  value="{{form.sousproduit.commentaire}}" required>
                     <label for="idTypeproduit" class="label-grand">Type de produit :</label>
-                    {# <input type="hidden" name="idTypeproduit" value="{{ form.sousproduit.idTypeproduit }}"/>  #}
                     <select class="form-control" id="idTypeproduit" name="idTypeproduit">
-                     {% for t in form.typeproduits %}
-                        {% if t.id == form.sousproduit.idTypeproduit %}
-                            <option value="{{ t.id }}" selected>{{ t.libelle }}</option>
-                        {% else %}
-                            <option value="{{ t.id }}">{{ t.libelle }}</option>
-                            {# <script> alert("non")</script>    #}       
-                        {% endif %}
-                    {% endfor %}
+                        {% for t in form.typeproduits %}
+                            {% if t.id == form.sousproduit.idTypeproduit %}
+                                <option value="{{ t.id }}" selected>{{ t.libelle }}</option>
+                            {% else %}
+                                <option value="{{ t.id }}">{{ t.libelle }}</option>  
+                            {% endif %}
+                        {% endfor %}
                     </select>
                     
                    
@@ -46,17 +43,16 @@
             {% else %}
                 <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
                 <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur la l'accueil</a></h1>
+            {% endif %}
+            {% else %}
+                {% if form.valide == true %}
+                    <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
+                {% else %}
+                    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
                 {% endif %}
-                    {% else %}
-                        {% if form.valide == true %}
-                            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
-                            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
-                        {% else %}
-                            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
-                            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
-                        {% endif %}
-                        {% endif %}  
-                          
+            {% endif %}
 
         {% endblock %}
 

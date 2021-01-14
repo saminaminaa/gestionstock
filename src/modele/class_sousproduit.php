@@ -21,6 +21,8 @@ class Sousproduit{
     private $selectAll;
 
     private $updateAll;
+
+    private $delete;
     
     public function __construct($db){
         
@@ -42,6 +44,8 @@ class Sousproduit{
         $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
 
         $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, commentaire=:commentaire, idTypeproduit=:idTypeproduit where id=:id");
+
+        $this->delete = $db->prepare("delete from sousproduit s where id=:id");
 
     }
     
@@ -131,8 +135,15 @@ class Sousproduit{
             return $r;
             }
 
-
-
+        public function delete($id){        
+            $r = true;        
+            $this->delete->execute(array(':id'=>$id));        
+            if ($this->delete->errorCode()!=0){             
+                print_r($this->delete->errorInfo());               
+                $r=false;        
+            }        
+            return $r;    
+        }
 
 }
 
