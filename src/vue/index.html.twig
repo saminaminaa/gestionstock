@@ -90,8 +90,9 @@
           <table class="table table-hover">
             
             <tr class="table-secondary" ><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th></th></tr>
-
+            {# {% for id in liste %} #}
             {% for s in liste2 %}
+            {% if t.id == s.idTypeproduit %}
             {# <?= $i = 0;
             for (a in b) {
             echo <td id="quantity_$i" b.quantity></td>;
@@ -202,29 +203,88 @@
                     } ,3000);
                   }
                 </script> #}
-              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
               <script type="text/javascript">
+
+
+              //alert("test")
+                {# function refreshDiv(){
+                  alert("ggggg")
+                   $('#output{{ s.id }}_{{ t.id }}').on('click', function(){
+
+                      $.ajax({
+                          url: "index.php #output{{ s.id }}_{{ t.id }}",
+                          cache: true,
+                          success: function (html) {
+                              j("#output{{ s.id }}_{{ t.id }}").html(html);
+                          }
+                      });
+
+                  });
+                } #}
+
+                var output = document.getElementById('#output{{ s.id }}_{{ t.id }}');
+                
+
+                //$('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}');
+                {# var auto_refresh = setInterval(
+                function ()
+                {
+                  //alert("test");
+                  //alert("ouiiii");
+                $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}');
+                },); #}
+
+              {# $('btbt').on('click', function(){
+                    alert('Ce code fonctionne !');
+                }); #}
+
+              //alert("test");
                 //function refresh() {
-                var auto_refresh = setInterval(
+                {# var auto_refresh = setInterval(
                 function refresh()
                 {
+                  //alert("test");
                   //alert("ouiiii");
                 $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
                 }, 1); // refresh every 10000 milliseconds
                 //}
 
+                function refresh2(){
                 var auto_refresh = setInterval(
                 function refresh2()
                 {
                 $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
                 }, 1); // refresh every 10000 milliseconds
+ #}             //alert('test');
+
+               //function refresh(){
+                  //alert("oui");
+                var auto_refresh = setInterval(
+                function refresh()
+                { 
+                  //alert("test");
+                  //alert("ouiiii");
+                $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
+                }, 1000); // refresh every 10000 milliseconds
                 //}
+                //};
+
+                //function refresh2(){
+                var auto_refresh = setInterval(
+                function refresh2()
+                {
+                $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
+                }, 1000); // refresh every 10000 milliseconds
+
+                //$(document).ready(function() {
+                  
                   
               </script>
                 
-
+              <div id="btbt{{ s.id }}_{{ t.id }}" >
               <button onclick="refresh(); refresh2();" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
-              
+              </div>
               </form>
                {# <a onclick="refresh(); return false;">refresh</a>
                 <div id="toto">azerty</div> #}
@@ -252,8 +312,9 @@
 
               </td>
               </tr>
-            {# {% endif %} #}                                
+            {% endif %}                           
             {% endfor %}  
+            {# {% endfor %}  #}
 
           </table>
         </div>

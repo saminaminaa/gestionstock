@@ -46,13 +46,48 @@
 
 //--------------------------Augmenter qte------------------------------------------------------------------------------------------
     var btAugmenterQtes = document.getElementsByName('btAugmenterQte'); 
-    var output = document.getElementsByName('output');
-       
+    //var outputs = document.getElementById('#output{{ s.id }}_{{ t.id }}');
+    //var output = document.getElementsByName('output');
+
     for(let item of btAugmenterQtes){
       item.addEventListener("click",ajaxAugmenterQte,false);
-      //item.addEventListener("click",ajaxActualiserQte,false);
+      item.addEventListener("click",refreshDiv,false);
     }
+       
+    /* function refreshDiv(){
+
+      id='idP'+this.getAttribute('id-plus');
+      idoutuput = 'output'+this.getAttribute('id-plus');
+      output=document.getElementById(idqte).value;
+      idP = 'idP'+this.getAttribute('id-plus');
+      id=document.getElementById(idP).value;
+
+          $.ajax({
+              url: "http://localhost/projet/web/index.php #output{{ s.id }}_{{ t.id }}",
+              cache: true,
+              success: function (html) {
+                  //$("index.php #output{{ s.id }}_{{ t.id }}").html(html);
+                  //$('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}'); 692
+                
+                    //alert("test");
+                    //alert("ouiiii");
+                //$(output).load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
+                $(output).html(html);
+                
+              }
+          });
+      }; */
+
+
+    
     function ajaxAugmenterQte(){ //function ajax pour chaque form
+     /*  var auto_refresh = setInterval(
+        function ()
+        {
+          //alert("test");
+          //alert("ouiiii");
+        $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
+        }, 100); // refresh every 10000 milliseconds */
       //alert(this.getAttribute('id-plus'));
       //$('#counter').html(function(i, val) { return +val+1 });
       id='idP'+this.getAttribute('id-plus');
@@ -133,38 +168,6 @@
         //alert("test");
         //$('#output').html(function(i, val) { return val*1+1 });
       //});
-
-      //Actualiser la QTE------------------------------------------------------------------------------------------------------
-      /* function ajaxActualiserQte(){ //function ajax pour chaque form
-      
-      id='idP'+this.getAttribute('id-plus');
-      idqte = 'qte'+this.getAttribute('id-plus');
-      qte=document.getElementById(idqte).value;
-      idP = 'idP'+this.getAttribute('id-plus');
-      id=document.getElementById(idP).value;
-      
-      var request= $.ajax({
-        url: "http://localhost/projet/web/index.php?page=api-actualiser-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
-        method: "POST", 
-        dataType: "text",
-        data: {
-          btAugmenterQte : 'test', 
-          id: id,
-          qte: qte,
-        },
-        beforeSend: function( xhr ) {
-          
-        }});
-        request.done(function( msg ) {
-          
-        });
-        // Fonction qui se lance lorsque l’accès au web service provoque une erreur
-        request.fail(function( jqXHR, textStatus ) {
-          alert ('erreur');
-        });
-      }
- */
-      
 
 
 
