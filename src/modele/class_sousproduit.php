@@ -35,13 +35,13 @@ class Sousproduit{
 
         $this->updateCom = $db->prepare("update sousproduit set commentaire=:commentaire where id=:id");
 
-        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire from sousproduit s where id=:id");
+        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, idTypeproduit from sousproduit s where id=:id");
         
         $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
 
         $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
 
-        $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, commentaire=:commentaire where id=:id");
+        $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, commentaire=:commentaire, idTypeproduit=:idTypeproduit where id=:id");
 
     }
     
@@ -121,9 +121,9 @@ class Sousproduit{
          
      }
 
-     public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil){
+     public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $idTypeproduit){
         $r = true;
-        $this->updateAll->execute(array(':id'=>$id, ':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':commentaire'=>$commentaire, ':seuil'=>$seuil));
+        $this->updateAll->execute(array(':id'=>$id, ':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':commentaire'=>$commentaire, ':seuil'=>$seuil, ':idTypeproduit'=>$idTypeproduit));
         if ($this->updateAll->errorCode()!=0){
             print_r($this->updateAll->errorInfo());
             $r=false;

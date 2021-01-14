@@ -1,6 +1,10 @@
 <?php
 function actionModifSousproduit($twig, $db){
     $form = array();
+    $typeproduit = new Typeproduit($db);
+    $liste = $typeproduit->select();
+    $form['typeproduits']=$liste;
+
     if(isset($_GET['id'])){
         $sousproduit = new Sousproduit($db);
 
@@ -21,7 +25,8 @@ function actionModifSousproduit($twig, $db){
                          $fabricant = $_POST['fabricant'];
                          $commentaire = $_POST['commentaire'];
                          $seuil = $_POST['seuil'];
-                         $exec=$sousproduit->updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil);
+                         $idTypeproduit = $_POST['idTypeproduit'];
+                         $exec=$sousproduit->updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $idTypeproduit);
                          if(!$exec){
                              $form['valide'] = false;
                          $form['message'] = 'Échec de la modification';
@@ -35,6 +40,6 @@ function actionModifSousproduit($twig, $db){
                     $form['message'] = 'Produit non précisé';
                     }
                 }
-                echo $twig->render('modif-sousproduit.html.twig', array('form'=>$form));
+                echo $twig->render('modif-sousproduit.html.twig', array('form'=>$form,'liste'=>$liste));
             }
 ?>

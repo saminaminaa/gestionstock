@@ -15,7 +15,7 @@ class Typeproduit{
         $this->db = $db ;
         $this->insert = $db->prepare("insert into typeproduit(libelle) values (:libelle)");
         
-        $this->select = $db->prepare("select id, libelle from typeproduit t order by t.libelle");
+        $this->select = $db->prepare("select t.id, t.libelle from typeproduit t order by t.libelle");
 
         $this->selectQte = $db->prepare("select t.id, t.libelle, SUM(s.qte) AS TotalQte from typeproduit t, sousproduit s WHERE t.id=s.idTypeproduit GROUP BY t.libelle");
         
