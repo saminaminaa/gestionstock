@@ -1,5 +1,6 @@
 <?php
 
+    //fontion API pour la modification d'un commentaire
     function actionApiModifCom($twig,$db){
         if(isset($_POST['btModifCom'])){
             $sousproduit = new Sousproduit($db);
@@ -12,6 +13,7 @@
         return json_encode(array('msg'=>'blblbl'));
     }
 
+    // fonction API pour augmenter la quantité
     function actionApiAugmenterQte($twig,$db){
         if(isset($_POST['btAugmenterQte'])){
             $sousproduit = new Sousproduit($db);
@@ -25,6 +27,7 @@
         return json_encode(array('msg'=>'blblbl'));
     }
 
+    //fonction API pour baisser la quantité
     function actionApiBaisserQte($twig,$db){
         if(isset($_POST['btBaisserQte'])){
             $sousproduit = new Sousproduit($db);

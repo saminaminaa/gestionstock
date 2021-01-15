@@ -1,6 +1,6 @@
 <?php
 //------------------------------------------ACCUEIL-------------------------------------------------------------------------------------------
-
+    //fonction pour la page d'accueil
     function actionAccueil($twig,$db){
         $form = array(); 
         $sousproduit = new Sousproduit($db);
@@ -113,13 +113,13 @@
     }
 
 //----------------------------------AJOUT TYPE DE PRODUIT (table = typeproduit / page = ajout-type.html.twig)-------------------------------------------------------------------------------------------
-
+    //fonction pour la page ajout-type
     function actionAjoutType($twig,$db){
         $form = array();
+        //ajouter une type
         if (isset($_POST['btAjouter'])){
             $libelle = $_POST['libelle'];
             $form['valide'] = true;
-           
             $typeproduit = new Typeproduit($db);
                 $exec = $typeproduit->insert($libelle);
                 if (!$exec){
@@ -134,13 +134,14 @@
     }
 
 //-------------------------------------AJOUT PRODUIT (table = sousproduit/ page = ajout-sousproduit.html.twig)-------------------------------------------------------------------------------------------
-
+    //fonction pour la page ajout-sousproduit
     function actionAjoutSousproduit($twig,$db){
         $form = array();
             $typeproduit = new Typeproduit($db);
-            $liste = $typeproduit->select();
+            $liste = $typeproduit->select(); //Liste des types de produits
             $form['typeproduits']=$liste;
 
+        //Ajouter une produit
         if (isset($_POST['btAjouter'])){
             $libelle = $_POST['libelle'];
             $qte = $_POST['qte'];
@@ -152,6 +153,7 @@
             $form['valide'] = true;
            
             $sousproduit = new Sousproduit($db);
+                //insertion dans la table sousproduit
                 $exec = $sousproduit->insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit);
                 if (!$exec){
                     $form['valide'] = false;
