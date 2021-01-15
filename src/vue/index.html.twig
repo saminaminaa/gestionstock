@@ -219,14 +219,117 @@
               </div>
               </td>
               <td>
-              <div class="btn-group btn-group-lg">
-              <a href="index.php?id={{s.id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true">
+              <div class="btn-group btn-group-lg" {# onclick="supr()" #} onclick="openForm()">
+              <a {# href="index.php?id={{s.id}}" #}style="cursor: pointer;"><span class="glyphicon glyphicon-trash" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
               </svg>
               </span>
               </a>
               </div>
+              <style>
+      * {
+      box-sizing: border-box;
+      }
+      body {
+      font-family: Roboto, Helvetica, sans-serif;
+      }
+      /* Fixez le bouton sur le côté gauche de la page the button on the left side of the page */
+      .open-btn {
+      display: flex;
+      justify-content: left;
+      }
+      /* Stylez et fixez le bouton sur la page */
+      .open-button {
+      background-color: #1c87c9;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      }
+      /* Positionnez la forme Popup */
+      .login-popup {
+      position: relative;
+      text-align: center;
+      width: 100%;
+      }
+      /* Masquez la forme Popup */
+      .form-popup {
+      display: none;
+      position: fixed;
+      left: 45%;
+      top:5%;
+      transform: translate(-45%,5%);
+      border: 2px solid #666;
+      z-index: 9;
+      }
+      /* Styles pour le conteneur de la forme */
+      .form-container {
+      max-width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      }
+      /* Largeur complète pour les champs de saisie */
+      .form-container input[type=text], .form-container input[type=password] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #eee;
+      }
+      /* Quand les entrées sont concentrées, faites quelque chose */
+      .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+      }
+      /* Stylez le bouton de connexion */
+      .form-container .btn {
+      background-color: #8ebf42;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom:10px;
+      opacity: 0.8;
+      }
+      /* Stylez le bouton pour annuler */
+      .form-container .cancel {
+      background-color: #cc0000;
+      }
+      /* Planez les effets pour les boutons */
+      .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-popup">
+      <div class="form-popup" id="popupForm">
+        <form action="/action_page.php" class="form-container">
+        <FONT color="black">
+          <h4>Vous êtes sur le point de supprimer le produit : {{s.libelle}}</h4>
+          <h4>En êtes-vous sûr ?</h4>
+          </FONT>
+          <br>
+          <br>
+          <a href="index.php?id={{s.id}}" type="submit" class="btn">Oui, je suis sûr</a>
+          <a  type="button" class="btn cancel" onclick="closeForm()">Non, annuler</a>
+        </form>
+      </div>
+    </div>
+    <script>
+      function openForm() {
+        document.getElementById("popupForm").style.display="block";
+      }
+      
+      function closeForm() {
+        document.getElementById("popupForm").style.display="none";
+      }
+    </script>
               </td>
               </tr>
             {% endif %}                           

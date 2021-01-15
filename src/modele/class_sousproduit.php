@@ -37,7 +37,7 @@ class Sousproduit{
 
         $this->updateCom = $db->prepare("update sousproduit set commentaire=:commentaire where id=:id");
 
-        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, idTypeproduit from sousproduit s where id=:id");
+        $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where id=:id");
         
         $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
 
