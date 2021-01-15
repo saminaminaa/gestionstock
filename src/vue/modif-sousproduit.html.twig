@@ -13,19 +13,19 @@
                     <h1 class="h3 mb-3 font-weight-normal">Modifier un produit</h1>
                     </div>
                    
-                    <input type="hidden" name="id" value="{{ form.sousproduit.id }}"/> 
+                    <input type="hidden" name="id" value="{{ form.sousproduit.id }}" required/> 
                     <label for="libelle" class="label-grand">Nom du produit :</label>
                     <input type="text" id="libelle" name="libelle" class="form-control" placeholder="Libelle"  value="{{form.sousproduit.libelle}}" required>
                     <label for="qte" class="label-grand">Quantité du produit :</label>
                     <input type="text" id="qte" name="qte" class="form-control" placeholder="Quantité"  value="{{form.sousproduit.qte}}" required>
                     <label for="inputFabricant" class="label-grand">Fabricant du produit :</label>
-                    <input type="text" id="fabricant" name="fabricant" class="form-control" placeholder="Fabricant"  value="{{form.sousproduit.fabricant}}" required>
+                    <input type="text" id="fabricant" name="fabricant" class="form-control" placeholder="Fabricant"  value="{{form.sousproduit.fabricant}}">
                     <label for="seuil" class="label-control">Seuil :</label>
                     <input type="text" id="seuil" name="seuil" class="form-control" placeholder="Seuil"  value="{{form.sousproduit.seuil}}" required>
                     <label for="commentaire" class="label-grand">Commentaire :</label>
-                    <input type="text" id="commentaire" name="commentaire" class="form-control" placeholder="Commentaire"  value="{{form.sousproduit.commentaire}}" required>
+                    <input type="text" id="commentaire" name="commentaire" class="form-control" placeholder="Commentaire"  value="{{form.sousproduit.commentaire}}">
                     <label for="idTypeproduit" class="label-grand">Type de produit :</label>
-                    <select class="form-control" id="idTypeproduit" name="idTypeproduit">
+                    <select class="form-control" id="idTypeproduit" name="idTypeproduit" required>
                         {% for t in form.typeproduits %}
                             {% if t.id == form.sousproduit.idTypeproduit %}
                                 <option value="{{ t.id }}" selected>{{ t.libelle }}</option>

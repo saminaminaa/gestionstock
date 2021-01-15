@@ -11,13 +11,13 @@
                 <h1 class="h3 mb-3 font-weight-normal">Ajout d'un produit</h1>
                 </div>
                 
-                <input type="libelle" class="form-control" id="libelle" name="libelle" placeholder="Libelle">
-                <input type="qte" class="form-control" id="qte" name="qte" placeholder="Quantité">
+                <input type="libelle" class="form-control" id="libelle" name="libelle" placeholder="Libelle" required>
+                <input type="qte" class="form-control" id="qte" name="qte" placeholder="Quantité" required>
                 <input type="fabricant" class="form-control" id="fabricant" name="fabricant" placeholder="Fabricant">
                 {# <input type="stock" class="form-control" id="stock" name="stock" placeholder="Stock"> #}
-                <input type="seuil" class="form-control" id="seuil" name="seuil" placeholder="Seuil">
+                <input type="seuil" class="form-control" id="seuil" name="seuil" placeholder="Seuil" required>
             <input type="commentaire" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">
-                <select class="form-control" name="idTypeproduit" id="idTypeproduit">
+                <select class="form-control" name="idTypeproduit" id="idTypeproduit" required>
                         <option value="" disabled selected>Type de produit</option>
                          { {% for t in form.typeproduits %}
                          {% if r.id==form.sousproduit.idTypeproduit %} 
