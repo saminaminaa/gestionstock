@@ -9,7 +9,9 @@
                 <div {# style="text-align:center" #}>                                                                 
                 <form class="form-signin" action="index.php?page=modif-sousproduit" method="post"
                       enctype="application/x-www-form-urlencoded">
+                      <div style="text-align:center; padding-top:5%; padding-bottom:3%">
                     <h1 class="h3 mb-3 font-weight-normal">Modifier un produit</h1>
+                    </div>
                    
                     <input type="hidden" name="id" value="{{ form.sousproduit.id }}"/> 
                     <label for="libelle" class="label-grand">Nom du produit :</label>
@@ -41,10 +43,13 @@
                 </div>
 
             {% else %}
+            <div style="text-align:center; padding-top:5%; padding-bottom:3%">
                 <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
                 <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur la l'accueil</a></h1>
+                </div>
             {% endif %}
             {% else %}
+            <div style="text-align:center; padding-top:5%; padding-bottom:3%">
                 {% if form.valide == true %}
                     <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
                     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
@@ -52,6 +57,7 @@
                     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
                     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
                 {% endif %}
+                </div>
             {% endif %}
 
         {% endblock %}

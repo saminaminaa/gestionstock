@@ -1,7 +1,4 @@
- 
-
- 
- $(document).ready(function() {
+$(document).ready(function() {
   
 //--------------------------modifier un commentaire----------------------------------------------------------------------------
   var btModifComs = document.getElementsByName('btModifCom'); 
@@ -9,7 +6,6 @@
   for(let item of btModifComs){
     item.addEventListener("click",ajaxEnvoiCom,false);
   }
-  //btModifComs.addEventListener("click",ajaxEnvoiCom,false);
   
   function ajaxEnvoiCom(){ //function ajax pour chaque form
     //alert(this.getAttribute('id-com'));
@@ -20,7 +16,7 @@
     id=document.getElementById(idC).value;
     
     var request= $.ajax({
-      url: "http://localhost/projet/web/index.php?page=api-modif-com", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+      url: "http://localhost/projet/web/index.php?page=api-modif-com", 
       method: "POST", 
       dataType: "text",
       data: {
@@ -49,10 +45,7 @@
     for(let item of btBaisserQtes){
       item.addEventListener("click",ajaxBaisserQte,false);
     }
-    //alert("salut");
-    function ajaxBaisserQte(){ //function ajax pour chaque form
-      //alert("test");
-      //alert(this.getAttribute('id-mois'));
+    function ajaxBaisserQte(){
       id='idB'+this.getAttribute('id-moins');
       idqteB = 'qte'+this.getAttribute('id-moins');
       qte=document.getElementById(idqteB).value;
@@ -60,15 +53,13 @@
       id=document.getElementById(idB).value;
       
       var request= $.ajax({
-        url: "http://localhost/projet/web/index.php?page=api-baisser-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+        url: "http://localhost/projet/web/index.php?page=api-baisser-qte",
         method: "POST", 
         dataType: "text",
         data: {
           btBaisserQte : 'test', 
           id: id,
           qte: qte,
-          //id: 'idC'+this.getAttribute('id-com'),
-          //commentaire: 'commentaire'+this.getAttribute('id-com'),
         },
         beforeSend: function( xhr ) {
           //xhr.overrideMimeType( "application/json; charset=utf-8" );
@@ -89,9 +80,8 @@
 
     for(let item of btAugmenterQtes){
       item.addEventListener("click",ajaxAugmenterQte,false);
-      item.addEventListener("click",refreshDiv,false);
     }
-    
+
     function ajaxAugmenterQte(){ 
       //alert("salut2");
       id='idP'+this.getAttribute('id-plus');
@@ -100,7 +90,6 @@
       idP = 'idP'+this.getAttribute('id-plus');
       id=document.getElementById(idP).value;
      
-      
       var request= $.ajax({
         url: "http://localhost/projet/web/index.php?page=api-augmenter-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
         method: "POST", 
@@ -124,49 +113,4 @@
           alert ('erreur');
         });
       }
-      
-
-
-
-
-
   });
-
-
-/* if (window.XMLHttpRequest)    //  Objet standard
-{ 
-    xhr = new XMLHttpRequest();     //  Firefox, Safari, ...
-} 
-else  if (window.ActiveXObject)      //  Internet Explorer
-{
-    xhr = new ActiveXObject("Microsoft.XMLHTTP");
-}
-
-try
-{
-   xhr = new ActiveXObject("Microsoft.XMLHTTP"); // Essayer IE 
-}
-catch(e)   // Echec, utiliser l'objet standard 
-{
-  xhr = new XMLHttpRequest();
-}
-
-xhr.onreadystatechange = function()
-{
- console.log("cc")
-};
-
-if (xhr.readyState == 4) 
-{ 
-  // Reçu, OK 
-  console.log("bien reçu") 
-}
-else
-{ 
-// Attendre...
-console.log("attendre")
-}
-
-
-//xhr.open('GET', 'http://localhost/projet/web/index.php', true);  
-xhr.send(null); */
