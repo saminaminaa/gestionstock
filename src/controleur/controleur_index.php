@@ -79,7 +79,7 @@
                 $qte="1";
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
-                header('Location: index.php');
+                //header('Location: index.php');
             }
         }
         else{

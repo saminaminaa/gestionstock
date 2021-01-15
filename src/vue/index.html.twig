@@ -214,13 +214,10 @@
                 </script> #}
               <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
               <script type="text/javascript">
-
-
               //alert("test")
                 {# function refreshDiv(){
                   alert("ggggg")
                    $('#output{{ s.id }}_{{ t.id }}').on('click', function(){
-
                       $.ajax({
                           url: "index.php #output{{ s.id }}_{{ t.id }}",
                           cache: true,
@@ -228,13 +225,10 @@
                               j("#output{{ s.id }}_{{ t.id }}").html(html);
                           }
                       });
-
                   });
                 } #}
-
                 var output = document.getElementById('#output{{ s.id }}_{{ t.id }}');
                 
-
                 //$('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}');
                 {# var auto_refresh = setInterval(
                 function ()
@@ -243,11 +237,9 @@
                   //alert("ouiiii");
                 $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}');
                 },); #}
-
               {# $('btbt').on('click', function(){
                     alert('Ce code fonctionne !');
                 }); #}
-
               //alert("test");
                 //function refresh() {
                 {# var auto_refresh = setInterval(
@@ -258,7 +250,6 @@
                 $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
                 }, 1); // refresh every 10000 milliseconds
                 //}
-
                 function refresh2(){
                 var auto_refresh = setInterval(
                 function refresh2()
@@ -266,7 +257,6 @@
                 $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
                 }, 1); // refresh every 10000 milliseconds
  #}             //alert('test');
-
                //function refresh(){
                   //alert("oui");
                 var auto_refresh = setInterval(
@@ -278,14 +268,12 @@
                 }, 1000); // refresh every 10000 milliseconds
                 //}
                 //};
-
                 //function refresh2(){
                 var auto_refresh = setInterval(
                 function refresh2()
                 {
                 $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
                 }, 1000); // refresh every 10000 milliseconds
-
                 //$(document).ready(function() {
                   
                   
@@ -363,7 +351,6 @@
           <table class="table table-hover table-striped">
           
             <tr><th>Nom du produit </th><th>Quantité</th><th>Fabricant</th><th>Stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
-
             {% for s in liste2 %}
                 <tr><td>{{s.libelle}}</td>
 							</td><td>
@@ -388,7 +375,6 @@
               {% endif %}
               
               </td><td>{{s.fabricant}}</td><td>
-
               {% if s.qte <= s.seuil %}
                 {% if s.qte >= "1" %}
                     <FONT color="orange"> 
@@ -416,7 +402,6 @@
               
               
               </td>
-
               <td>
               
               
@@ -425,7 +410,6 @@
                 <input type='hidden' id="qte" name="qte"  value="1"/>
               <div class="btn-group btn-group-lg"><input type="submit" name="btAugmenterQte" value="+"/></div>
               </form>
-
               </td>
               <td>
               <form action="index.php" method="post">
@@ -440,24 +424,14 @@
                     <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
                 {% endif %}
               {% endif %}
-
               </td>
-
-
-
-
               </tr>
                                             
             {% endfor %}  
-
-
-
-
           </table>
         </div>
         
            
-
       </div>#}
       <br>
       <a href="index.php?page=ajout-sousproduit">Ajouter un nouveau produit</a>
@@ -475,4 +449,3 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/test.js"></script>
     {% endblock %} 
-
