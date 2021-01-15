@@ -12,11 +12,7 @@
     {% else %}         
     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
     {% endif %}         
-    {% endif %}     
-                 
-      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
-
-      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
+    {% endif %}
 
 
     <div style="padding-top:0%">
@@ -24,21 +20,17 @@
 <h3> Liste des types de produits : </h3>
 </div>
       <div class="panel panel-default">
-      <!-- Table -->
-
         {% for t in liste %}
         <div class="table-responsive">
           <table class="table table-hover">
-            <tr {# class="table-active" #} class="table-primary"><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
+            <tr class="table-primary"><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
 
-           {#  {% for t in liste %} #}
                 <tr>
                 
                 <td> 
-                       {# <a href="#" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';"> #}
-                                            <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                       <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
   <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-</svg></span>{# </a> #}
+</svg></span>
                             <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
   <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
 </svg></span>
@@ -50,10 +42,6 @@
                 
                 </td>
                 
-                
-                {# <td data-th="Quantity"> 
-								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
-
 							</td><td>
               <div id="output__{{ t.id }}" name="output">
                 {% if t.TotalQte <= "0" %}
@@ -88,11 +76,7 @@
               
               </td>
               </tr>
-                                            
-            {# {% endfor %}   #}
-
-
-
+              
           </table>
         </div>
 
@@ -101,25 +85,14 @@
                 <div style="padding-left:5%; padding-right:5%">
                 <div class="panel panel-default" >
           <div class="table-responsive" id="listeproduit{{t.libelle}}"  style="display:none">
-          {# <table class="table table-hover table-striped"  > #}
           
           <table class="table table-hover">
             
-            <tr {# class="table-secondary" #} {# class="table-primary" #} class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
-            {# {% for id in liste %} #}
+            <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
+            
             {% for s in liste2 %}
             {% if t.id == s.idTypeproduit %}
-            {# <?= $i = 0;
-            for (a in b) {
-            echo <td id="quantity_$i" b.quantity></td>;
-            $i++;
-            } ?> #}
-
-            {# {% if libelleHidden == s.libelleType %} #}
                 <tr class="table-dark" > <td>{{s.libelle}}</td>
-                
-                {# <td data-th="Quantity"> 
-								<input type="number" class="form-control text-center" value="{{ t.qte }}"> #}
 
 							</td><td>
               
@@ -183,106 +156,29 @@
               </td>
 
               <td>
-{#               <a name="monAncre{{t.libelle}}"></a>
-               <form action="index.php#monAncre" method="post" >
-                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
-                <input type='hidden' id="qte" name="qte"  value="1"/>
-              <input class="btn btn-sm btn-primary" type="submit" name="btAugmenterQte" value="+"/>
-              </form> #}
 
                 <a name="monAncre{{t.libelle}}"></a>
                <form action="index.php" method="post" >
                 <input type='hidden' id="idP{{ s.id }}" name="id"  value="{{ s.id }}"/>
                 <input type='hidden' id="qte{{ s.id }}" name="qte"  value="1"/>
-                {# <div id="target" id-target="{{ s.id }}" name="btTarget" class="target"> #}
-                {# <span class="syntaxhtml"><span class="syntaxdefault"><br /></span><span class="syntaxkeyword"><</span><span class="syntaxdefault">iframe id</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"frame"</span><span class="syntaxdefault"> src</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"teste.php"</span><span class="syntaxdefault"> scrolling</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"no"</span><span class="syntaxdefault"> marginheight</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"0"</span><span class="syntaxdefault"> marginwidth</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"0"</span><span class="syntaxdefault"> frameborder</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"0"</span><span class="syntaxkeyword">></</span><span class="syntaxdefault">iframe</span><span class="syntaxkeyword">><br /><</span><span class="syntaxdefault">script type</span><span class="syntaxkeyword">=</span><span class="syntaxstring">"text/javascript"</span><span class="syntaxkeyword">><br /></span><span class="syntaxdefault">var refresh </span><span class="syntaxkeyword">=</span><span class="syntaxdefault"> function </span><span class="syntaxkeyword">()</span><span class="syntaxdefault"> </span><span class="syntaxkeyword">{<br /></span><span class="syntaxdefault">    document</span><span class="syntaxkeyword">.</span><span class="syntaxdefault">getElementById</span><span class="syntaxkeyword">(</span><span class="syntaxstring">"frame"</span><span class="syntaxkeyword">).</span><span class="syntaxdefault">src </span><span class="syntaxkeyword">=</span><span class="syntaxdefault"> document</span><span class="syntaxkeyword">.</span><span class="syntaxdefault">getElementById</span><span class="syntaxkeyword">(</span><span class="syntaxstring">"frame"</span><span class="syntaxkeyword">).</span><span class="syntaxdefault">src</span><span class="syntaxkeyword">;<br />};<br /></span><span class="syntaxdefault">setInterval</span><span class="syntaxkeyword">(</span><span class="syntaxdefault">refresh</span><span class="syntaxkeyword">,</span><span class="syntaxdefault"> 3000</span><span class="syntaxkeyword">);<br /></span><span class="syntaxdefault"></script><br /></span></span>
-                 #}
-                {# <iframe id="frame" src="teste.php" scrolling="no" marginheight="0" marginwidth="0" frameborder="0"></iframe>
-              <script type="text/javascript">
-                var refresh = function () {
-                  document.getElementById("frame").src = document.getElementById("frame").src;
-                };
-                setInterval(refresh, 3000);
-              </script> #}
-                
-                {# <script type="text/javascript">
-                  function refresh() {
-                    //alert('test');
-                    setTimeout(function () {
-                      //alert('test');
-                      document.getElementById('#output{{ s.id }}').innerHTML = document.getElementById('#output{{ s.id }}').innerHTML;
-                    } ,3000);
-                  }
-                </script> #}
               <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
               <script type="text/javascript">
-              //alert("test")
-                {# function refreshDiv(){
-                  alert("ggggg")
-                   $('#output{{ s.id }}_{{ t.id }}').on('click', function(){
-                      $.ajax({
-                          url: "index.php #output{{ s.id }}_{{ t.id }}",
-                          cache: true,
-                          success: function (html) {
-                              j("#output{{ s.id }}_{{ t.id }}").html(html);
-                          }
-                      });
-                  });
-                } #}
                 var output = document.getElementById('#output{{ s.id }}_{{ t.id }}');
                 
-                //$('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}');
-                {# var auto_refresh = setInterval(
-                function ()
-                {
-                  //alert("test");
-                  //alert("ouiiii");
-                $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}');
-                },); #}
-              {# $('btbt').on('click', function(){
-                    alert('Ce code fonctionne !');
-                }); #}
-              //alert("test");
-                //function refresh() {
-                {# var auto_refresh = setInterval(
-                function refresh()
-                {
-                  //alert("test");
-                  //alert("ouiiii");
-                $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
-                }, 1); // refresh every 10000 milliseconds
-                //}
-                function refresh2(){
-                var auto_refresh = setInterval(
-                function refresh2()
-                {
-                $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
-                }, 1); // refresh every 10000 milliseconds
- #}             //alert('test');
-               //function refresh(){
-                  //alert("oui");
                 var auto_refresh = setInterval(
                 function refresh()
                 { 
-                  //alert("test");
-                  //alert("ouiiii");
                 $('#output{{ s.id }}_{{ t.id }}').load('index.php #output{{ s.id }}_{{ t.id }}').fadeIn('slow');
-                }, 1000); // refresh every 10000 milliseconds
-                //}
-                //};
-                //function refresh2(){
+                }, 1000);
                 var auto_refresh = setInterval(
                 function refresh2()
                 {
                 $('#output__{{ t.id }}').load('index.php #output__{{ t.id }}').fadeIn('slow');
-                }, 1000); // refresh every 10000 milliseconds
-                //$(document).ready(function() {
+                }, 1000);
 
                 var auto_refresh = setInterval(
                 function refresh3()
                 { 
-                  //alert("test");
-                  //alert("ouiiii");
                 $('#outputt{{ s.id }}_{{ t.id }}').load('index.php #outputt{{ s.id }}_{{ t.id }}').fadeIn('slow');
                 }, 1000);
                   
@@ -293,8 +189,6 @@
               <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
               </div>
               </form>
-               {# <a onclick="refresh(); return false;">refresh</a>
-                <div id="toto">azerty</div> #}
               </td>
               <td>
 
@@ -303,12 +197,6 @@
                 <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
                 <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
               </form>
-
-              {# <form action="index.php" method="post">
-                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
-                <input type='hidden' id="qte" name="qte"  value="1"/>
-              {# <div class="btn-group btn-group-lg"><input class="btn btn-sm btn-primary" type="submit" name="btBaisserQte" value="-"/>{# </div>
-              </form> #}
                           {% if s.qte <= s.seuil %}
                 {% if s.qte >= "1" %}
                     <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
@@ -342,7 +230,6 @@
               </tr>
             {% endif %}                           
             {% endfor %}  
-            {# {% endfor %}  #}
 
           </table>
         </div>
@@ -354,114 +241,10 @@
         
         <a href="index.php?page=ajout-type">Ajouter un nouveau type de produit</a>
 
-
-
-
-        <!--/////////////////////////////////LISTE PRODUIT//////////////////////////////////////////////////////////////////////////////////-->
-{# 
-        <div style="padding-top:2%">
-<h3> Liste des produits : </h3>
-</div>
-          <div class="panel panel-default" >
-          <div class="table-responsive">
-          <table class="table table-hover table-striped">
-          
-            <tr><th>Nom du produit </th><th>Quantité</th><th>Fabricant</th><th>Stock</th><th>Commentaire</th><th>+</th><th>-</th></th></tr>
-            {% for s in liste2 %}
-                <tr><td>{{s.libelle}}</td>
-							</td><td>
-              
-              
-              {% if s.qte <= s.seuil %}
-                {% if s.qte >= "1" %}
-                    <FONT color="orange"> 
-                      <b>
-                        {{s.qte}}
-                      </b>
-                    </FONT>
-                {% else %} 
-                    <FONT color="red">
-                      <b>
-                        {{s.qte}}
-                      </b>
-                    </FONT> 
-                {% endif %}
-              {% else %} 
-                {{s.qte}}
-              {% endif %}
-              
-              </td><td>{{s.fabricant}}</td><td>
-              {% if s.qte <= s.seuil %}
-                {% if s.qte >= "1" %}
-                    <FONT color="orange"> 
-                      <b>
-                        Encore en stock mais seuil atteint
-                      </b>
-                    </FONT>
-                {% else %} 
-                    <FONT color="red"> 
-                      <b>
-                        produit en rupture de stock
-                      </b>
-                    </FONT> 
-                {% endif %}
-              {% else %} 
-                produit en stock
-              {% endif %}
-              
-              </td><td>
-               <form action="index.php" method="post">
-                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
-                <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire" name="commentaire"  value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-              <div class="btn-group btn-group-lg"><input type="submit" name="btModifCom" value="Modifier"/></div>
-              </form>
-              
-              
-              </td>
-              <td>
-              
-              
-               <form action="index.php" method="post">
-                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
-                <input type='hidden' id="qte" name="qte"  value="1"/>
-              <div class="btn-group btn-group-lg"><input type="submit" name="btAugmenterQte" value="+"/></div>
-              </form>
-              </td>
-              <td>
-              <form action="index.php" method="post">
-                <input type='hidden' id="id" name="id"  value="{{ s.id }}"/>
-                <input type='hidden' id="qte" name="qte"  value="1"/>
-              <div class="btn-group btn-group-lg"><input type="submit" name="btBaisserQte" value="-"/></div>
-              </form>
-                          {% if s.qte <= s.seuil %}
-                {% if s.qte >= "1" %}
-                    <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
-                {% else %} 
-                    <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
-                {% endif %}
-              {% endif %}
-              </td>
-              </tr>
-                                            
-            {% endfor %}  
-          </table>
-        </div>
-        
-           
-      </div>#}
       <br>
       <a href="index.php?page=ajout-sousproduit">Ajouter un nouveau produit</a>
     </div>
 
-              
-      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
-
-      <!--////////////////////////////////////////////////////////////////////////////////////////!-->
-
-
-
-    {# <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> #}
-    {# <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> #}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/test.js"></script>
     {% endblock %} 

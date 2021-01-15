@@ -11,7 +11,7 @@
 
 
       /*   if ($db == NULL) {
-            return "testtt pas de bd";
+            return "nous ne trouvons pas de bd";
         } else { */
 
 /*         if ($db != NULL) {

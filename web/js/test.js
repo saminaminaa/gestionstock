@@ -7,7 +7,7 @@ $(document).ready(function() {
     item.addEventListener("click",ajaxEnvoiCom,false);
   }
   
-  function ajaxEnvoiCom(){ //function ajax pour chaque form
+  function ajaxEnvoiCom(){ //fonction ajax pour chaque form
     //alert(this.getAttribute('id-com'));
     id='idC'+this.getAttribute('id-com');
     idcommentaire = 'commentaire'+this.getAttribute('id-com');
@@ -33,7 +33,6 @@ $(document).ready(function() {
         //alert(msg);
         //console.log(msg);
       });
-      // Fonction qui se lance lorsque l’accès au web service provoque une erreur
       request.fail(function( jqXHR, textStatus ) {
         alert ('erreur');
       });
@@ -68,7 +67,6 @@ $(document).ready(function() {
           //alert(msg);
           //console.log(msg);
         });
-        // Fonction qui se lance lorsque l’accès au web service provoque une erreur
         request.fail(function( jqXHR, textStatus ) {
           alert ('erreur');
         });
@@ -82,8 +80,7 @@ $(document).ready(function() {
       item.addEventListener("click",ajaxAugmenterQte,false);
     }
 
-    function ajaxAugmenterQte(){ 
-      //alert("salut2");
+    function ajaxAugmenterQte(){
       id='idP'+this.getAttribute('id-plus');
       idqte = 'qte'+this.getAttribute('id-plus');
       qte=document.getElementById(idqte).value;
@@ -91,7 +88,7 @@ $(document).ready(function() {
       id=document.getElementById(idP).value;
      
       var request= $.ajax({
-        url: "http://localhost/projet/web/index.php?page=api-augmenter-qte", //faire controleur uniquement pr api contenant des fonctions pour tt ce qui est ajax
+        url: "http://localhost/projet/web/index.php?page=api-augmenter-qte",
         method: "POST", 
         dataType: "text",
         data: {
@@ -108,7 +105,6 @@ $(document).ready(function() {
           //alert(msg);
           //console.log(msg);
         });
-        // Fonction qui se lance lorsque l’accès au web service provoque une erreur
         request.fail(function( jqXHR, textStatus ) {
           alert ('erreur');
         });

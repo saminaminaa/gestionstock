@@ -34,9 +34,9 @@
         }
 
         else{
-    //si le produit n'existe pas
-    $form['message'] = 'Produit incorrect';
-    }
+            //si le produit n'existe pas
+            $form['message'] = 'Produit incorrect';
+        }
     }
     else{
 
@@ -79,7 +79,6 @@
                 $qte="1";
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
-                //header('Location: index.php');
             }
         }
         else{
@@ -108,10 +107,6 @@
         else{
             $form['message'] = 'produit non précisé';
         }
-
-        
-
-
 
     }
         echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri, 'listeAll'=>$listeAll));
@@ -142,15 +137,10 @@
 
     function actionAjoutSousproduit($twig,$db){
         $form = array();
-        /* $typeproduit = new Typeproduit($db);
-            $liste = $typeproduit->select();
-            $form['typeproduit']=$liste; */
             $typeproduit = new Typeproduit($db);
             $liste = $typeproduit->select();
             $form['typeproduits']=$liste;
 
-            /* $typeproduit = new Typeproduit($db);
-            $liste = $typeproduit->select(); */
         if (isset($_POST['btAjouter'])){
             $libelle = $_POST['libelle'];
             $qte = $_POST['qte'];
