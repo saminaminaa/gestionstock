@@ -27,10 +27,10 @@ class Sousproduit{
     public function __construct($db){
         
         $this->db = $db ;
-        $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, seuil, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :seuil, :commentaire, :idTypeproduit)");
+        $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :seuil, :reference, :commentaire, :idTypeproduit)");
 
-        $this->select = $db->prepare("select id, libelle, qte, fabricant, seuil, commentaire, idTypeproduit from sousproduit s order by libelle");
-        /* $this->select = $db->prepare("select id, libelle, qte, fabricant, stock, commentaire, idTypeproduit from sousproduit s, typeproduit t where s.idTypeproduit = t.id order by libelle"); */
+        $this->select = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s order by libelle");
+       
         $this->updateQte = $db->prepare("update sousproduit set qte=qte +:qte where id=:id");
 
         $this->updateQte2 = $db->prepare("update sousproduit set qte=qte -:qte where id=:id");
@@ -43,15 +43,15 @@ class Sousproduit{
 
         $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
 
-        $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, commentaire=:commentaire, idTypeproduit=:idTypeproduit where id=:id");
+        $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, reference=:reference, commentaire=:commentaire, idTypeproduit=:idTypeproduit where id=:id");
 
         $this->delete = $db->prepare("delete from sousproduit s where id=:id");
 
     }
     
-    public function insert($libelle, $qte, $fabricant, $seuil, $commentaire, $idTypeproduit){
+    public function insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit){
          $r = true;
-        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':commentaire'=>$commentaire, ':idTypeproduit'=>$idTypeproduit));
+        $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':reference'=>$reference, ':commentaire'=>$commentaire, ':idTypeproduit'=>$idTypeproduit));
         if ($this->insert->errorCode()!=0){
             print_r($this->insert->errorInfo());
             $r=false;
@@ -125,9 +125,9 @@ class Sousproduit{
          
      }
 
-     public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $idTypeproduit){
+     public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $reference, $idTypeproduit){
         $r = true;
-        $this->updateAll->execute(array(':id'=>$id, ':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':commentaire'=>$commentaire, ':seuil'=>$seuil, ':idTypeproduit'=>$idTypeproduit));
+        $this->updateAll->execute(array(':id'=>$id, ':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':commentaire'=>$commentaire, ':seuil'=>$seuil, ':reference'=>$reference, ':idTypeproduit'=>$idTypeproduit));
         if ($this->updateAll->errorCode()!=0){
             print_r($this->updateAll->errorInfo());
             $r=false;

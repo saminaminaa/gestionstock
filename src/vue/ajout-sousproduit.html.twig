@@ -15,6 +15,7 @@
                 <input type="qte" class="form-control" id="qte" name="qte" placeholder="Quantité" required>
                 <input type="fabricant" class="form-control" id="fabricant" name="fabricant" placeholder="Fabricant">
                 <input type="seuil" class="form-control" id="seuil" name="seuil" placeholder="Seuil" required>
+                <input type="reference" class="form-control" id="reference" name="reference" placeholder="Reference" required>
             <input type="commentaire" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">
                 <select class="form-control" name="idTypeproduit" id="idTypeproduit" required>
                         <option value="" disabled selected>Type de produit</option>
@@ -24,8 +25,7 @@
                          {% else %}
                                 <option value="{{ t.id }}">{{t.libelle }}</option>
                          {% endif %}
-                         {% endfor %}    
-                         
+                         {% endfor %}
                 </select>
                 <button type="submit" name="btAjouter" class="btn btn-lg btn-primary btn-block">Ajouter</button>
         </div>

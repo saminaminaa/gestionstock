@@ -146,12 +146,13 @@
             $qte = $_POST['qte'];
             $fabricant = $_POST['fabricant'];
             $seuil = $_POST['seuil'];
+            $reference = $_POST['reference'];
             $commentaire = $_POST['commentaire'];
             $idTypeproduit = $_POST['idTypeproduit'];
             $form['valide'] = true;
            
             $sousproduit = new Sousproduit($db);
-                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $seuil, $commentaire, $idTypeproduit);
+                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit);
                 if (!$exec){
                     $form['valide'] = false;
                     $form['message'] = 'Problème d\'insertion dans la table sousproduit ';
@@ -162,6 +163,7 @@
             $form['qte'] = $qte;
             $form['fabricant'] = $fabricant;
             $form['seuil'] = $seuil;
+            $form['reference'] = $reference;
             $form['commentaire'] = $commentaire;
             $form['idTypeproduit']=$idTypeproduit;
         }

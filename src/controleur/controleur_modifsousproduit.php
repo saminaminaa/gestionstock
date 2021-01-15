@@ -25,8 +25,9 @@ function actionModifSousproduit($twig, $db){
                          $fabricant = $_POST['fabricant'];
                          $commentaire = $_POST['commentaire'];
                          $seuil = $_POST['seuil'];
+                         $reference = $_POST['reference'];
                          $idTypeproduit = $_POST['idTypeproduit'];
-                         $exec=$sousproduit->updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $idTypeproduit);
+                         $exec=$sousproduit->updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $reference, $idTypeproduit);
                          if(!$exec){
                              $form['valide'] = false;
                          $form['message'] = 'Échec de la modification';

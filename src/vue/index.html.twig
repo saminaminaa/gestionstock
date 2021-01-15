@@ -88,7 +88,7 @@
           
           <table class="table table-hover">
             
-            <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
+            <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Reference</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
             
             {% for s in liste2 %}
             {% if t.id == s.idTypeproduit %}
@@ -124,7 +124,8 @@
               {% endif %}
               </div>
               
-              </td><td>{{s.fabricant}}</td><td>
+              </td><td>{{s.fabricant}}</td>
+              <td>{{s.reference}}</td><td>
               <div id="outputt{{ s.id }}_{{ t.id }}" name="output">
               {% if s.qte <= s.seuil %}
                 {% if s.qte >= "1" %}
