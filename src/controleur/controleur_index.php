@@ -2,6 +2,22 @@
 //------------------------------------------ACCUEIL-------------------------------------------------------------------------------------------
 
     function actionAccueil($twig,$db){
+        $form = array(); 
+        $sousproduit = new Sousproduit($db);
+        //supprimer un produit
+        if(isset($_GET['id'])){      
+            $exec=$sousproduit->delete($_GET['id']);      
+            if (!$exec){         
+                $form['valide'] = false;           
+                $form['message'] = 'Problème de suppression dans la table sousproduit';       
+            }      
+            else{         
+                $form['valide'] = true;           
+                $form['message'] = 'Produit supprimé avec succès';      
+            }      
+        } 
+
+
         $form = array();
         $typeproduit = new Typeproduit($db);
         $sousproduit = new Sousproduit($db);
@@ -93,20 +109,7 @@
             $form['message'] = 'produit non précisé';
         }
 
-        $form = array(); 
-        $sousproduit = new Sousproduit($db);
-        //supprimer un produit
-        if(isset($_GET['id'])){      
-            $exec=$sousproduit->delete($_GET['id']);      
-            if (!$exec){         
-                $form['valide'] = false;           
-                $form['message'] = 'Problème de suppression dans la table sousproduit';       
-            }      
-            else{         
-                $form['valide'] = true;           
-                $form['message'] = 'Produit supprimé avec succès';      
-            }      
-        } 
+        
 
 
 

@@ -3,6 +3,15 @@
   {{ parent() }} Accueil {% endblock %}
   {% block contenu %} 
     <h1>Bienvenue sur le gestionnaire de stock </h1>
+
+
+    {% if form.valide is defined %}     
+    {% if form.valide == true %}       
+    <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>       
+    {% else %}         
+    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
+    {% endif %}         
+    {% endif %}     
                  
       <!--////////////////////////////////////////////////////////////////////////////////////////!-->
 
@@ -321,7 +330,7 @@
               </td>
               <td>
               <div class="btn-group btn-group-lg">
-              <a href="index.php?page=accueil&id={{s.id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true">
+              <a href="index.php?id={{s.id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true">
               </span>
               </a>
               </div>
