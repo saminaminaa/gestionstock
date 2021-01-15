@@ -147,12 +147,47 @@
               </div>
               
               </td><td>
+              
+              
+              {% if form.valide is defined %}
+              <div id="check{{ s.id }}_{{ t.id }}">
+              {% if form.valide == true %}
+              <h1> modif reussiiii </h1>
+                <FONT color="#4DC586">
+                    <svg {# id="check{{ s.id }}_{{ t.id }}" #} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+              <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+              </svg>
+              </FONT>
+              {% else %}
+               <h1> echec de la modif </h1>
+                
+                {% endif %}
+                </div>
+                
+                {% else %}
                <form action="index.php" method="post">
                 <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
                 <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{s.id}}" name="commentaire"  
                 value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-              <button type="button" id-com="{{ s.id }}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
+                
+              <button onclick="refresh4()" type="button" id-com="{{ s.id }}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
               </form>
+                
+                
+                {% endif %}
+                
+                
+              
+              
+                
+                <script type="text/javascript">
+                    var auto_refresh = setInterval(
+                    function refresh4()
+                    { 
+                    $('#check{{ s.id }}_{{ t.id }}').load('index.php #check{{ s.id }}_{{ t.id }}').fadeIn('slow');
+                    }, 10000);
+                </script>
+            
             
               </td>
 
@@ -220,12 +255,14 @@
               </td>
               <td>
               <div class="btn-group btn-group-lg" {# onclick="supr()" #} onclick="openForm()">
+              <FONT color="#4DC586"> 
               <a {# href="index.php?id={{s.id}}" #}style="cursor: pointer;"><span class="glyphicon glyphicon-trash" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
               </svg>
               </span>
               </a>
+              </FONT>
               </div>
               <style>
       * {
@@ -270,7 +307,7 @@
       .form-container {
       max-width: 300px;
       padding: 20px;
-      background-color: #fff;
+      background-color: black;
       }
       /* Largeur complète pour les champs de saisie */
       .form-container input[type=text], .form-container input[type=password] {
@@ -287,7 +324,7 @@
       }
       /* Stylez le bouton de connexion */
       .form-container .btn {
-      background-color: #8ebf42;
+      background-color: #4DC586;
       color: #fff;
       padding: 12px 20px;
       border: none;
@@ -310,14 +347,14 @@
     <div class="login-popup">
       <div class="form-popup" id="popupForm">
         <form action="/action_page.php" class="form-container">
-        <FONT color="black">
+        {# <FONT color="black"> #}
           <h4>Vous êtes sur le point de supprimer le produit : {{s.libelle}}</h4>
           <h4>En êtes-vous sûr ?</h4>
-          </FONT>
+          {# </FONT> #}
           <br>
           <br>
-          <a href="index.php?id={{s.id}}" type="submit" class="btn">Oui, je suis sûr</a>
-          <a  type="button" class="btn cancel" onclick="closeForm()">Non, annuler</a>
+          <a href="index.php?id={{s.id}}" type="submit" class="btn"><b>Oui, je suis sûr</b></a>
+          <a  type="button" class="btn cancel" onclick="closeForm()"><b>Non, annuler</b></a>
         </form>
       </div>
     </div>
