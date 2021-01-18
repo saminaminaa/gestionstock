@@ -6,6 +6,13 @@
     <h1>Bienvenue sur le gestionnaire de stock </h1>
   </div>
 
+  <div class="form-group">
+    <input class="form-control" type="text" id="search-produit" name="rechercheproduit" value="" placeholder="Rechercher un ou plusieurs produits"/>
+  </div>
+  <div style="margin-top: 20px">
+    <div id="result-search"></div> <!-- C'est ici que nous aurons nos résultats de notre recherche -->
+  </div>
+
   <!--Messages lors de l'envoi d'un form-->
   {% if form.valide is defined %}     
     {% if form.valide == true %}       
@@ -27,10 +34,10 @@
             <tr class="table-primary"><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr><tr>
                 
               <td> 
-                <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <span style="cursor: pointer;" class="open-button" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                   <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
                 </span>
-                <span style="cursor: pointer;" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <span style="cursor: pointer;" class="open-button" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
                   <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg>
                 </span>
               </td>
@@ -113,12 +120,12 @@
                         {% else %} 
                           <FONT color="red"> 
                             <b>
-                              produit en rupture de stock
+                              Produit en rupture de stock
                             </b>
                           </FONT> 
                         {% endif %}
                       {% else %} 
-                        produit en stock
+                        Produit en stock
                       {% endif %}
                     </div>
                   </td>
@@ -218,7 +225,7 @@
                   <td>
                     {# <div class="btn-group btn-group-lg" {# onclick="supr()" #} {# > #}
                       <FONT color="#4DC586"> 
-                        <a {# href="index.php?id={{s.id}}" #} style="cursor: pointer;" onclick="openForm{{ s.id }}_{{ t.id }}()">
+                        <a {# href="index.php?id={{s.id}}" #} class="open-button" style="cursor: pointer;" onclick="openForm{{ s.id }}_{{ t.id }}()">
                           <span class="glyphicon glyphicon-trash" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                               <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>

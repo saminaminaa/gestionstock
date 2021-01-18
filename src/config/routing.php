@@ -8,7 +8,7 @@
         $lesPages['api-augmenter-qte']= "actionApiAugmenterQte";
         $lesPages['api-baisser-qte']= "actionApiBaisserQte";
         $lesPages['modif-sousproduit']= "actionModifSousproduit";
-
+        $lesPages['api-recherche-produit']= "actionApiRechercheProduit";
 
       /*   if ($db == NULL) {
             return "nous ne trouvons pas de bd";

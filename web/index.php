@@ -5,6 +5,7 @@
     require_once '../src/controleur/controleur_index.php';
     require_once '../src/controleur/controleur_api.php';
     require_once '../src/controleur/controleur_modifsousproduit.php';
+    require_once '../src/controleur/controleur_recherche.php';
     require_once '../src/app/connexion.php';
     require_once '../src/modele/_class.php';
     
