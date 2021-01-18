@@ -16,10 +16,6 @@ class Sousproduit{
 
     private $selectById;
 
-    private $selectTri;
-
-    private $selectAll;
-
     private $updateAll;
 
     private $delete;
@@ -27,28 +23,33 @@ class Sousproduit{
     public function __construct($db){
         
         $this->db = $db ;
+        //requete pour inserer un produit dans la BD
         $this->insert = $db->prepare("insert into sousproduit(libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit) values (:libelle, :qte, :fabricant, :seuil, :reference, :commentaire, :idTypeproduit)");
 
+        //requete pour tout selectionner
         $this->select = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s order by libelle");
        
+        //requete pour augmenter la quantité du produit
         $this->updateQte = $db->prepare("update sousproduit set qte=qte +:qte where id=:id");
 
+        //requete pour baisser la quantité du produit
         $this->updateQte2 = $db->prepare("update sousproduit set qte=qte -:qte where id=:id");
 
+        //requete pour modifier un commentaire
         $this->updateCom = $db->prepare("update sousproduit set commentaire=:commentaire where id=:id");
 
+        //requete pour selectionner un produit par son id
         $this->selectById = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where id=:id");
         
-        $this->selectTri = $db->prepare("SELECT s.libelle AS libelleProduit, t.libelle AS libelleType, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id and t.libelle='PC'");
-
-        $this->selectAll = $db->prepare("SELECT t.libelle AS libelleType, s.libelle AS libelleProduit, s.qte, s.fabricant, s.commentaire from sousproduit s, typeproduit t WHERE s.idTypeproduit=t.id GROUP BY s.idTypeproduit");
-
+        //requete pour modifier toute une ligne (modifier un produit)
         $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, reference=:reference, commentaire=:commentaire, idTypeproduit=:idTypeproduit where id=:id");
 
-        $this->delete = $db->prepare("delete from sousproduit s where id=:id");
+        //requete pour supprimer un produit
+        $this->delete = $db->prepare("delete from sousproduit s where id=:id"); 
 
     }
     
+    //inserer
     public function insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit){
          $r = true;
         $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':reference'=>$reference, ':commentaire'=>$commentaire, ':idTypeproduit'=>$idTypeproduit));
@@ -59,7 +60,7 @@ class Sousproduit{
         return $r;
     }
          
-          
+    //selectionner     
     public function select(){
         $this->select->execute();
         if ($this->select->errorCode()!=0){
@@ -67,8 +68,9 @@ class Sousproduit{
         }
         return $this->select->fetchAll();      
          
-     }
+    }
 
+    //augmenter qte
     public function updateQte($id, $qte){
         $r = true;
         $this->updateQte->execute(array(':id'=>$id, ':qte'=>$qte));
@@ -79,6 +81,7 @@ class Sousproduit{
         return $r;
     }
 
+    //baisser qte
     public function updateQte2($id, $qte){
         $r = true;
         $this->updateQte2->execute(array(':id'=>$id, ':qte'=>$qte));
@@ -89,6 +92,7 @@ class Sousproduit{
         return $r;
     }
 
+    //modifier commentaire
     public function updateCom($id, $commentaire){
         $r = true;
         $this->updateCom->execute(array(':id'=>$id, ':commentaire'=>$commentaire));
@@ -99,6 +103,7 @@ class Sousproduit{
         return $r;
     }
 
+    //selectionner par l'id
     public function selectById($id){
         $this->selectById->execute(array(':id'=>$id));
         if ($this->selectById->errorCode()!=0){
@@ -107,43 +112,27 @@ class Sousproduit{
         return $this->selectById->fetch();
     }   
     
-    public function selectTri(){
-        $this->selectTri->execute();
-        if ($this->selectTri->errorCode()!=0){
-           print_r($this->selectTri->errorInfo());
-        }
-        return $this->selectTri->fetchAll();      
-         
-     }
-
-     public function selectAll(){
-        $this->selectAll->execute();
-        if ($this->selectAll->errorCode()!=0){
-           print_r($this->selectAll->errorInfo());
-        }
-        return $this->selectAll->fetchAll();      
-         
-     }
-
-     public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $reference, $idTypeproduit){
+    //Modifier la ligne entiere
+    public function updateAll($id, $libelle, $qte, $fabricant, $commentaire, $seuil, $reference, $idTypeproduit){
         $r = true;
         $this->updateAll->execute(array(':id'=>$id, ':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':commentaire'=>$commentaire, ':seuil'=>$seuil, ':reference'=>$reference, ':idTypeproduit'=>$idTypeproduit));
         if ($this->updateAll->errorCode()!=0){
             print_r($this->updateAll->errorInfo());
             $r=false;
-            }
-            return $r;
-            }
-
-        public function delete($id){        
-            $r = true;        
-            $this->delete->execute(array(':id'=>$id));        
-            if ($this->delete->errorCode()!=0){             
-                print_r($this->delete->errorInfo());               
-                $r=false;        
-            }        
-            return $r;    
         }
+        return $r;
+    }
+
+    //supprimer la ligne entiere
+    public function delete($id){        
+        $r = true;        
+        $this->delete->execute(array(':id'=>$id));        
+        if ($this->delete->errorCode()!=0){             
+            print_r($this->delete->errorInfo());               
+            $r=false;        
+        }        
+        return $r;    
+    }
 
 }
 

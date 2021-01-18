@@ -1,5 +1,8 @@
 <?php
 
+//controleur créé pour l'API, pour pouvoir envoyer les données d'un formulaire à la BD sans que la page se rafraichisse à chaque clic
+//Nous avons ici une fonction par formulaire.
+
     //fontion API pour la modification d'un commentaire
     function actionApiModifCom($twig,$db){
         if(isset($_POST['btModifCom'])){

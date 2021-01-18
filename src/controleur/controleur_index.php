@@ -3,14 +3,17 @@
     //fonction pour la page d'accueil
     function actionAccueil($twig,$db){
         $form = array(); 
-        $sousproduit = new Sousproduit($db);
+        $sousproduit = new Sousproduit($db); //Appel de la class/table sousproduit
+
         //supprimer un produit
         if(isset($_GET['id'])){      
-            $exec=$sousproduit->delete($_GET['id']);      
+            $exec=$sousproduit->delete($_GET['id']);
+            //si ça ne s'execute pas...      
             if (!$exec){         
                 $form['valide'] = false;           
-                $form['message'] = 'Problème de suppression dans la table sousproduit';       
-            }      
+                $form['message'] = 'Problème de suppression dans la table sousproduit'; //message d'erreur      
+            } 
+            //si s'execute avec succès...     
             else{         
                 $form['valide'] = true;           
                 $form['message'] = 'Produit supprimé avec succès';      
@@ -21,24 +24,22 @@
         $form = array();
         $typeproduit = new Typeproduit($db);
         $sousproduit = new Sousproduit($db);
-        $liste = $typeproduit->selectQte();
-        $liste2 = $sousproduit->select();
-        $listeTri = $sousproduit->selectTri();
-        $listeAll = $sousproduit->selectAll();
+        $liste = $typeproduit->selectQte(); //Creation d'une liste permettant de selectionner un type de produit avec la quantité totale des produits correspondant à ce type
+        $liste2 = $sousproduit->select(); //Creation d'une liste permettant de selectionner tous les produits
 
         if(isset($_GET['id'])){
-        //on cherche 1produit dont on connait l'id:
-        $unSousproduit = $sousproduit->selectById($_GET['id']);
-        if ($unSousproduit!=null){
-            $form['sousproduit'] = $unSousproduit;
-        }
+            //on cherche 1produit dont on connait l'id:
+            $unSousproduit = $sousproduit->selectById($_GET['id']);
+            if ($unSousproduit!=null){
+                $form['sousproduit'] = $unSousproduit;
+            }
 
-        else{
-            //si le produit n'existe pas
-            $form['message'] = 'Produit incorrect';
+            else{
+                //si le produit n'existe pas
+                $form['message'] = 'Produit incorrect';
+            }
         }
-    }
-    else{
+        else{
 
        //Augmenter la quantité :
         if(isset($_POST['btAugmenterQte'])){
@@ -49,7 +50,7 @@
             $exec=$sousproduit->updateQte($id, $qte);
             if(!$exec){
                 $form['valide'] = false;
-            $form['message'] = 'Échec de l augmentation de la quantité du produit';
+                $form['message'] = 'Échec de l augmentation de la quantité du produit';
             }
             else{
                 $form['id'] = $id;
@@ -57,10 +58,10 @@
                 $form['valide'] = true;
                 $form['message'] = 'Modification réussie';
                 //header('Location: index.php');
-                }
-                }
-                else{
-       $form['message'] = 'produit non précisé';
+            }
+        }
+        else{
+            $form['message'] = 'produit non précisé';
        }
 
         //Baisser la quantité :
@@ -72,7 +73,7 @@
             $exec=$sousproduit->updateQte2($id, $qte);
             if(!$exec){
                 $form['valide'] = false;
-            $form['message'] = 'Échec de la baisse de la quantité du produit';
+                $form['message'] = 'Échec de la baisse de la quantité du produit';
             }
             else{
                 $form['id'] = $id;
@@ -82,26 +83,26 @@
             }
         }
         else{
-        $form['message'] = 'produit non précisé';
+            $form['message'] = 'produit non précisé';
         }
 
-    //Modifier un commentaire
-    if(isset($_POST['btModifCom'])){
-        $sousproduit = new Sousproduit($db);
-        $commentaire = $_POST['commentaire'];
-        $id = $_POST['id'];
-        
-        $exec=$sousproduit->updateCom($id, $commentaire);
-        if(!$exec){
-            $form['valide'] = false;
-        $form['message'] = 'Échec de la modification du commentaire';
-        }
-        else{
-            $form['id'] = $id;
-            $form['commentaire'] = $commentaire;
-            $form['valide'] = true;
-            $form['message'] = 'Modification réussie';
-            header('Location: index.php');
+        //Modifier un commentaire
+        if(isset($_POST['btModifCom'])){
+            $sousproduit = new Sousproduit($db);
+            $commentaire = $_POST['commentaire'];
+            $id = $_POST['id'];
+            
+            $exec=$sousproduit->updateCom($id, $commentaire);
+            if(!$exec){
+                $form['valide'] = false;
+                $form['message'] = 'Échec de la modification du commentaire';
+            }
+            else{
+                $form['id'] = $id;
+                $form['commentaire'] = $commentaire;
+                $form['valide'] = true;
+                $form['message'] = 'Modification réussie';
+                header('Location: index.php');
             }
         }
         else{
@@ -109,10 +110,11 @@
         }
 
     }
-        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2, 'listeTri'=>$listeTri, 'listeAll'=>$listeAll));
+        echo $twig->render('index.html.twig', array('form'=>$form,'liste'=>$liste, 'liste2'=>$liste2));
     }
 
 //----------------------------------AJOUT TYPE DE PRODUIT (table = typeproduit / page = ajout-type.html.twig)-------------------------------------------------------------------------------------------
+    
     //fonction pour la page ajout-type
     function actionAjoutType($twig,$db){
         $form = array();
@@ -121,11 +123,11 @@
             $libelle = $_POST['libelle'];
             $form['valide'] = true;
             $typeproduit = new Typeproduit($db);
-                $exec = $typeproduit->insert($libelle);
-                if (!$exec){
-                    $form['valide'] = false;
-                    $form['message'] = 'Problème d\'insertion dans la table typeproduit ';
-                }
+            $exec = $typeproduit->insert($libelle);
+            if (!$exec){
+                $form['valide'] = false;
+                $form['message'] = 'Problème d\'insertion dans la table typeproduit ';
+            }
             
             $form['libelle'] = $libelle;
         }
@@ -154,13 +156,12 @@
            
             $sousproduit = new Sousproduit($db);
                 //insertion dans la table sousproduit
-                $exec = $sousproduit->insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit);
-                if (!$exec){
-                    $form['valide'] = false;
-                    $form['message'] = 'Problème d\'insertion dans la table sousproduit ';
-                }
+            $exec = $sousproduit->insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit);
+            if (!$exec){
+                $form['valide'] = false;
+                $form['message'] = 'Problème d\'insertion dans la table sousproduit ';
+            }
 
-            
             $form['libelle'] = $libelle;
             $form['qte'] = $qte;
             $form['fabricant'] = $fabricant;
@@ -169,8 +170,8 @@
             $form['commentaire'] = $commentaire;
             $form['idTypeproduit']=$idTypeproduit;
         }
+
         echo $twig->render('ajout-sousproduit.html.twig', array('form'=>$form,'liste'=>$liste));
-    
     }
 
     function actionMaintenance($twig){
