@@ -7,11 +7,15 @@
   </div>
 
   <div class="form-group">
-    <input class="form-control" type="text" id="search-produit" name="rechercheproduit" value="" placeholder="Rechercher un ou plusieurs produits"/>
+    <input class="form-control" type="text" id="search-produit" name="libelle" value="" placeholder="Rechercher un ou plusieurs produits"/>
   </div>
+
   <div style="margin-top: 20px">
-    <div id="result-search"></div> <!-- C'est ici que nous aurons nos résultats de notre recherche -->
+    <div id="result-search">
+      <div style="margin-top: 20px 0; border-bottom: 2px solid #ccc">{{s.libelle}}</div>    
+    </div>
   </div>
+
 
   <!--Messages lors de l'envoi d'un form-->
   {% if form.valide is defined %}     
@@ -21,7 +25,6 @@
       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
     {% endif %}         
   {% endif %}
-
 
   <div style="padding-top:0%">
     <div style="padding-top:2%">

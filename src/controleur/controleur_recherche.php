@@ -30,7 +30,24 @@
         }
         return json_encode(array('msg'=>'blblbl')); */
 
-        if(isset($_GET['produit'])){
+        if(isset($_GET['libelle'])){
+            $form = array();
+            $sousproduit = new Sousproduit($db);
+            /* $libelle = $_POST['libelle']; */
+                
+            /* $exec=$sousproduit->selectSearch($libelle);
+            $listesearch = $sousproduit->selectSearch($libelle); */
+            $unSousproduit = $sousproduit->selectSearch($_GET['libelle']);
+            if ($unSousproduit!=null){
+                $form['sousproduit'] = $unSousproduit;
+            }
+
+            else{
+                //si le produit n'existe pas
+                $form['message'] = 'Produit incorrect';
+            }
+
+/* 
             $produit = (String) trim($_GET['produit']);
         
             $req = $db->query("SELECT *
@@ -44,8 +61,11 @@
             foreach($req as $r){
               ?>   
                 <div style="margin-top: 20px 0; border-bottom: 2px solid #ccc"><?= $r['libelle'] . " " . $r['qte'] ?></div><?php    
-            }
-          }
+            } */
+        }
+        return json_encode(array('msg'=>'blblbl'));
+        
+
     }
 
 

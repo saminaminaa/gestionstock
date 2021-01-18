@@ -19,6 +19,8 @@ class Sousproduit{
     private $updateAll;
 
     private $delete;
+
+    private $selectSearch;
     
     public function __construct($db){
         
@@ -46,6 +48,10 @@ class Sousproduit{
 
         //requete pour supprimer un produit
         $this->delete = $db->prepare("delete from sousproduit s where id=:id"); 
+
+        //requete qui selectionne pour la recherche d'un produit
+        $this->selectSearch = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where libelle=:libelle order by libelle");
+       
 
     }
     
@@ -134,5 +140,12 @@ class Sousproduit{
         return $r;    
     }
 
+    //selectionner     
+    public function selectSearch($libelle){
+        $this->selectSearch->execute(array(':libelle'=>$libelle));
+        if ($this->selectSearch->errorCode()!=0){
+           print_r($this->select->errorInfo());
+        }
+        return $this->selectSearch->fetchAll();      
+    }
 }
-

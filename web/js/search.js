@@ -10,11 +10,12 @@ $(document).ready(function(){
         $.ajax({ //fonction ajax
           type: 'GET',
           url: 'http://localhost/projet/web/index.php?page=api-recherche-produit',
-          data: 'produit=' + encodeURIComponent(produit),
+          data: 'libelle=' + encodeURIComponent(libelle),
           success: function(data){
             if(data != ""){
               $('#result-search').append(data);
             }else{
+                alert("rien");
               document.getElementById('result-search').innerHTML = "<div style='font-size: 20px; text-align: center; margin-top: 10px'>Aucun Produit</div>"
             }
           }
