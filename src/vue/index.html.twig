@@ -227,36 +227,15 @@
                         </a>
                       </FONT>
                     {# </div> #}
+                    <!-- style pour la popup -->
                     <style>
-                      * {
-                      box-sizing: border-box;
-                      }
-                      body {
-                      font-family: Roboto, Helvetica, sans-serif;
-                      }
-                      /* Fixez le bouton sur le côté gauche de la page the button on the left side of the page */
-                      .open-btn {
-                      display: flex;
-                      justify-content: left;
-                      }
-                      /* Stylez et fixez le bouton sur la page */
-                      .open-button {
-                      background-color: #1c87c9;
-                      color: white;
-                      padding: 12px 20px;
-                      border: none;
-                      border-radius: 5px;
-                      cursor: pointer;
-                      opacity: 0.8;
-                      position: fixed;
-                      }
-                      /* Positionnez la forme Popup */
+                      /* style pour la position de la forme de la Popup */
                       .login-popup {
                       position: relative;
                       text-align: center;
                       width: 100%;
                       }
-                      /* Masquez la forme Popup */
+                      /* style pour masquer la forme de la Popup */
                       .form-popup {
                       display: none;
                       position: fixed;
@@ -266,26 +245,13 @@
                       border: 2px solid #666;
                       z-index: 9;
                       }
-                      /* Styles pour le conteneur de la forme */
+                      /* Style pour le conteneur de la forme */
                       .form-container {
                       max-width: 300px;
                       padding: 20px;
                       background-color: black;
                       }
-                      /* Largeur complète pour les champs de saisie */
-                      .form-container input[type=text], .form-container input[type=password] {
-                      width: 100%;
-                      padding: 10px;
-                      margin: 5px 0 22px 0;
-                      border: none;
-                      background: #eee;
-                      }
-                      /* Quand les entrées sont concentrées, faites quelque chose */
-                      .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-                      background-color: #ddd;
-                      outline: none;
-                      }
-                      /* Stylez le bouton de connexion */
+                      /* Style pour le bouton "oui" */
                       .form-container .btn {
                       background-color: #4DC586;
                       color: #fff;
@@ -296,11 +262,11 @@
                       margin-bottom:10px;
                       opacity: 0.8;
                       }
-                      /* Stylez le bouton pour annuler */
+                      /* Style pour le bouton "annuler" */
                       .form-container .cancel {
                       background-color: #cc0000;
                       }
-                      /* Planez les effets pour les boutons */
+                      /* style pour les effets des boutons */
                       .form-container .btn:hover, .open-button:hover {
                       opacity: 1;
                       }
@@ -317,6 +283,7 @@
                         </form>
                       </div>
                     </div>
+                    <!-- javascript pour la popup -->
                     <script>
                       function openForm{{ s.id }}_{{ t.id }}() {
                         document.getElementById("popupForm{{ s.id }}_{{ t.id }}").style.display="block";

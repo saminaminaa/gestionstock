@@ -2,15 +2,16 @@
 {% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
 {% block title %} {{ parent() }} Modifier un produit {% endblock %}
 
+<!-- page pour modifier un produit -->
+
 {% block contenu %}
 
-        {% if form.sousproduit is defined %}
-            {% if form.sousproduit != null %} 
-                <div>                                                            
-                <form class="form-signin" action="index.php?page=modif-sousproduit" method="post"
-                      enctype="application/x-www-form-urlencoded">
-                      <div style="text-align:center; padding-top:5%; padding-bottom:3%">
-                    <h1 class="h3 mb-3 font-weight-normal">Modifier un produit</h1>
+    {% if form.sousproduit is defined %}
+        {% if form.sousproduit != null %} 
+            <div>                                                            
+                <form class="form-signin" action="index.php?page=modif-sousproduit" method="post" enctype="application/x-www-form-urlencoded">
+                    <div style="text-align:center; padding-top:5%; padding-bottom:3%">
+                        <h1 class="h3 mb-3 font-weight-normal">Modifier un produit</h1>
                     </div>
                    
                     <input type="hidden" name="id" value="{{ form.sousproduit.id }}" required/> 
@@ -36,21 +37,18 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                    
-                   
-
                     <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>
-
                 </form>
-                </div>
+            </div>
 
             {% else %}
-            <div style="text-align:center; padding-top:5%; padding-bottom:3%">
-                <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
-                <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur la l'accueil</a></h1>
+                <div style="text-align:center; padding-top:5%; padding-bottom:3%">
+                    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur la l'accueil</a></h1>
                 </div>
             {% endif %}
-            {% else %}
+
+        {% else %}
             <div style="text-align:center; padding-top:5%; padding-bottom:3%">
                 {% if form.valide == true %}
                     <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
@@ -59,9 +57,9 @@
                     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
                     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
                 {% endif %}
-                </div>
-            {% endif %}
+            </div>
+        {% endif %}
 
-        {% endblock %}
+    {% endblock %}
 
 

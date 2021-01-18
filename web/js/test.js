@@ -1,13 +1,16 @@
 $(document).ready(function() {
   
 //--------------------------modifier un commentaire----------------------------------------------------------------------------
+  
+  //variable pour les boutons de modification d'un commentaire
   var btModifComs = document.getElementsByName('btModifCom'); 
 
+  //pour tous les boutons faire....
   for(let item of btModifComs){
     item.addEventListener("click",ajaxEnvoiCom,false);
   }
   
-  function ajaxEnvoiCom(){ //fonction ajax pour chaque form
+  function ajaxEnvoiCom(){ //fonction ajax pour chaque form (ici pour l'envoi d'un commentaire)
     //alert(this.getAttribute('id-com'));
     id='idC'+this.getAttribute('id-com');
     idcommentaire = 'commentaire'+this.getAttribute('id-com');
@@ -15,6 +18,7 @@ $(document).ready(function() {
     idC = 'idC'+this.getAttribute('id-com');
     id=document.getElementById(idC).value;
     
+    //ajax
     var request= $.ajax({
       url: "http://localhost/projet/web/index.php?page=api-modif-com", 
       method: "POST", 
@@ -39,6 +43,7 @@ $(document).ready(function() {
     }
 
     //--------------------------Baisser qte---------------------------------------------------------------------------------
+    // Même choses que pour la modification d'un commentaire.
     var btBaisserQtes = document.getElementsByName('btBaisserQte'); 
 
     for(let item of btBaisserQtes){
