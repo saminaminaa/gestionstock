@@ -15,7 +15,7 @@ $(document).ready(function(){
             if(data != ""){
               $('#result-search').append(data);
             }else{
-                alert("rien");
+                //alert("testtt");
               document.getElementById('result-search').innerHTML = "<div style='font-size: 20px; text-align: center; margin-top: 10px'>Aucun Produit</div>"
             }
           }
