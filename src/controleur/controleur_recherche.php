@@ -20,7 +20,7 @@
     }
   } */
 
-    function actionApiRechercheProduit($twig,$db){
+    /*function actionApiRechercheProduit($twig,$db){
         /* if(isset($_POST['btRechercheProduit'])){
             $sousproduit = new Sousproduit($db);
             $rechercheproduit = $_POST['rechercheproduit'];
@@ -30,14 +30,15 @@
         }
         return json_encode(array('msg'=>'blblbl')); */
 
-        if(isset($_GET['libelle'])){
+        /*if(isset($_GET['libelle'])){
             $form = array();
             $sousproduit = new Sousproduit($db);
             /* $libelle = $_POST['libelle']; */
                 
             /* $exec=$sousproduit->selectSearch($libelle);
             $listesearch = $sousproduit->selectSearch($libelle); */
-            $unSousproduit = $sousproduit->selectSearch($_GET['libelle']);
+            /* $exec=$sousproduit->recherche($_GET['libelle']);
+            $unSousproduit = $sousproduit->recherche($_GET['libelle']);
             if ($unSousproduit!=null){
                 $form['sousproduit'] = $unSousproduit;
             }
@@ -45,7 +46,7 @@
             else{
                 //si le produit n'existe pas
                 $form['message'] = 'Produit incorrect';
-            }
+            } */
 
 /* 
             $produit = (String) trim($_GET['produit']);
@@ -62,11 +63,11 @@
               ?>   
                 <div style="margin-top: 20px 0; border-bottom: 2px solid #ccc"><?= $r['libelle'] . " " . $r['qte'] ?></div><?php    
             } */
-        }
+       /*  }
         return json_encode(array('msg'=>'blblbl'));
         
 
-    }
+    } */
 
 
 ?>

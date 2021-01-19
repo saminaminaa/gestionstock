@@ -1,4 +1,4 @@
-
+/* 
 
 $(document).ready(function(){
     $('#search-produit').keyup(function(){ //fonction qui permet de capter la sortie d'appuie d'une touche d'un clavier.
@@ -22,4 +22,4 @@ $(document).ready(function(){
         });
       }
     });
-  });
+  }); */

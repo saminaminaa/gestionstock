@@ -139,9 +139,9 @@
     //fonction pour la page ajout-sousproduit
     function actionAjoutSousproduit($twig,$db){
         $form = array();
-            $typeproduit = new Typeproduit($db);
-            $liste = $typeproduit->select(); //Liste des types de produits
-            $form['typeproduits']=$liste;
+        $typeproduit = new Typeproduit($db);
+        $liste = $typeproduit->select(); //Liste des types de produits
+        $form['typeproduits']=$liste;
 
         //Ajouter une produit
         if (isset($_POST['btAjouter'])){
@@ -176,6 +176,25 @@
 
     function actionMaintenance($twig){
         echo $twig->render('maintenance.html.twig', array());
+    }
+
+   function actionRecherche($twig,$db){
+    if(isset($_POST['btRechercher'])){
+        /* if (isset($_POST)){ */
+        $recherche = $_POST['recherche'];
+        /* if(isset($_GET['libelle'])){ */
+            $form = array();
+            $sousproduit = new Sousproduit($db);
+            //$exec=$sousproduit->recherche($recherche);
+
+            $form['recherche'] = $recherche;
+
+            $listeRecherche = $sousproduit->recherche($recherche); //Liste des types de produits
+            
+        }
+    /* } */
+        echo $twig->render('recherche.html.twig', array('form'=>$form, 'listeRecherche'=>$listeRecherche));
+
     }
 
 ?>

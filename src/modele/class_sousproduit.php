@@ -21,6 +21,8 @@ class Sousproduit{
     private $delete;
 
     private $selectSearch;
+
+    private $recherche;
     
     public function __construct($db){
         
@@ -49,9 +51,10 @@ class Sousproduit{
         //requete pour supprimer un produit
         $this->delete = $db->prepare("delete from sousproduit s where id=:id"); 
 
-        //requete qui selectionne pour la recherche d'un produit
+        //
         $this->selectSearch = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where libelle=:libelle order by libelle");
        
+        $this->recherche = $db->prepare("select s.id, s.libelle, s.qte, s.fabricant, s.seuil, s.reference, s.commentaire, s.idTypeproduit, t.libelle as type from sousproduit s, typeproduit t where s.idTypeproduit = t.id and s.libelle like :recherche order by s.libelle");
 
     }
     
@@ -140,7 +143,7 @@ class Sousproduit{
         return $r;    
     }
 
-    //selectionner     
+    //     
     public function selectSearch($libelle){
         $this->selectSearch->execute(array(':libelle'=>$libelle));
         if ($this->selectSearch->errorCode()!=0){
@@ -148,4 +151,13 @@ class Sousproduit{
         }
         return $this->selectSearch->fetchAll();      
     }
+
+    public function recherche($recherche){
+        $this->recherche->execute(array('recherche'=>'%'.$recherche.'%'));
+        if ($this->recherche->errorCode()!=0){
+            print_r($this->recherche->errorInfo());
+        }
+        return $this->recherche->fetchAll();
+    }
+       
 }

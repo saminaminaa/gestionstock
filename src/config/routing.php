@@ -9,6 +9,7 @@
         $lesPages['api-baisser-qte']= "actionApiBaisserQte";
         $lesPages['modif-sousproduit']= "actionModifSousproduit";
         $lesPages['api-recherche-produit']= "actionApiRechercheProduit";
+        $lesPages['recherche']= "actionRecherche";
 
       /*   if ($db == NULL) {
             return "nous ne trouvons pas de bd";
