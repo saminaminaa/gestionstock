@@ -142,7 +142,6 @@ class Sousproduit{
         }        
         return $r;    
     }
-
     //     
     public function selectSearch($libelle){
         $this->selectSearch->execute(array(':libelle'=>$libelle));
@@ -159,5 +158,4 @@ class Sousproduit{
         }
         return $this->recherche->fetchAll();
     }
-       
 }

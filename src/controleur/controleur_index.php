@@ -180,11 +180,12 @@
 
    function actionRecherche($twig,$db){
     if(isset($_POST['btRechercher'])){
+        $form = array();
+        $sousproduit = new Sousproduit($db);
         /* if (isset($_POST)){ */
         $recherche = $_POST['recherche'];
         /* if(isset($_GET['libelle'])){ */
-            $form = array();
-            $sousproduit = new Sousproduit($db);
+            
             //$exec=$sousproduit->recherche($recherche);
 
             $form['recherche'] = $recherche;
