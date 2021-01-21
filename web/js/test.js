@@ -60,6 +60,11 @@ $(document).ready(function() {
       qte=document.getElementById(idqteB).value;
       idB = 'idB'+this.getAttribute('id-moins');
       id=document.getElementById(idB).value;
+
+      idBT = 'idBT'+this.getAttribute('id-moinst');
+      idT=document.getElementById(idBT).value;
+
+      var qteN = document.getElementById('output'+id); 
       
       var request= $.ajax({
         url: "http://localhost/projet/web/index.php?page=api-baisser-qte",
@@ -76,6 +81,11 @@ $(document).ready(function() {
         request.done(function( msg ) {
           //alert(msg);
           //console.log(msg);
+          var text = document.getElementById('#output'+id);
+          // Modifier le contenu de div
+          $('#output'+id).text(text);
+          //$('#output'+id).load('index.php?page=recherche #output'+id).fadeIn('slow');
+            
         });
         request.fail(function( jqXHR, textStatus ) {
           alert ('erreur');

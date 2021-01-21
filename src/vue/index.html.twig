@@ -218,9 +218,10 @@
 
                   <td>
                     <form action="index.php" method="post">
+                      <input type='hidden' id="idCT{{ t.id }}" name="idT"  value="{{ t.id }}"/>
                       <input type='hidden' id="idB{{ s.id }}" name="id"  value="{{ s.id }}"/>
                       <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
-                      <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
+                      <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-moinst="{{t.id}}" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
                     </form>
                     {% if s.qte <= s.seuil %}
                       {% if s.qte >= "1" %}
