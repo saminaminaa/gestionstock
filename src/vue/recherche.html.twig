@@ -4,7 +4,14 @@
 {% block contenu %}
 
 <div style="text-align: center; padding-top:5%">
-
+<h1 class="h3 mb-3 font-weight-normal">Vous avez recherché : "{{form.recherche}}"</h1>
+<br><br>
+{% if listeRecherche == null %}
+<div style="text-align:center">
+  <h2> Aucun résultat n'a été trouvé pour cette recherche  </h2> <br> <br>
+  <a type="button" href="index.php?" class="btn btn-primary"> <FONT color="white"> Retourner à l'accueil </FONT></a>
+  </div>
+{% else %}
 <h2>Résultat de votre recherche :</h2>
 
 <br><br><br>
@@ -240,21 +247,11 @@
         </div>
       </div>
     </div>
-
+    <a type="button" href="index.php?" class="btn btn-primary"> <FONT color="white"> Retourner à l'accueil </FONT></a>
+ 
+    {% endif %}
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="js/test.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 {% endblock %}
