@@ -3,7 +3,7 @@ $(document).ready(function() {
 //--------------------------modifier un commentaire----------------------------------------------------------------------------
   
   //variable pour les boutons de modification d'un commentaire
-  var btModifComs = document.getElementsByName('btModifCom'); 
+  var btModifComs = document.getElementsByName('btModifCom');
 
   //pour tous les boutons faire....
   for(let item of btModifComs){
@@ -34,11 +34,16 @@ $(document).ready(function() {
         //xhr.overrideMimeType( "application/json; charset=utf-8" );
       }});
       request.done(function( msg ) {
-        //alert(msg);
-        //console.log(msg);
+        //alert("Modification du commentaire reussie ✔️");
+        var text = "✔️"
+        // Modifier le contenu de div
+        $(".res"+id).text(text);
       });
       request.fail(function( jqXHR, textStatus ) {
         alert ('erreur');
+        var text = "❌"
+        // Modifier le contenu de div
+        $(".res"+id).text(text);
       });
     }
 
