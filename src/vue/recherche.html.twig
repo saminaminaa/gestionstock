@@ -4,7 +4,7 @@
 {% block contenu %}
 
 <div style="text-align: center; padding-top:5%">
-<h1 class="h3 mb-3 font-weight-normal">Vous avez recherché : "{{form.recherche}}"</h1>
+<h1 class="h3 mb-3 font-weight-normal">Vous avez recherché : "{{form.recherche}}{{uneRecherche}}{{recherche}}{{sousproduit.uneRecherche}}{{sousproduit.recherche}}"</h1>
 <br><br>
 {% if listeRecherche == null %}
 <div style="text-align:center">
@@ -12,6 +12,7 @@
   <a type="button" href="index.php?" class="btn btn-primary"> <FONT color="white"> Retourner à l'accueil </FONT></a>
   </div>
 {% else %}
+<div id="#result-search">
 <h2>Résultat de votre recherche :</h2>
 
 <br><br><br>
@@ -24,7 +25,7 @@
             
                 {% for s in listeRecherche %}
                 <tr class="table-dark" > 
-                  <td>{{s.libelle}}</td>
+                  <td> {{s.libelle}}</td>
 							    <td>
                     <div id="output{{ s.id }}" name="output">
                       {% if s.qte <= s.seuil %}
@@ -88,9 +89,10 @@
                         <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
                         <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{s.id}}" name="commentaire"  
                           value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-                      
+                        <div style="text-align:left">
                         <button onclick="refresh4()" type="button" id-com="{{ s.id }}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
                         <span class="res{{ s.id }}"></span>
+                        </div>
                       </form>
                     {% endif %}
                 
@@ -250,7 +252,7 @@
       </div>
     </div>
     <a type="button" href="index.php?" class="btn btn-primary"> <FONT color="white"> Retourner à l'accueil </FONT></a>
- 
+ </div>
     {% endif %}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

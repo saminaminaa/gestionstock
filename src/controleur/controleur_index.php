@@ -179,18 +179,23 @@
     }
 
    function actionRecherche($twig,$db){
-    if(isset($_POST['btRechercher'])){
+    if(isset($_GET['recherche'])){
+   /*  if(isset($_POST['btRechercher'])){ */
         $form = array();
         $sousproduit = new Sousproduit($db);
+        $uneRecherche = $_GET['recherche'];
+        
         /* if (isset($_POST)){ */
-        $recherche = $_POST['recherche'];
+
+        //$recherche = $_POST['recherche'];
+        //$recherche = $sousproduit->recherche($_GET['recherche']);
         /* if(isset($_GET['libelle'])){ */
             
             //$exec=$sousproduit->recherche($recherche);
 
-            $form['recherche'] = $recherche;
+            //$form['recherche'] = $recherche;
 
-            $listeRecherche = $sousproduit->recherche($recherche); //Liste des types de produits
+            $listeRecherche = $sousproduit->recherche($uneRecherche); //Liste des types de produits
             
         }
     /* } */
