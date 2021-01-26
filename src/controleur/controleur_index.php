@@ -195,7 +195,7 @@
 
             //$form['recherche'] = $recherche;
 
-            $listeRecherche = $sousproduit->recherche($uneRecherche); //Liste des types de produits
+        $listeRecherche = $sousproduit->recherche($uneRecherche); //Liste des types de produits
             
         }
     /* } */
