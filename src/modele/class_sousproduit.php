@@ -55,7 +55,7 @@ class Sousproduit{
         $this->selectSearch = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where libelle=:libelle order by libelle");
        
         //requete pour effectuer une recherche sur le site
-        $this->recherche = $db->prepare("select s.id, s.libelle, s.qte, s.fabricant, s.seuil, s.reference, s.commentaire, s.idTypeproduit, t.libelle as type from sousproduit s, typeproduit t where s.idTypeproduit = t.id and s.libelle like :recherche order by s.libelle");
+        $this->recherche = $db->prepare("select s.id, s.libelle, s.qte, s.fabricant, s.seuil, s.reference, s.commentaire, s.idTypeproduit, t.libelle as type from sousproduit s, typeproduit t where s.idTypeproduit = t.id and s.reference like :recherche order by s.libelle");
 
     }
     

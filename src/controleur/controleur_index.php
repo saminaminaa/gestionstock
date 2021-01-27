@@ -178,29 +178,4 @@
         echo $twig->render('maintenance.html.twig', array());
     }
 
-   function actionRecherche($twig,$db){
-    if(isset($_GET['recherche'])){
-   /*  if(isset($_POST['btRechercher'])){ */
-        $form = array();
-        $sousproduit = new Sousproduit($db);
-        $uneRecherche = $_GET['recherche'];
-        
-        /* if (isset($_POST)){ */
-
-        //$recherche = $_POST['recherche'];
-        //$recherche = $sousproduit->recherche($_GET['recherche']);
-        /* if(isset($_GET['libelle'])){ */
-            
-            //$exec=$sousproduit->recherche($recherche);
-
-            //$form['recherche'] = $recherche;
-
-        $listeRecherche = $sousproduit->recherche($uneRecherche); //Liste des types de produits
-            
-        }
-    /* } */
-        echo $twig->render('recherche.html.twig', array('form'=>$form, 'listeRecherche'=>$listeRecherche));
-
-    }
-
 ?>

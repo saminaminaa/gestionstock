@@ -4,8 +4,8 @@
 {% block contenu %}
 
 <div style="text-align: center; padding-top:5%">
-{# <h1 class="h3 mb-3 font-weight-normal">Vous avez recherché : "{{form.recherche}}{{uneRecherche}}{{recherche}}{{sousproduit.uneRecherche}}{{sousproduit.recherche}}"</h1> #}
-{# <br><br> #}
+<h1 class="h3 mb-3 font-weight-normal">Vous avez recherché : "{{form.recherche}}{{uneRecherche}}{{recherche}}{{sousproduit.uneRecherche}}{{sousproduit.recherche}}"</h1>
+<br><br> 
 {% if listeRecherche == null %}
 <div style="text-align:center">
   <h2> Aucun résultat n'a été trouvé pour cette recherche  </h2> <br> <br>
@@ -19,9 +19,9 @@
 
         <div style="padding-left:5%; padding-right:5%">
           <div class="panel panel-default" >
-            <div class="table-responsive"  {# style="display:none" #}>
+            <div class="table-responsive">
               <table class="table table-hover">
-                <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Reference</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
+                <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Référence</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
             
                 {% for s in listeRecherche %}
                 <tr class="table-dark" > 
@@ -76,7 +76,7 @@
                         {% if form.valide == true %}
                           <h1> modif reussiiii </h1>
                             <FONT color="#4DC586">
-                              <svg {# id="check{{ s.id }}_{{ t.id }}" #} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
                                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
                               </svg>
                             </FONT>
@@ -107,11 +107,11 @@
 
                   <td>
                     <a name="monAncre{{t.libelle}}"></a>
-                    <form action="index.php" method="post" >
+                    <form action="index.php" method="post">
                       <input type='hidden' id="idP{{ s.id }}" name="id"  value="{{ s.id }}"/>
                       <input type='hidden' id="qte{{ s.id }}" name="qte"  value="1"/>
                       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                      {# <script type="text/javascript">
+                      <script type="text/javascript">
                         var output = document.getElementById('#output{{ s.id }}');
                     
                         var auto_refresh = setInterval(
@@ -130,7 +130,7 @@
                         { 
                           $('#outputt{{ s.id }}').load('index.php?page=recherche #outputt{{ s.id }}').fadeIn('slow');
                         }, 1000);
-                      </script> #}
+                      </script>
                 
                       <div id="btbt{{ s.id }}" >
                         <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
@@ -167,9 +167,8 @@
                   </td>
 
                   <td>
-                    {# <div class="btn-group btn-group-lg" {# onclick="supr()" #} {# > #}
                       <FONT color="#4DC586"> 
-                        <a {# href="index.php?id={{s.id}}" #} class="open-button" style="cursor: pointer;" onclick="openForm{{ s.id }}()">
+                        <a class="open-button" style="cursor: pointer;" onclick="openForm{{ s.id }}()">
                           <span class="glyphicon glyphicon-trash" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                               <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -177,7 +176,6 @@
                           </span>
                         </a>
                       </FONT>
-                    {# </div> #}
                     <!-- style pour la popup -->
                     <style>
                       /* style pour la position de la forme de la Popup */
