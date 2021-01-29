@@ -234,7 +234,7 @@
                       display: none;
                       position: fixed;
                       left: 45%;
-                      top:5%;
+                      top:20%;
                       transform: translate(-45%,5%);
                       border: 2px solid #666;
                       z-index: 9;
@@ -266,7 +266,7 @@
                       }
                     </style>
                     <div class="login-popup">
-                      <div class="form-popup" id="popupForm{{ s.id }}_{{ t.id }}">
+                      <div class="form-popup animate__animated animate__rubberBand" id="popupForm{{ s.id }}_{{ t.id }}">
                         <form action="/action_page.php" class="form-container">
                           <h4>Vous êtes sur le point de supprimer le produit : {{s.libelle}}</h4>
                           <h4>En êtes-vous sûr ?</h4>
