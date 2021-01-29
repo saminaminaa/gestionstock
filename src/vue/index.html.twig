@@ -3,7 +3,7 @@
 
 {% block contenu %} 
   <div style="text-align:center; padding-top:5%; padding-bottom:3%">
-    <h1>Bienvenue sur le gestionnaire de stock </h1>
+    <h1 class="animate__animated animate__flipInX">Bienvenue sur le gestionnaire de stock </h1>
   </div>
 
   <!--Messages lors de l'envoi d'un form-->
@@ -19,20 +19,30 @@
     <div style="padding-top:2%">
       <h3> Liste des types de produits : </h3>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default  ">
       {% for t in liste %}
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <tr class="table-primary"><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr><tr>
+        <div class="table-responsive animate__animated animate__bounceIn">
+          <table class="table table-hover ">
+            <tr class="table-primary "><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr><tr>
                 
               <td> 
-                <span style="cursor: pointer;" class="open-button" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                   <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
                 </span>
-                <span style="cursor: pointer;" class="open-button" onclick="document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
                   <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg>
                 </span>
               </td>
+
+
+              <script>
+                //const element = document.querySelector('listeproduit{{t.libelle}}');
+                function ajoutEffet() {
+                  const listepdt = document.getElementById('listeproduit{{t.libelle}}');
+                  //const element = document.querySelector('listeproduit{{t.libelle}}');
+                  listepdt.classList.add('animate__animated', 'animate__bounceOutLeft');
+                }
+              </script>
                 
               <td>{{t.libelle}}</td>
                 
@@ -69,7 +79,7 @@
 
         <div style="padding-left:5%; padding-right:5%">
           <div class="panel panel-default" >
-            <div class="table-responsive" id="listeproduit{{t.libelle}}"  style="display:none">
+            <div class="table-responsive animate__animated animate__fadeIn" id="listeproduit{{t.libelle}}"  style="display:none">
               <table class="table table-hover">
                 <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Référence</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
             
