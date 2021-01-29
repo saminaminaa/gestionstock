@@ -36,13 +36,13 @@ $(document).ready(function() {
       request.done(function( msg ) {
         //alert("Modification du commentaire reussie ✔️");
         var text = "✔️"
-        // Modifier le contenu de div
+        // Modifier le contenu de la div
         $(".res"+id).text(text);
       });
       request.fail(function( jqXHR, textStatus ) {
         alert ('erreur');
         var text = "❌"
-        // Modifier le contenu de div
+        // Modifier le contenu de la div
         $(".res"+id).text(text);
       });
     }
@@ -60,6 +60,10 @@ $(document).ready(function() {
       qte=document.getElementById(idqteB).value;
       idB = 'idB'+this.getAttribute('id-moins');
       id=document.getElementById(idB).value;
+
+      idBT = 'idBT'+this.getAttribute('id-moinst');
+      idT = document.getElementById(idBT).value;
+      
       
       var request= $.ajax({
         url: "http://localhost/projet/web/index.php?page=api-baisser-qte",
@@ -75,6 +79,12 @@ $(document).ready(function() {
         }});
         request.done(function( msg ) {
           //alert(msg);
+          //alert("fonctionne");
+          //si la requete fonctionne on actualise ces divs :
+          $('#output'+id).load('index.php?page=recherche #output'+id).fadeIn();
+          $('#output'+id+"_"+idT).load('index.php #output'+id+"_"+idT).fadeIn();
+          $('#output__'+idT).load('index.php #output__'+idT).fadeIn();
+          $('#outputt'+id+"_"+idT).load('index.php #outputt'+id+"_"+idT).fadeIn();
         });
         request.fail(function( jqXHR, textStatus ) {
           alert ('erreur');
@@ -95,6 +105,9 @@ $(document).ready(function() {
       qte=document.getElementById(idqte).value;
       idP = 'idP'+this.getAttribute('id-plus');
       id=document.getElementById(idP).value;
+
+      idPT = 'idBT'+this.getAttribute('id-plust');
+      idT = document.getElementById(idPT).value;
      
       var request= $.ajax({
         url: "http://localhost/projet/web/index.php?page=api-augmenter-qte",
@@ -111,6 +124,11 @@ $(document).ready(function() {
         request.done(function( msg ) {
           //alert(msg);
           //console.log(msg);
+          //si la requete fonctionne on actualise ces divs :
+          $('#output'+id).load('index.php?page=recherche #output'+id).fadeIn();
+          $('#output'+id+"_"+idT).load('index.php #output'+id+"_"+idT).fadeIn();
+          $('#output__'+idT).load('index.php #output__'+idT).fadeIn();
+          $('#outputt'+id+"_"+idT).load('index.php #outputt'+id+"_"+idT).fadeIn();
         });
         request.fail(function( jqXHR, textStatus ) {
           alert ('erreur');

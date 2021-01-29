@@ -110,36 +110,16 @@
                     <form action="index.php" method="post">
                       <input type='hidden' id="idP{{ s.id }}" name="id"  value="{{ s.id }}"/>
                       <input type='hidden' id="qte{{ s.id }}" name="qte"  value="1"/>
-                      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                      <script type="text/javascript">
-                        var output = document.getElementById('#output{{ s.id }}');
-                    
-                        var auto_refresh = setInterval(
-                        function refresh()
-                        { 
-                          $('#output{{ s.id }}').load('index.php?page=recherche #output{{ s.id }}').fadeIn('slow');
-                        }, 1000);
-                        var auto_refresh = setInterval(
-                        function refresh2()
-                        {
-                          $('#output').load('index.php?page=recherche #output').fadeIn('slow');
-                        }, 1000);
-
-                        var auto_refresh = setInterval(
-                        function refresh3()
-                        { 
-                          $('#outputt{{ s.id }}').load('index.php?page=recherche #outputt{{ s.id }}').fadeIn('slow');
-                        }, 1000);
-                      </script>
                 
                       <div id="btbt{{ s.id }}" >
-                        <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
+                        <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-plust="{{t.id}}" id-plus="{{ s.id }}" name="btAugmenterQte" value="+"> + </button>
                       </div>
                     </form>
                   </td>
 
                   <td>
                     <form action="index.php" method="post">
+                      <input type='hidden' id="idPT{{ t.id }}" name="idT"  value="{{ t.id }}"/>
                       <input type='hidden' id="idBT{{ t.id }}" name="idT"  value="{{ t.id }}"/>
                       <input type='hidden' id="idB{{ s.id }}" name="id"  value="{{ s.id }}"/>
                       <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
@@ -147,9 +127,9 @@
                     </form>
                     {% if s.qte <= s.seuil %}
                       {% if s.qte >= "1" %}
-                          <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
+                        <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
                       {% else %} 
-                          <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
+                        <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
                       {% endif %}
                     {% endif %}
                   </td>
