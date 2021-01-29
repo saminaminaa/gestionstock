@@ -10,24 +10,24 @@
             <div>                                                            
                 <form class="form-signin" action="index.php?page=modif-sousproduit" method="post" enctype="application/x-www-form-urlencoded">
                     <div style="text-align:center; padding-top:5%; padding-bottom:3%">
-                        <h1 class="h3 mb-3 font-weight-normal">Modifier un produit</h1>
+                        <h1 class="h3 mb-3 font-weight-normal animate__animated animate__backInLeft">Modifier un produit</h1>
                     </div>
                    
                     <input type="hidden" name="id" value="{{ form.sousproduit.id }}" required/> 
-                    <label for="libelle" class="label-grand">Nom du produit :</label>
-                    <input type="text" id="libelle" name="libelle" class="form-control" placeholder="Libelle"  value="{{form.sousproduit.libelle}}" required>
-                    <label for="qte" class="label-grand">Quantité du produit :</label>
-                    <input type="text" id="qte" name="qte" class="form-control" placeholder="Quantité"  value="{{form.sousproduit.qte}}" required>
-                    <label for="inputFabricant" class="label-grand">Fabricant du produit :</label>
-                    <input type="text" id="fabricant" name="fabricant" class="form-control" placeholder="Fabricant"  value="{{form.sousproduit.fabricant}}">
-                    <label for="seuil" class="label-control">Seuil :</label>
-                    <input type="text" id="seuil" name="seuil" class="form-control" placeholder="Seuil"  value="{{form.sousproduit.seuil}}" required>
-                    <label for="reference" class="label-control">Reference :</label>
-                    <input type="text" id="reference" name="reference" class="form-control" placeholder="Reference"  value="{{form.sousproduit.reference}}" required>
-                    <label for="commentaire" class="label-grand">Commentaire :</label>
-                    <input type="text" id="commentaire" name="commentaire" class="form-control" placeholder="Commentaire"  value="{{form.sousproduit.commentaire}}">
-                    <label for="idTypeproduit" class="label-grand">Type de produit :</label>
-                    <select class="form-control" id="idTypeproduit" name="idTypeproduit" required>
+                    <label for="libelle" class="label-grand animate__animated animate__backInLeft">Nom du produit :</label>
+                    <input type="text" id="libelle" name="libelle" class="form-control animate__animated animate__backInLeft" placeholder="Libelle"  value="{{form.sousproduit.libelle}}" required>
+                    <label for="qte" class="label-grand animate__animated animate__backInLeft">Quantité du produit :</label>
+                    <input type="text" id="qte" name="qte" class="form-control animate__animated animate__backInLeft" placeholder="Quantité"  value="{{form.sousproduit.qte}}" required>
+                    <label for="inputFabricant" class="label-grand animate__animated animate__backInLeft">Fabricant du produit :</label>
+                    <input type="text" id="fabricant" name="fabricant" class="form-control animate__animated animate__backInLeft" placeholder="Fabricant"  value="{{form.sousproduit.fabricant}}">
+                    <label for="seuil" class="label-control animate__animated animate__backInLeft">Seuil :</label>
+                    <input type="text" id="seuil" name="seuil" class="form-control animate__animated animate__backInLeft" placeholder="Seuil"  value="{{form.sousproduit.seuil}}" required>
+                    <label for="reference" class="label-control animate__animated animate__backInLeft">Reference :</label>
+                    <input type="text" id="reference" name="reference" class="form-control animate__animated animate__backInLeft" placeholder="Reference"  value="{{form.sousproduit.reference}}" required>
+                    <label for="commentaire" class="label-grand animate__animated animate__backInLeft">Commentaire :</label>
+                    <input type="text" id="commentaire" name="commentaire" class="form-control animate__animated animate__backInLeft" placeholder="Commentaire"  value="{{form.sousproduit.commentaire}}">
+                    <label for="idTypeproduit" class="label-grand animate__animated animate__backInLeft">Type de produit :</label>
+                    <select class="form-control animate__animated animate__backInLeft" id="idTypeproduit" name="idTypeproduit" required>
                         {% for t in form.typeproduits %}
                             {% if t.id == form.sousproduit.idTypeproduit %}
                                 <option value="{{ t.id }}" selected>{{ t.libelle }}</option>
@@ -36,14 +36,14 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>
+                    <button class="btn btn-lg btn-primary btn-block animate__animated animate__backInLeft" type="submit" name="btModifier">Modifier</button>
                 </form>
             </div>
 
             {% else %}
                 <div style="text-align:center; padding-top:5%; padding-bottom:3%">
                     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
-                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur la l'accueil</a></h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner à l'accueil</a></h1>
                 </div>
             {% endif %}
 
@@ -51,10 +51,10 @@
             <div style="text-align:center; padding-top:5%; padding-bottom:3%">
                 {% if form.valide == true %}
                     <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
-                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner à l'accueil</a></h1>
                 {% else %}
                     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
-                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner sur l'accueil</a></h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Retourner à l'accueil</a></h1>
                 {% endif %}
             </div>
         {% endif %}
