@@ -7,13 +7,13 @@
   </div>
 
   <!--Messages lors de l'envoi d'un form-->
-  {% if form.valide is defined %}     
+{#   {% if form.valide is defined %}     
     {% if form.valide == true %}
       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>       
     {% else %}         
       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
     {% endif %}         
-  {% endif %}
+  {% endif %} #}
 
   <div style="padding-top:0%">
     <div style="padding-top:2%">
@@ -49,7 +49,7 @@
 				      <td>
                 <div id="output__{{ t.id }}" name="output">
                   {% if t.TotalQte <= "0" %}
-                    <FONT color="red"> 
+                    <FONT color="red" class="animate__animated animate__heartBeat"> 
                       <b>
                         {{t.TotalQte}}
                       </b>
@@ -61,8 +61,9 @@
               
               </td>
               <td>
+              <div id="outputt__{{ t.id }}" name="outputt">
                 {% if t.TotalQte <= "0" %}
-                  <FONT color="red"> 
+                  <FONT color="red" class="animate__animated animate__heartBeat"> 
                     <b>
                       Rupture de stock
                     </b>
@@ -70,7 +71,9 @@
                 {% else %} 
                   En stock
                 {% endif %}
+                </div>
               </td>
+              
             </tr>
           </table>
         </div>
@@ -91,13 +94,13 @@
                     <div id="output{{ s.id }}_{{ t.id }}" name="output">
                       {% if s.qte <= s.seuil %}
                         {% if s.qte >= "1" %}
-                          <FONT color="orange"> 
+                          <FONT color="orange" class="animate__animated animate__heartBeat"> 
                             <b>
                               {{s.qte}}  
                             </b>
                           </FONT>
                         {% else %} 
-                          <FONT color="red"> 
+                          <FONT color="red" class="animate__animated animate__heartBeat"> 
                             <b>
                               {{s.qte}}
                             </b>
@@ -114,13 +117,13 @@
                     <div id="outputt{{ s.id }}_{{ t.id }}" name="output">
                       {% if s.qte <= s.seuil %}
                         {% if s.qte >= "1" %}
-                          <FONT color="orange"> 
+                          <FONT color="orange" class="animate__animated animate__heartBeat"> 
                             <b>
                               Encore en stock mais seuil atteint
                             </b>
                           </FONT>
                         {% else %} 
-                          <FONT color="red"> 
+                          <FONT color="red" class="animate__animated animate__heartBeat"> 
                             <b>
                               Produit en rupture de stock
                             </b>
@@ -170,13 +173,14 @@
                       <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
                       <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-moinst="{{t.id}}" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
                     </form>
-                    {% if s.qte <= s.seuil %}
+                    <!--pop-up si seuil atteint ou si rupture de stock-->
+{#                     {% if s.qte <= s.seuil %}
                       {% if s.qte >= "1" %}
                           <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
                       {% else %} 
                           <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
                       {% endif %}
-                    {% endif %}
+                    {% endif %} #}
                   </td>
 
                   <td> 

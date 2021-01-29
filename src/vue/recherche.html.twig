@@ -18,7 +18,7 @@
 <br><br><br>
 
         <div style="padding-left:5%; padding-right:5%">
-          <div class="panel panel-default" >
+          <div class="panel panel-default animate__animated animate__fadeInDown" >
             <div class="table-responsive">
               <table class="table table-hover">
                 <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Référence</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
@@ -91,7 +91,7 @@
                           value="{{s.commentaire}}">{{s.commentaire}}</textarea>
                         <div style="text-align:left">
                         <button onclick="refresh4()" type="button" id-com="{{ s.id }}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
-                        <span class="res{{ s.id }}"></span>
+                        <span class="res{{ s.id }} animate__animated animate__fadeInDown"></span>
                         </div>
                       </form>
                     {% endif %}
@@ -125,13 +125,13 @@
                       <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
                       <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-moinsT="{{ t.id }}" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
                     </form>
-                    {% if s.qte <= s.seuil %}
+{#                     {% if s.qte <= s.seuil %}
                       {% if s.qte >= "1" %}
                         <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
                       {% else %} 
                         <script>alert("Rupture de stock pour le produit : {{s.libelle}}")</script>
                       {% endif %}
-                    {% endif %}
+                    {% endif %} #}
                   </td>
 
                   <td> 

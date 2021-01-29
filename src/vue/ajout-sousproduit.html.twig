@@ -8,15 +8,15 @@
         <form class="form-signin" method="post">
                 <div align ="center" style="padding-left:10% ; padding-right:10% ; padding-top: 5%">
                         <div style="padding-bottom:8%">
-                                <h1 class="h3 mb-3 font-weight-normal">Ajout d'un produit</h1>
+                                <h1 class="h3 mb-3 font-weight-normal animate__animated animate__backInLeft">Ajout d'un produit</h1>
                         </div>
-                        <input type="libelle" class="form-control" id="libelle" name="libelle" placeholder="Libelle" required>
-                        <input type="qte" class="form-control" id="qte" name="qte" placeholder="Quantité" required>
-                        <input type="fabricant" class="form-control" id="fabricant" name="fabricant" placeholder="Fabricant">
-                        <input type="seuil" class="form-control" id="seuil" name="seuil" placeholder="Seuil" required>
-                        <input type="reference" class="form-control" id="reference" name="reference" placeholder="Reference" required>
-                        <input type="commentaire" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">
-                        <select class="form-control" name="idTypeproduit" id="idTypeproduit" required>
+                        <input type="libelle" class="form-control animate__animated animate__backInLeft" id="libelle" name="libelle" placeholder="Libelle" required>
+                        <input type="qte" class="form-control animate__animated animate__backInLeft" id="qte" name="qte" placeholder="Quantité" required>
+                        <input type="fabricant" class="form-control animate__animated animate__backInLeft" id="fabricant" name="fabricant" placeholder="Fabricant">
+                        <input type="seuil" class="form-control animate__animated animate__backInLeft" id="seuil" name="seuil" placeholder="Seuil" required>
+                        <input type="reference" class="form-control animate__animated animate__backInLeft" id="reference" name="reference" placeholder="Reference" required>
+                        <input type="commentaire" class="form-control animate__animated animate__backInLeft" id="commentaire" name="commentaire" placeholder="Commentaire">
+                        <select class="form-control animate__animated animate__backInLeft" name="idTypeproduit" id="idTypeproduit" required>
                                 <option value="" disabled selected>Type de produit</option>
                                 {% for t in form.typeproduits %}
                                         {% if r.id==form.sousproduit.idTypeproduit %} 
@@ -26,7 +26,7 @@
                                         {% endif %}
                                 {% endfor %}
                         </select>
-                        <button type="submit" name="btAjouter" class="btn btn-lg btn-primary btn-block">Ajouter</button>
+                        <button type="submit" name="btAjouter" class="btn btn-lg btn-primary btn-block animate__animated animate__backInLeft">Ajouter</button>
                 </div>
         </form>
 

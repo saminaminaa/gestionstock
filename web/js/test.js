@@ -84,6 +84,7 @@ $(document).ready(function() {
           $('#output'+id).load('index.php?page=recherche #output'+id).fadeIn();
           $('#output'+id+"_"+idT).load('index.php #output'+id+"_"+idT).fadeIn();
           $('#output__'+idT).load('index.php #output__'+idT).fadeIn();
+          $('#outputt__'+idT).load('index.php #outputt__'+idT).fadeIn();
           $('#outputt'+id+"_"+idT).load('index.php #outputt'+id+"_"+idT).fadeIn();
         });
         request.fail(function( jqXHR, textStatus ) {
@@ -128,6 +129,7 @@ $(document).ready(function() {
           $('#output'+id).load('index.php?page=recherche #output'+id).fadeIn();
           $('#output'+id+"_"+idT).load('index.php #output'+id+"_"+idT).fadeIn();
           $('#output__'+idT).load('index.php #output__'+idT).fadeIn();
+          $('#outputt__'+idT).load('index.php #outputt__'+idT).fadeIn();
           $('#outputt'+id+"_"+idT).load('index.php #outputt'+id+"_"+idT).fadeIn();
         });
         request.fail(function( jqXHR, textStatus ) {
