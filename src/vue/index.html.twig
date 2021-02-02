@@ -7,13 +7,29 @@
   </div>
 
   <!--Messages lors de l'envoi d'un form-->
-{#   {% if form.valide is defined %}     
+{#  {% if form.valide is defined %}     
     {% if form.valide == true %}
       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>       
     {% else %}         
       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
     {% endif %}         
   {% endif %} #}
+  <a class="open-button" style="cursor: pointer; hover; text-decoration:none;" onmouseover="this.style.opacity ='0.8'" onmouseout="this.style.opacity ='1'">
+    <div class="card text-white bg-primary mb-3" style="max-width: 100%; margin-left: auto; margin-right: auto; width: ...; border-radius:20px">
+      <div class="card-body">
+        <h6 class="card-title">                 
+        
+        <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                  <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+                </span>
+                <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                  <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg>
+                </span> 
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <u>Type de produit</u> : <b>PC</b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <u>Quantité totale</u> : <b>15</b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <u>Stock </u>: <b>En stock</b></h6>
+      </div>
+    </div>
+  </a>
 
   <div style="padding-top:0%">
     <div style="padding-top:2%">
