@@ -5,7 +5,6 @@
   <div style="text-align:center; padding-top:5%; padding-bottom:3%">
     <h1 class="animate__animated animate__flipInX">Bienvenue sur le gestionnaire de stock </h1>
   </div>
-
   <!--Messages lors de l'envoi d'un form-->
 {#  {% if form.valide is defined %}     
     {% if form.valide == true %}
@@ -14,34 +13,57 @@
       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
     {% endif %}         
   {% endif %} #}
-  <a class="open-button" style="cursor: pointer; hover; text-decoration:none;" onmouseover="this.style.opacity ='0.8'" onmouseout="this.style.opacity ='1'">
-    <div class="card text-white bg-primary mb-3" style="max-width: 100%; margin-left: auto; margin-right: auto; width: ...; border-radius:20px">
-      <div class="card-body">
-        <h6 class="card-title">                 
-        
-        <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                  <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
-                </span>
-                <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='none';" class="glyphicon glyphicon-chevron-up" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                  <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg>
-                </span> 
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <u>Type de produit</u> : <b>PC</b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <u>Quantité totale</u> : <b>15</b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <u>Stock </u>: <b>En stock</b></h6>
-      </div>
-    </div>
-  </a>
 
   <div style="padding-top:0%">
     <div style="padding-top:2%">
       <h3> Liste des types de produits : </h3>
     </div>
-    <div class="panel panel-default  ">
+    <div class="panel panel-default">
+
+  <a class="open-button" style="cursor: pointer; hover; text-decoration:none;">
+    <div class="card text-white bg-dark mb-3" style="max-width: 100%; margin-left: auto; margin-right: auto; width: ...; border-radius:20px">
+      <div class="card-body">
+        <h6 class="card-title">
+
+<style>
+
+tbody tr:nth-child(odd) {
+  background-color: #ff33cc;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e495e4;
+}
+
+tbody tr {
+  background-image: url(noise.png);
+}
+
+table {
+  background-color: #ff33cc;
+}
+
+</style>
+
+
+
+
+
+
+
+    <div class="animate__animated animate__bounceIn" style="border-radius:20px">
+          <table class="table table-hover" style="border-collapse: collapse; border: 3px solid black; background: black; color: white;">
+            <tr class="table-primary"><th>&emsp;</th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
+            {# <tr class="table-dark" style="visibility:visible;"> #}
       {% for t in liste %}
-        <div class="table-responsive animate__animated animate__bounceIn">
-          <table class="table table-hover ">
-            <tr class="table-primary "><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr><tr>
+        <div class=" animate__animated animate__bounceIn" style="border-radius:20px; visibility: hidden">
+          <table class="table table-hover;" style="visibility: hidden ">
+            <tr style="visibility: collapse"><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
+            <tr scope="row" class="table-dark" style="visibility: visible">
+            
+            <div {# style="visibility: visible;" #}>
                 
-              <td> 
+              <td scope="row"> 
                 <span style="cursor: pointer;" class="open-button" onclick="ajoutEffet(); document.getElementById('listeproduit{{t.libelle}}').style.display='block';" class="glyphicon glyphicon-chevron-down" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                   <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
                 </span>
@@ -60,9 +82,9 @@
                 }
               </script>
                 
-              <td>{{t.libelle}}</td>
+              <td scope="row">{{t.libelle}}</td>
                 
-				      <td>
+				      <td scope="row">
                 <div id="output__{{ t.id }}" name="output">
                   {% if t.TotalQte <= "0" %}
                     <FONT color="red" class="animate__animated animate__heartBeat"> 
@@ -76,7 +98,7 @@
                 </div>
               
               </td>
-              <td>
+              <td scope="row">
               <div id="outputt__{{ t.id }}" name="outputt">
                 {% if t.TotalQte <= "0" %}
                   <FONT color="red" class="animate__animated animate__heartBeat"> 
@@ -89,7 +111,7 @@
                 {% endif %}
                 </div>
               </td>
-              
+              </div>
             </tr>
           </table>
         </div>
@@ -98,13 +120,13 @@
 
         <div style="padding-left:5%; padding-right:5%">
           <div class="panel panel-default" >
-            <div class="table-responsive animate__animated animate__fadeIn" id="listeproduit{{t.libelle}}"  style="display:none">
+            <div class="table-responsive animate__animated animate__fadeIn" id="listeproduit{{t.libelle}}"  style="display:none; {# border-radius:20px #}">
               <table class="table table-hover">
                 <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Référence</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
             
                 {% for s in liste2 %}
                 {% if t.id == s.idTypeproduit %}
-                <tr class="table-dark" > 
+                <tr class="table-secondary" style="border-radius:20px" > 
                   <td>{{s.libelle}}</td>
 							    <td>
                     <div id="output{{ s.id }}_{{ t.id }}" name="output">
@@ -296,11 +318,19 @@
       </div>
     </div>
     {% endfor %}  
+    </tr>
+    </tr>
   </div>
+  </div>
+  </table>
+                </h6>
+      </div>
+    </div>
+  </a>
   <a href="index.php?page=ajout-type">Ajouter un nouveau type de produit</a>
   <br>
   <a href="index.php?page=ajout-sousproduit">Ajouter un nouveau produit</a>
-  </div>
+  </div><br>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="js/test.js"></script>
