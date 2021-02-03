@@ -18,6 +18,9 @@ $(document).ready(function() {
     idC = 'idC'+this.getAttribute('id-com');
     id=document.getElementById(idC).value;
     
+    idCT = 'idCT'+this.getAttribute('id-comt');
+    idT = document.getElementById(idCT).value;
+
     //ajax
     var request= $.ajax({
       url: "http://localhost/projet/web/index.php?page=api-modif-com", 
@@ -38,6 +41,7 @@ $(document).ready(function() {
         var text = "✔️"
         // Modifier le contenu de la div
         $(".res"+id).text(text);
+        $('.ress'+id).load('index.php .ress'+id).fadeIn();
       });
       request.fail(function( jqXHR, textStatus ) {
         alert ('erreur');

@@ -26,7 +26,6 @@
         <h6 class="card-title">
 
 <style>
-
 tbody tr:nth-child(odd) {
   background-color: #ff33cc;
 }
@@ -42,25 +41,17 @@ tbody tr {
 table {
   background-color: #ff33cc;
 }
-
 </style>
 
-
-
-
-
-
-
-    <div class="animate__animated animate__bounceIn" style="border-radius:20px">
-          <table class="table table-hover" style="border-collapse: collapse; border: 3px solid black; background: black; color: white;">
+    <div class="animate__animated animate__bounceIn" style="border-radius:20px;">
+          <table class="table table-hover" style="border-collapse: collapse; border: 2px solid; background: black; color: white;">
             <tr class="table-primary"><th>&emsp;</th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
             {# <tr class="table-dark" style="visibility:visible;"> #}
       {% for t in liste %}
         <div class=" animate__animated animate__bounceIn" style="border-radius:20px; visibility: hidden">
-          <table class="table table-hover;" style="visibility: hidden ">
+          <table class="table table-hover;" style="visibility: hidden; border-collapse: collapse; border: 2px solid; background: black; color: white;">
             <tr style="visibility: collapse"><th></th><th scope="row">Type de produit </th><th scope="col">Quantité totale</th><th scope="col">Stock</th></th></tr>
             <tr scope="row" class="table-dark" style="visibility: visible">
-            
             <div {# style="visibility: visible;" #}>
                 
               <td scope="row"> 
@@ -121,7 +112,7 @@ table {
         <div style="padding-left:5%; padding-right:5%">
           <div class="panel panel-default" >
             <div class="table-responsive animate__animated animate__fadeIn" id="listeproduit{{t.libelle}}"  style="display:none; {# border-radius:20px #}">
-              <table class="table table-hover">
+              <table class="table table-hover" style="border-collapse: collapse; border: 2px solid; background: black; color: white;">
                 <tr class="table-success"><th scope="row" >Nom du produit </th><th scope="row">Quantité</th><th scope="row">Fabricant</th><th scope="row">Référence</th><th scope="row">Stock</th><th scope="row">Commentaire</th><th scope="row">+</th><th scope="row">-</th><th></th><th></th></th></tr>
             
                 {% for s in liste2 %}
@@ -173,12 +164,20 @@ table {
                     </div>
                   </td>
                   <td>
+
+                  </div>
+                  </div>
+                  
                       <form action="index.php" method="post">
+                        <span class="ress{{ s.id }}" name="output">
+                        {{s.commentaire}}<br>
+                        
+                        <input type='hidden' id="idCT{{ t.id }}" name="idT"  value="{{ t.id }}"/>
                         <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
-                        <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{ s.id }}" name="commentaire"  
-                          value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-                      
-                        <button onclick="refresh4()" type="button" id-com="{{ s.id }}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
+                        <textarea type='message' cols="1" rows="1" class="form-control"  id="commentaire{{ s.id }}" name="commentaire" value="{{s.commentaire}}"></textarea>
+                        </span>
+                        <button onclick="refresh4()" type="button" id-com="{{ s.id }}" id-comt="{{t.id}}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
+                        
                         <span class="res{{ s.id }}"></span>
                       </form>
                 
@@ -304,7 +303,6 @@ table {
                       function openForm{{ s.id }}_{{ t.id }}() {
                         document.getElementById("popupForm{{ s.id }}_{{ t.id }}").style.display="block";
                       }
-
                       function closeForm{{ s.id }}_{{ t.id }}() {
                         document.getElementById("popupForm{{ s.id }}_{{ t.id }}").style.display="none";
                       }
