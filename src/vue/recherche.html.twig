@@ -86,13 +86,14 @@
                       </div>
                     {% else %}
                       <form action="index.php" method="post">
-                        <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
-                        <textarea type='message' cols="1" rows="2" class="form-control" size="10" id="commentaire{{s.id}}" name="commentaire"  
-                          value="{{s.commentaire}}">{{s.commentaire}}</textarea>
-                        <div style="text-align:left">
-                        <button onclick="refresh4()" type="button" id-com="{{ s.id }}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
-                        <span class="res{{ s.id }} animate__animated animate__fadeInDown"></span>
-                        </div>
+                        <span class="ress{{ s.id }}" name="output">
+                          {{s.commentaire}}<br>
+                          <input type='hidden' id="idCT{{ t.id }}" name="idT"  value="{{ t.id }}"/>
+                          <input type='hidden' id="idC{{ s.id }}" name="id"  value="{{ s.id }}"/>
+                          <textarea type='message' cols="1" rows="1" class="form-control"  id="commentaire{{ s.id }}" name="commentaire" value="{{s.commentaire}}"></textarea>
+                        </span>
+                        <button onclick="refresh4()" type="button" id-com="{{ s.id }}" id-comt="{{t.id}}" name="btModifCom" class="btn btn-sm btn-primary" value="Modifier">Modifier</button>
+                        <span class="res{{ s.id }}"></span>
                       </form>
                     {% endif %}
                 

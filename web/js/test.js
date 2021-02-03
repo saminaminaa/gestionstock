@@ -42,6 +42,7 @@ $(document).ready(function() {
         // Modifier le contenu de la div
         $(".res"+id).text(text);
         $('.ress'+id).load('index.php .ress'+id).fadeIn();
+        $('.ress'+id).load('index.php?page=recherche .ress'+id).fadeIn();
       });
       request.fail(function( jqXHR, textStatus ) {
         alert ('erreur');
