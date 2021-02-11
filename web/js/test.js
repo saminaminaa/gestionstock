@@ -12,13 +12,13 @@ $(document).ready(function() {
   
   function ajaxEnvoiCom(){ //fonction ajax pour chaque form (ici pour l'envoi d'un commentaire)
     //alert(this.getAttribute('id-com'));
-    id='idC'+this.getAttribute('id-com');
+    id='idC'+this.getAttribute('id-com'); //On recupere l'id du commentaire
     idcommentaire = 'commentaire'+this.getAttribute('id-com');
     commentaire=document.getElementById(idcommentaire).value;
     idC = 'idC'+this.getAttribute('id-com');
     id=document.getElementById(idC).value;
     
-    idCT = 'idCT'+this.getAttribute('id-comt');
+    idCT = 'idCT'+this.getAttribute('id-comt'); //Pour recuperer l'id du type
     idT = document.getElementById(idCT).value;
 
     //ajax
@@ -41,7 +41,7 @@ $(document).ready(function() {
         var text = "✔️"
         // Modifier le contenu de la div
         $(".res"+id).text(text);
-        $('.ress'+id+"_"+idT).load('index.php .ress'+id+"_"+idT).fadeIn();
+        $('.ress'+id+"_"+idT).load('index.php .ress'+id+"_"+idT).fadeIn(); //Actualiser cette div
         $('.ress'+id).load('index.php?page=recherche .ress'+id).fadeIn();
       });
       request.fail(function( jqXHR, textStatus ) {
@@ -86,7 +86,7 @@ $(document).ready(function() {
           //alert(msg);
           //alert("fonctionne");
           //si la requete fonctionne on actualise ces divs :
-          $('#output'+id).load('index.php?page=recherche #output'+id).fadeIn();
+          $('#output'+id).load('index.php?page=recherche #output'+id).fadeIn(); //Pour actualiser une div
           $('#output'+id+"_"+idT).load('index.php #output'+id+"_"+idT).fadeIn();
           $('#output__'+idT).load('index.php #output__'+idT).fadeIn();
           $('#outputt__'+idT).load('index.php #outputt__'+idT).fadeIn();

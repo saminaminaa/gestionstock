@@ -5,14 +5,6 @@
   <div style="text-align:center; padding-top:5%; padding-bottom:3%">
     <h1 class="animate__animated animate__flipInX">Bienvenue sur le gestionnaire de stock </h1>
   </div>
-  <!--Messages lors de l'envoi d'un form-->
-{#  {% if form.valide is defined %}     
-    {% if form.valide == true %}
-      <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>       
-    {% else %}         
-      <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>     
-    {% endif %}         
-  {% endif %} #}
 
   <div style="padding-top:0%">
     <div style="padding-top:2%">
@@ -24,24 +16,6 @@
     <div class="card text-white bg-dark mb-3" style="max-width: 100%; margin-left: auto; margin-right: auto; width: ...; border-radius:20px">
       <div class="card-body">
         <h6 class="card-title">
-
-<style>
-tbody tr:nth-child(odd) {
-  background-color: #ff33cc;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #e495e4;
-}
-
-tbody tr {
-  background-image: url(noise.png);
-}
-
-table {
-  background-color: #ff33cc;
-}
-</style>
 
     <div class="animate__animated animate__bounceIn" style="border-radius:20px;">
           <table class="table table-hover" style="border-collapse: collapse; border: 2px solid; background: black; color: white;">
@@ -62,16 +36,6 @@ table {
                   <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg>
                 </span>
               </td>
-
-
-              <script>
-                //const element = document.querySelector('listeproduit{{t.libelle}}');
-                function ajoutEffet() {
-                  const listepdt = document.getElementById('listeproduit{{t.libelle}}');
-                  //const element = document.querySelector('listeproduit{{t.libelle}}');
-                  listepdt.classList.add('animate__animated', 'animate__bounceOutLeft');
-                }
-              </script>
                 
               <td scope="row">{{t.libelle}}</td>
                 
@@ -164,9 +128,8 @@ table {
                     </div>
                   </td>
                   <td>
-
-                  </div>
-                  </div>
+                </div>
+              </div>
                   
                       <form action="index.php" method="post">
                         <span class="ress{{ s.id }}_{{t.id}}" name="output">
@@ -208,7 +171,7 @@ table {
                       <input type='hidden' id="qteB{{ s.id }}" name="qte"  value="1"/>
                       <button onclick="refresh(); refresh2(); refresh3()" class="btn btn-sm btn-primary" type="button" id-moinst="{{t.id}}" id-moins="{{ s.id }}" name="btBaisserQte" value="-"> - </button>
                     </form>
-                    <!--pop-up si seuil atteint ou si rupture de stock-->
+                    <!--pop-up si seuil atteint ou si rupture de stock (laissé en commentaire si jamais)-->
 {#                     {% if s.qte <= s.seuil %}
                       {% if s.qte >= "1" %}
                           <script>alert("le seuil est atteint pour le produit : {{s.libelle}} ")</script>
@@ -319,7 +282,7 @@ table {
   </div>
   </div>
   </table>
-                </h6>
+    </h6>
       </div>
     </div>
   </a>

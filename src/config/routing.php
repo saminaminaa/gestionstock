@@ -1,5 +1,8 @@
 <?php 
+
+//fichier permettant de gérer les routes
     function getPage($db){
+        //Fonction pour les pages
         $lesPages['accueil'] = "actionAccueil";
         $lesPages['ajout-type'] = "actionAjoutType";
         $lesPages['ajout-sousproduit'] = "actionAjoutSousproduit";
@@ -11,26 +14,8 @@
         $lesPages['api-recherche-produit']= "actionApiRechercheProduit";
         $lesPages['recherche']= "actionRecherche";
 
-      /*   if ($db == NULL) {
-            return "nous ne trouvons pas de bd";
-        } else { */
-
-/*         if ($db != NULL) {
-            if (isset($_GET['page'])) {
-                $page = $_GET['page'];
-            } else {
-                $page = 'accueil';
-            }
-
-            if (!isset($lesPages[$page])) {
-                $page = 'accueil';
-            }
-        } else{
-            $contenu = 'actionMaintenance';
-        }
-        return $contenu;
-    } */
-
+        //Si la page est connu on redirige vers cette page.
+        //Si la page n'est pas connu on redirige vers la page d'accueil.
         if(isset($_GET['page'])){
             $page = $_GET['page']; 
         } else{
@@ -42,11 +27,4 @@
         $contenu = $lesPages[$page];
         return $contenu; 
     }
-
-
-
-
-
-
-    // }
 ?>

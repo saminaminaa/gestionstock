@@ -51,7 +51,7 @@ class Sousproduit{
         //requete pour supprimer un produit
         $this->delete = $db->prepare("delete from sousproduit s where id=:id"); 
 
-        //
+        //requete pour selectionner une recherche
         $this->selectSearch = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where libelle=:libelle order by libelle");
        
         //requete pour effectuer une recherche sur le site
@@ -61,7 +61,7 @@ class Sousproduit{
     
     //inserer
     public function insert($libelle, $qte, $fabricant, $seuil, $reference, $commentaire, $idTypeproduit){
-         $r = true;
+        $r = true;
         $this->insert->execute(array(':libelle'=>$libelle, ':qte'=>$qte, ':fabricant'=>$fabricant, ':seuil'=>$seuil, ':reference'=>$reference, ':commentaire'=>$commentaire, ':idTypeproduit'=>$idTypeproduit));
         if ($this->insert->errorCode()!=0){
             print_r($this->insert->errorInfo());
@@ -143,7 +143,7 @@ class Sousproduit{
         }        
         return $r;    
     }
-    //     
+    //Selectionner via une recherche
     public function selectSearch($libelle){
         $this->selectSearch->execute(array(':libelle'=>$libelle));
         if ($this->selectSearch->errorCode()!=0){
@@ -152,6 +152,7 @@ class Sousproduit{
         return $this->selectSearch->fetchAll();      
     }
 
+    //Effectuer une recherche
     public function recherche($recherche){
         $this->recherche->execute(array('recherche'=>'%'.$recherche.'%'));
         if ($this->recherche->errorCode()!=0){

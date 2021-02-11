@@ -19,7 +19,7 @@
                         <select class="form-control animate__animated animate__backInLeft" name="idTypeproduit" id="idTypeproduit" required>
                                 <option value="" disabled selected>Type de produit</option>
                                 {% for t in form.typeproduits %}
-                                        {% if r.id==form.sousproduit.idTypeproduit %} 
+                                        {% if r.id == form.sousproduit.idTypeproduit %} 
                                                  <option value="{{ t.id }}" >{{ t.libelle }}</option>
                                         {% else %}
                                                 <option value="{{ t.id }}">{{t.libelle }}</option>
