@@ -41,7 +41,7 @@ $(document).ready(function() {
         var text = "✔️"
         // Modifier le contenu de la div
         $(".res"+id).text(text);
-        $('.ress'+id).load('index.php .ress'+id).fadeIn();
+        $('.ress'+id+"_"+idT).load('index.php .ress'+id+"_"+idT).fadeIn();
         $('.ress'+id).load('index.php?page=recherche .ress'+id).fadeIn();
       });
       request.fail(function( jqXHR, textStatus ) {

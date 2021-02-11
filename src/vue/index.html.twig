@@ -169,7 +169,7 @@ table {
                   </div>
                   
                       <form action="index.php" method="post">
-                        <span class="ress{{ s.id }}" name="output">
+                        <span class="ress{{ s.id }}_{{t.id}}" name="output">
                         {{s.commentaire}}<br>
                         
                         <input type='hidden' id="idCT{{ t.id }}" name="idT"  value="{{ t.id }}"/>
