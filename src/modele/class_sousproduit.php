@@ -49,7 +49,7 @@ class Sousproduit{
         $this->updateAll = $db->prepare("update sousproduit set id=:id, libelle=:libelle, qte=:qte, fabricant=:fabricant, seuil=:seuil, reference=:reference, commentaire=:commentaire, idTypeproduit=:idTypeproduit where id=:id");
 
         //requete pour supprimer un produit
-        $this->delete = $db->prepare("delete from sousproduit s where id=:id"); 
+        $this->delete = $db->prepare("delete from sousproduit where id=:id"); 
 
         //requete pour selectionner une recherche
         $this->selectSearch = $db->prepare("select id, libelle, qte, fabricant, seuil, reference, commentaire, idTypeproduit from sousproduit s where libelle=:libelle order by libelle");
